@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_widget/views/Saved_Recipes.dart';
+import 'package:recipe_widget/views/navbar.dart';
 import 'package:recipe_widget/views/search_for_recipe.dart';
 import 'package:recipe_widget/views/search_for_recipe_Recent.dart';
 
@@ -23,10 +24,9 @@ class MyApp extends StatelessWidget {
         ),
       
       ),
-      home:search_for_recipe(),
+      home:NavigationsBar(),
     );
          }
 }
-
 
 
