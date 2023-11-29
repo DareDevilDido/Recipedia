@@ -20,7 +20,7 @@ class RecipeCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
            context
-          ,MaterialPageRoute(
+          ,MaterialPageRoute(//hna t7ot el constructorDido
             builder: (context) => RecipeDetailsPage(
               title: title,
               cookTime: cookTime,

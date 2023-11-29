@@ -24,7 +24,7 @@ class RecipeCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
            context
-          ,MaterialPageRoute(
+          ,MaterialPageRoute(//hna t7ot el constructor bta3t el page
             builder: (context) => RecipeDetailsPage(
               title: title,
               cookTime: cookTime,

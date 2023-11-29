@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Saved Recipe',
+      title: 'Food  Recipe',
       theme: ThemeData(
         primarySwatch:Colors.blue,
         primaryColor:Colors.white,
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
       
       ),
-      home:search_for_recipe_Recent(),
+      home:search_for_recipe(),
     );
          }
 }
