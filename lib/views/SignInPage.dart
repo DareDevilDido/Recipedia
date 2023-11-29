@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_widget/views/NavigationsBar.dart';
 import 'ProfilePage.dart';
 import 'SignUpPage.dart';
 
@@ -99,7 +100,7 @@ class SignInPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                      MaterialPageRoute(builder: (context) => NavigationsBar()),
                     );
                 },
                 style: ElevatedButton.styleFrom(
