@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_widget/views/test.dart';
 
 
 
@@ -19,7 +20,20 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+           context
+          ,MaterialPageRoute(
+            builder: (context) => RecipeDetailsPage(
+              title: title,
+              cookTime: cookTime,
+              rating: rating,
+              thumbnailUrl: thumbnailUrl,
+            ),
+          ),
+        );
+      },child: Container(
       margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
       width: MediaQuery.of(context).size.width,
       height: 180,
@@ -124,6 +138,117 @@ class RecipeCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
+// import 'package:flutter/material.dart';
+
+// class RecipeCard extends StatelessWidget {
+//   final String title;
+//   final String rating;
+//   final String cookTime;
+//   final String thumbnailUrl;
+
+//   RecipeCard({
+//     required this.title,
+//     required this.cookTime,
+//     required this.rating,
+//     required this.thumbnailUrl,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () {
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(
+//             builder: (context) => RecipeDetailsPage(
+//               title: title,
+//               cookTime: cookTime,
+//               rating: rating,
+//               thumbnailUrl: thumbnailUrl,
+//             ),
+//           ),
+//         );
+//       },
+//       child: Card(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(15),
+//         ),
+//         elevation: 10,
+//         child: Column(
+//           children: [
+//             Container(
+//               height: 150,
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.only(
+//                   topLeft: Radius.circular(15),
+//                   topRight: Radius.circular(15),
+//                 ),
+//                 image: DecorationImage(
+//                   image: NetworkImage(thumbnailUrl),
+//                   fit: BoxFit.cover,
+//                 ),
+//               ),
+//             ),
+//             Padding(
+//               padding: EdgeInsets.all(10),
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Row(
+//                     children: [
+//                       Icon(
+//                         Icons.star,
+//                         color: Colors.yellow,
+//                         size: 16,
+//                       ),
+//                       SizedBox(width: 4),
+//                       Text(
+//                         rating,
+//                         style: TextStyle(
+//                           fontSize: 12,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   Row(
+//                     children: [
+//                       Icon(
+//                         Icons.schedule,
+//                         color: Colors.yellow,
+//                         size: 16,
+//                       ),
+//                       SizedBox(width: 4),
+//                       Text(
+//                         cookTime,
+//                         style: TextStyle(
+//                           fontSize: 12,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             Padding(
+//               padding: EdgeInsets.all(10),
+//               child: Text(
+//                 title,
+//                 style: TextStyle(
+//                   fontSize: 16,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//                 maxLines: 2,
+//                 overflow: TextOverflow.ellipsis,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
