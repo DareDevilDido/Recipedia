@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_widget/views/test.dart';
 
 class RecipeCard extends StatelessWidget {
   final String title;
@@ -15,7 +16,20 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+           context
+          ,MaterialPageRoute(
+            builder: (context) => RecipeDetailsPage(
+              title: title,
+              cookTime: cookTime,
+              rating: rating,
+              thumbnailUrl: thumbnailUrl,
+            ),
+          ),
+        );
+      },child: Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
@@ -115,6 +129,7 @@ class RecipeCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
