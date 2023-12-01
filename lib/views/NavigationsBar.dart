@@ -19,7 +19,7 @@ class _NavigationsBarState extends State<NavigationsBar> {
     Saved_Recipes(),search_for_recipe(),ProfilePage()
 
   ];
-  //the page it gonna show first
+  //the page that's gonna show first
   int index = 0;
 
   @override
@@ -29,7 +29,7 @@ class _NavigationsBarState extends State<NavigationsBar> {
       bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
           animationDuration: Duration(milliseconds: 350),
-          color: Colors.deepOrange,
+          color: Colors.blue,
           height: 55,
           onTap: (pageIndex) {
             setState(() {

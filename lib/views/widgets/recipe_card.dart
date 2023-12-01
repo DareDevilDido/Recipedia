@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_widget/views/test.dart';
-
+import '../RecipeViewer.dart';
 
 
 class RecipeCard extends StatelessWidget {
@@ -24,13 +24,8 @@ class RecipeCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
            context
-          ,MaterialPageRoute(//hna t7ot el constructor bta3t el page
-            builder: (context) => RecipeDetailsPage(
-              title: title,
-              cookTime: cookTime,
-              rating: rating,
-              thumbnailUrl: thumbnailUrl,
-            ),
+          ,MaterialPageRoute(
+            builder: (context) => RecipeViewer(),           //RecipeViewer Page Route
           ),
         );
       },child: Container(

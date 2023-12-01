@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:recipe_widget/colors.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -64,6 +64,7 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
             const Text(
@@ -71,6 +72,7 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontStyle: FontStyle.italic,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 10),
@@ -78,6 +80,7 @@ class ProfilePage extends StatelessWidget {
               'Private Chef. Passionate about food and life 🍝',
               style: TextStyle(
                 fontSize: 16,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 20),
@@ -125,7 +128,7 @@ class ProfilePage extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: isHighlighted ? Colors.white : Colors.black,
+          color: isHighlighted ? Colors.black : Colors.black,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -159,7 +162,7 @@ class RecipeCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.network(
-              'https://food-images.files.bbci.co.uk/food/recipes/spiced_roast_chicken_94425_16x9.jpg', // Replace with your image URL
+              'https://simply-delicious-food.com/wp-content/uploads/2019/09/Indian-spiced-roast-chicken-1.jpg', // Replace with your image URL
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
