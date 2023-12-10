@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_widget/views/NavigationsBar.dart';
-import 'ProfilePage.dart';
 import 'SignUpPage.dart';
 
 

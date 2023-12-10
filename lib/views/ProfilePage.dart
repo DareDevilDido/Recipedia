@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_widget/colors.dart';
+import 'package:recipe_widget/colors.dart'; // Set Default colors in colors.dart file and use here
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -149,7 +149,7 @@ class RecipeCard extends StatelessWidget {
     required this.time,
   });
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'ProfilePage.dart';
 import 'SignInPage.dart';
 
 void main() {

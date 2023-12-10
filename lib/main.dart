@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_widget/views/Saved_Recipes.dart';
 import 'package:recipe_widget/views/SplashPage.dart';
-import 'package:recipe_widget/views/NavigationsBar.dart';
-import 'package:recipe_widget/views/search_for_recipe.dart';
-import 'package:recipe_widget/views/search_for_recipe_Recent.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,16 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Food Recipe',
       theme: ThemeData(
-        primarySwatch:Colors.blue,
-        primaryColor:Colors.white,
-        textTheme:TextTheme(bodyText2: TextStyle(color:Colors.white),
-         
+        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.white),
         ),
-      
       ),
-      home:SplashPage(),
+      home: SplashPage(),
     );
-         }
+  }
 }
-
-
