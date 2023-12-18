@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "716246316175",
+    "project_id": "recipedia-401e0",
+    "storage_bucket": "recipedia-401e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716246316175:android:f8ad37bda2cd27b7f5ecfa",
+        "android_client_info": {
+          "package_name": "com.example.recipedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy7nRcdfIZBPcNf0pMGeSx4bcdy030VdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

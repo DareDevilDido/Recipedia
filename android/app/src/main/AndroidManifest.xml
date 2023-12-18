@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="recipe_widget"
+        android:label="recipedia"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,4 +1,4 @@
-name: recipe_widget
+name: recipedia
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -28,16 +28,26 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-
   flutter:
     sdk: flutter
+  curved_navigation_bar: ^1.0.3
+  animated_text_kit: ^4.2.2
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
+  cloud_firestore: ^4.4.5
+  firebase_storage: ^11.0.6
+  file_picker: ^6.1.1
+  provider: ^6.0.4
+  flutter_spinkit: ^5.1.0
+  flutter_tts: ^3.6.2
+  firebase_core_web: ^2.0.2
+  numberpicker: ^2.1.1
+  awesome_snackbar_content: ^0.1.0
+  google_fonts: ^6.1.0
 
-  http: ^0.13.6
-  curved_labeled_navigation_bar: ^2.0.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -60,16 +70,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-   - assets/background_image.png
-   - assets/facebook_icon.png
-   - assets/google_icon.png
-   - assets/profile_pic.png
-   - assets/meat.png
-   - assets/sausage.png
-   - assets/dough-rolling.png
-   - assets/cheese.png
-   - assets/lunch1.jpg
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
