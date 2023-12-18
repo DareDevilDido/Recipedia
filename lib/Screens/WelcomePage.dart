@@ -41,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               Center(
                 child: TypewriterAnimatedTextKit(
                   speed: const Duration(milliseconds: 100),
-                  text: const ["WASFATY"],
+                  text: const ["Recipedia"],
                   textStyle: TextStyle(
                     color: kPrimaryColor,
                     fontSize: 40.0,

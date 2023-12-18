@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: kBackGroundColor,
           appBar: AppBar(
             leading: GestureDetector(),
-            title: const Text("Wasfaty"),
+            title: const Text("Recipedia"),
             centerTitle: true,
             backgroundColor: kPrimaryColor,
             actions: [

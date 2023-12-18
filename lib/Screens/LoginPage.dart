@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            Text("WASFATY",
+            Text("Recipedia",
                 style: TextStyle(
                   color: kPrimaryColor,
                   fontSize: 40.0,

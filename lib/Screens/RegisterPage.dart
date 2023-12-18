@@ -41,7 +41,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
             ),
-            Text("WASFATY",
+            Text("Recipedia",
                 style: TextStyle(
                   color: kPrimaryColor,
                   fontSize: 40.0,
