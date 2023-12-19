@@ -62,7 +62,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
     String Category = Recip.Category;
     String Servings = Recip.Servings;
     String time = Recip.time;
-    String Calories = Recip.Calories;
+    String nutrition = Recip.nutrition;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -221,10 +221,10 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
                                 onChanged: (value) {
-                                  Calories = value;
+                                  nutrition = value;
                                 },
                                 decoration: kinputDecoration.copyWith(
-                                    hintText: Calories),
+                                    hintText: nutrition),
                               ),
                             ),
                           ),
@@ -482,7 +482,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                 onPressed: () async {
                                   if (name != "" &&
                                       Category != "" &&
-                                      Calories != "" &&
+                                      nutrition != "" &&
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
@@ -519,7 +519,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                     await Provider.of<AdminRecipesController>(
                                             context,
                                             listen: false)
-                                        .EditRecipe(name, Category, Calories,
+                                        .EditRecipe(name, Category, nutrition,
                                             time, Servings, Image);
                                     await Provider.of<
                                                 AdminIngredientController>(

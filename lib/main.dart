@@ -23,10 +23,10 @@ import 'Controllers/UserRecipesController.dart';
 import 'Models/RandomRecipeOfTheDay.dart';
 import 'Models/Recipe.dart';
 import 'Models/Timer.dart';
-import 'Screens/DefaultRecipesPage.dart';
+import 'Screens/DefaultRecipePage.dart';
 import 'Screens/MyIngredientPage.dart';
 import 'Screens/ProfilePage.dart';
-import 'Screens/MyRecipesPage.dart';
+import 'Screens/MyRecipePage.dart';
 import 'Screens/WelcomePage.dart';
 import 'Screens/SearchPage.dart';
 import 'Screens/IngredientsPage.dart';
@@ -53,7 +53,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => PickImage()),
       ChangeNotifierProvider(create: (_) => Loading()),
       ChangeNotifierProvider(create: (_) => Recipe()),
-      ChangeNotifierProvider(create: (_) => DefaultRecipesController()),
+      ChangeNotifierProvider(create: (_) => DefaultRecipeController()),
       ChangeNotifierProvider(create: (_) => DefaultIngredientCntroller()),
       ChangeNotifierProvider(create: (_) => FavortieRecipesController()),
       ChangeNotifierProvider(create: (_) => UserRecipesController()),
@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
           HomePage.id: (context) => const HomePage(),
           ProfilePage.id: (context) => ProfilePage(),
           MyRecipesPage.id: (context) => const MyRecipesPage(),
-          DefaultRecipesPage.id: (context) => const DefaultRecipesPage(),
+          DefaultRecipePage.id: (context) => const DefaultRecipePage(),
           SearchPage.id: (context) => const SearchPage(),
           IngredientsPage.id: (context) => const IngredientsPage(),
           MyIngredientPage.id: (context) => const MyIngredientPage(),

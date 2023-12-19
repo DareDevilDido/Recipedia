@@ -34,9 +34,9 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
       Provider.of<Loading>(context, listen: false).changeBool();
     });
     Future.delayed(Duration.zero).then((_) async {
-      await Provider.of<DefaultRecipesController>(context, listen: false)
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .getSingleRecipe(kUserId, widget.RecipeId);
-      Provider.of<DefaultRecipesController>(context, listen: false)
+      Provider.of<DefaultRecipeController>(context, listen: false)
           .restartStep();
       setState(() {
         Provider.of<Loading>(context, listen: false).changeBool();
@@ -63,7 +63,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                   ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
                       child: Image.network(
-                          Provider.of<DefaultRecipesController>(context)
+                          Provider.of<DefaultRecipeController>(context)
                               .Recipe!
                               .Image)),
                   Center(
@@ -74,7 +74,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                         children: [
                           Expanded(
                             child: Text(
-                              Provider.of<DefaultRecipesController>(context)
+                              Provider.of<DefaultRecipeController>(context)
                                   .Recipe!
                                   .Name,
                               style: TextStyle(
@@ -187,7 +187,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                                 child: Icon(Icons.arrow_back,
                                     color: kPrimaryColor),
                                 onTap: () {
-                                  Provider.of<DefaultRecipesController>(context,
+                                  Provider.of<DefaultRecipeController>(context,
                                           listen: false)
                                       .backStep();
                                 },
@@ -202,7 +202,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                                 child:
                                     Icon(Icons.refresh, color: kPrimaryColor),
                                 onTap: () {
-                                  Provider.of<DefaultRecipesController>(context,
+                                  Provider.of<DefaultRecipeController>(context,
                                           listen: false)
                                       .restartStep();
                                 },
@@ -217,7 +217,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                                 child: Icon(Icons.arrow_forward,
                                     color: kPrimaryColor),
                                 onTap: () {
-                                  Provider.of<DefaultRecipesController>(context,
+                                  Provider.of<DefaultRecipeController>(context,
                                           listen: false)
                                       .addStep();
                                 },
@@ -234,7 +234,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount:
-                            Provider.of<DefaultRecipesController>(context)
+                            Provider.of<DefaultRecipeController>(context)
                                 .Recipe!
                                 .ingredients
                                 .length,
@@ -243,7 +243,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                             padding: const EdgeInsets.all(3.0),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(
-                                Provider.of<DefaultRecipesController>(context)
+                                Provider.of<DefaultRecipeController>(context)
                                     .Recipe!
                                     .ingredients[index]
                                     .image,
@@ -264,11 +264,11 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                             child:
                                 Icon(Icons.volume_down, color: kPrimaryColor),
                             onTap: () {
-                              speak(Provider.of<DefaultRecipesController>(
+                              speak(Provider.of<DefaultRecipeController>(
                                       context,
                                       listen: false)
                                   .insrtuctions[
-                                      Provider.of<DefaultRecipesController>(
+                                      Provider.of<DefaultRecipeController>(
                                               context,
                                               listen: false)
                                           .currentStep]
@@ -305,7 +305,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                               style: const TextStyle(
                                 fontSize: 17,
                               ),
-                              Provider.of<DefaultRecipesController>(context).insrtuctions[Provider.of<DefaultRecipesController>(context, listen: false).currentStep].Description),
+                              Provider.of<DefaultRecipeController>(context).insrtuctions[Provider.of<DefaultRecipeController>(context, listen: false).currentStep].Description),
                         ),
                       ),
                     ),

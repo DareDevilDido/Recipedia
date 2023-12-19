@@ -43,7 +43,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
   String Category = "";
   String Servings = "";
   String time = "";
-  String Calories = "";
+  String nutrition = "";
 
   @override
   Widget build(BuildContext context) {
@@ -180,10 +180,10 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
                                 onChanged: (value) {
-                                  Calories = value;
+                                  nutrition = value;
                                 },
                                 decoration: kinputDecoration.copyWith(
-                                    hintText: "Calories"),
+                                    hintText: "nutrition"),
                               ),
                             ),
                           ),
@@ -441,7 +441,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                 onPressed: () async {
                                   if (name != "" &&
                                       Category != "" &&
-                                      Calories != "" &&
+                                      nutrition != "" &&
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
@@ -470,7 +470,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                     String ID = await Provider.of<
                                                 UserRecipesController>(context,
                                             listen: false)
-                                        .AddRecipe(name, Category, Calories,
+                                        .AddRecipe(name, Category, nutrition,
                                             time, Servings, Image);
 
                                     Future.forEach(

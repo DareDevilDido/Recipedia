@@ -6,7 +6,7 @@ import 'package:recipedia/Repo/DefaultReciperepo.dart';
 import '../Repo/DefaultIngredientsRepo.dart';
 import '../Repo/InstructionRepo.dart';
 
-class DefaultRecipesController extends ChangeNotifier {
+class DefaultRecipeController extends ChangeNotifier {
   List<DefaultRecipeRepo> Recipes = [];
   List<DefaultRecipeRepo> NewRecipes = [];
   List<DefaultIngredientsRepo> ingredients = [];
@@ -37,7 +37,7 @@ class DefaultRecipesController extends ChangeNotifier {
   Future<void> getRecipes(String? userID) async {
     Recipes = [];
     if (userID != null) {
-      final responce = await _firestore.collection("DefaultRecipes").get();
+      final responce = await _firestore.collection("DefaultRecipe").get();
       Future.forEach(responce.docs, (Recipe) async {
         await getIngredients(Recipe.id);
         await getInsrtuctions(userID);
@@ -51,7 +51,7 @@ class DefaultRecipesController extends ChangeNotifier {
 
   Future<void> getIngredients(String RecipeID) async {
     final responce = await _firestore
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .doc(RecipeID)
         .collection("Ingredients")
         .get();
@@ -67,7 +67,7 @@ class DefaultRecipesController extends ChangeNotifier {
     ingredients = [];
     if (userID != null) {
       final responce =
-          await _firestore.collection("DefaultRecipes").doc(RecipeID).get();
+          await _firestore.collection("DefaultRecipe").doc(RecipeID).get();
       await getIngredients(responce.id);
       await getInsrtuctions(responce.id);
       reorganizeInstructions();
@@ -81,7 +81,7 @@ class DefaultRecipesController extends ChangeNotifier {
     insrtuctions = [];
     if (userID != null) {
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(userID)
           .collection("Instructions")
           .get();
@@ -95,7 +95,7 @@ class DefaultRecipesController extends ChangeNotifier {
 
   Future<QuerySnapshot> QueryRecipe(String Name) async {
     return await FirebaseFirestore.instance
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .where("Name", isGreaterThanOrEqualTo: Name)
         .get();
   }
@@ -120,7 +120,7 @@ class DefaultRecipesController extends ChangeNotifier {
 
   Future<QuerySnapshot> QueryCategoryRecipe(String Category) async {
     return await FirebaseFirestore.instance
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .where("Category", isEqualTo: Category)
         .get();
   }
@@ -138,12 +138,12 @@ class DefaultRecipesController extends ChangeNotifier {
   }
 
   Future<void> AddNumber(String ID) async {
-    final responce = _firestore.collection("DefaultRecipes").doc(ID);
+    final responce = _firestore.collection("DefaultRecipe").doc(ID);
     responce.update({"TimesFavorited": FieldValue.increment(1)});
   }
 
   Future<void> DeductNumber(String ID) async {
-    final responce = _firestore.collection("DefaultRecipes").doc(ID);
+    final responce = _firestore.collection("DefaultRecipe").doc(ID);
     responce.update({"TimesFavorited": FieldValue.increment(-1)});
   }
 
@@ -151,7 +151,7 @@ class DefaultRecipesController extends ChangeNotifier {
     if (userID != null) {
       Recipes = [];
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .limit(10)
           .orderBy("TimesFavorited", descending: true)
           .get();

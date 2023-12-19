@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
     Future.delayed(const Duration(milliseconds: 300)).then((_) async {
       await Provider.of<RandomRecipeOfTheDay>(context, listen: false)
           .getRandomRecipe();
-      await Provider.of<DefaultRecipesController>(context, listen: false)
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .FilterCategory(
               Provider.of<RandomRecipeOfTheDay>(context, listen: false)
                   .RecipeTime);
-      Provider.of<DefaultRecipesController>(context, listen: false)
+      Provider.of<DefaultRecipeController>(context, listen: false)
           .Recipes
           .removeWhere((Recipe) =>
               Recipe.ID ==
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount:
-                                Provider.of<DefaultRecipesController>(context)
+                                Provider.of<DefaultRecipeController>(context)
                                     .Recipes
                                     .length,
                             itemBuilder: (context, index) {
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                           MaterialPageRoute(
                                               builder: (_) => ViewRecipePage(
                                                     RecipeId: Provider.of<
-                                                                DefaultRecipesController>(
+                                                                DefaultRecipeController>(
                                                             context)
                                                         .Recipes[index]
                                                         .ID,
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                               borderRadius:
                                                   BorderRadius.circular(10.0),
                                               child: Image.network(
-                                                  Provider.of<DefaultRecipesController>(
+                                                  Provider.of<DefaultRecipeController>(
                                                           context)
                                                       .Recipes[index]
                                                       .Image,
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                                               padding: const EdgeInsets.only(
                                                   top: 15.0),
                                               child: Text(
-                                                  Provider.of<DefaultRecipesController>(
+                                                  Provider.of<DefaultRecipeController>(
                                                           context)
                                                       .Recipes[index]
                                                       .Name,

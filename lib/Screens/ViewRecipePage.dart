@@ -36,7 +36,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
           .getIngredients(kUserId);
       await Provider.of<FavortieRecipesController>(context, listen: false)
           .CheckIfFavorited(widget.RecipeId);
-      await Provider.of<DefaultRecipesController>(context, listen: false)
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .getSingleRecipe(kUserId, widget.RecipeId);
       Future.delayed(const Duration(milliseconds: 100)).then((_) async {
         setState(() {
@@ -111,7 +111,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                     child: Stack(
                       children: [
                         Image.network(
-                          Provider.of<DefaultRecipesController>(context)
+                          Provider.of<DefaultRecipeController>(context)
                               .Recipe!
                               .Image,
                           fit: BoxFit.fitWidth,
@@ -135,7 +135,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         padding: const EdgeInsets.only(
                                             left: 8.0, top: 8),
                                         child: Text(
-                                          "Time: ${Provider.of<DefaultRecipesController>(context).Recipe!.time}",
+                                          "Time: ${Provider.of<DefaultRecipeController>(context).Recipe!.time}",
                                           style: TextStyle(
                                               color: kPrimaryColor,
                                               fontSize: 15,
@@ -147,7 +147,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         padding: const EdgeInsets.only(
                                             right: 8.0, top: 8),
                                         child: Text(
-                                          "${Provider.of<DefaultRecipesController>(context).Recipe!.Servings} Servings",
+                                          "${Provider.of<DefaultRecipeController>(context).Recipe!.Servings} Servings",
                                           style: TextStyle(
                                               color: kPrimaryColor,
                                               fontSize: 15,
@@ -178,7 +178,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              Provider.of<DefaultRecipesController>(context).Recipe!.Name,
+                                              Provider.of<DefaultRecipeController>(context).Recipe!.Name,
                                               style: TextStyle(
                                                   color: kButtonColor,
                                                   fontSize: 15,
@@ -186,7 +186,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                               textAlign: TextAlign.start,
                                             ),
                                             Text(
-                                              Provider.of<DefaultRecipesController>(context).Recipe!.Category,
+                                              Provider.of<DefaultRecipeController>(context).Recipe!.Category,
                                               style: TextStyle(
                                                   color: kButtonColor,
                                                   fontSize: 15,
@@ -200,7 +200,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         padding:
                                             const EdgeInsets.only(right: 8),
                                         child: Text(
-                                          "${Provider.of<DefaultRecipesController>(context).Recipe!.Calories} Kcal",
+                                          "${Provider.of<DefaultRecipeController>(context).Recipe!.nutrition} Kcal",
                                           style: TextStyle(
                                               color: kPrimaryColor,
                                               fontSize: 15,
@@ -233,7 +233,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount:
-                            Provider.of<DefaultRecipesController>(context)
+                            Provider.of<DefaultRecipeController>(context)
                                 .Recipe!
                                 .ingredients
                                 .length,
@@ -243,7 +243,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: Image.network(
-                                  Provider.of<DefaultRecipesController>(context)
+                                  Provider.of<DefaultRecipeController>(context)
                                       .Recipe!
                                       .ingredients[index]
                                       .image,
@@ -344,7 +344,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                     height: MediaQuery.of(context).size.height * 0.3,
                     child: ListView.builder(
                         itemCount:
-                            Provider.of<DefaultRecipesController>(context)
+                            Provider.of<DefaultRecipeController>(context)
                                 .insrtuctions
                                 .length,
                         itemBuilder: (context, index) {
@@ -366,7 +366,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         children: [
                                           Container(
                                             child: Text(
-                                                "${Provider.of<DefaultRecipesController>(context).insrtuctions[index].Step}. "),
+                                                "${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step}. "),
                                           ),
                                           Container(
                                             child: const Text(""),
@@ -378,7 +378,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                             MediaQuery.of(context).size.width *
                                                 0.61,
                                         child: Text(
-                                          Provider.of<DefaultRecipesController>(context).insrtuctions[index].Description,
+                                          Provider.of<DefaultRecipeController>(context).insrtuctions[index].Description,
                                           maxLines: 10,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
@@ -395,11 +395,11 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                                       color: Colors.white),
                                                   onTap: () {
                                                     speak(Provider.of<
-                                                                DefaultRecipesController>(
+                                                                DefaultRecipeController>(
                                                             context,
                                                             listen: false)
                                                         .insrtuctions[Provider.of<
-                                                                    DefaultRecipesController>(
+                                                                    DefaultRecipeController>(
                                                                 context,
                                                                 listen: false)
                                                             .currentStep]

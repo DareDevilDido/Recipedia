@@ -21,7 +21,7 @@ class FavortieRecipesController extends ChangeNotifier {
           .doc(userID)
           .collection("Recipes")
           .get();
-      final responce2 = await _firestore.collection("DefaultRecipes").get();
+      final responce2 = await _firestore.collection("DefaultRecipe").get();
       for (var Recipe in responce2.docs) {
         for (var FavRecipe in responce.docs) {
           if (Recipe.id == FavRecipe.id) {
@@ -36,7 +36,7 @@ class FavortieRecipesController extends ChangeNotifier {
 
   Future<void> getIngredients(String RecipeID) async {
     final responce = await _firestore
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .doc(RecipeID)
         .collection("Ingredients")
         .get();
@@ -44,7 +44,7 @@ class FavortieRecipesController extends ChangeNotifier {
     Future.forEach(responce.docs, (Ingredient) async {
       final responced = await DefaultIngredientCntroller()
           .getIngredientById(kUserId, Ingredient.data()["Link"]);
-      DefaultRecipesController().ingredients.add(responced);
+      DefaultRecipeController().ingredients.add(responced);
       notifyListeners();
     });
     notifyListeners();
@@ -53,12 +53,12 @@ class FavortieRecipesController extends ChangeNotifier {
   Future<dynamic> getSingleRecipe(String? userID, String RecipeID) async {
     if (userID != null) {
       final responce =
-          await _firestore.collection("DefaultRecipes").doc(RecipeID).get();
+          await _firestore.collection("DefaultRecipe").doc(RecipeID).get();
       await getIngredients(responce.id);
       await getInsrtuctions(responce.id);
       reorganizeInstructions();
       return DefaultRecipeRepo.fromJson(responce.id, responce.data()!,
-          DefaultRecipesController().ingredients, insrtuctions);
+          DefaultRecipeController().ingredients, insrtuctions);
     }
     notifyListeners();
   }
@@ -67,7 +67,7 @@ class FavortieRecipesController extends ChangeNotifier {
     if (userID != null) {
       insrtuctions = [];
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(userID)
           .collection("Instructions")
           .get();
@@ -107,7 +107,7 @@ class FavortieRecipesController extends ChangeNotifier {
         .doc(RecipeID)
         .get();
     responce.reference.delete();
-    await DefaultRecipesController().DeductNumber(RecipeID);
+    await DefaultRecipeController().DeductNumber(RecipeID);
     notifyListeners();
   }
 
@@ -118,7 +118,7 @@ class FavortieRecipesController extends ChangeNotifier {
         .collection("Recipes")
         .doc(RecipeId)
         .set({});
-    await DefaultRecipesController().AddNumber(RecipeId);
+    await DefaultRecipeController().AddNumber(RecipeId);
     notifyListeners();
   }
 }

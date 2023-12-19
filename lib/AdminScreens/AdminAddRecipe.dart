@@ -32,7 +32,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
 
   String time = "";
 
-  String Calories = "";
+  String nutrition = "";
 
   @override
   void initState() {
@@ -212,10 +212,10 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                           padding: const EdgeInsets.all(5.0),
                           child: TextField(
                             onChanged: (value) {
-                              Calories = value;
+                              nutrition = value;
                             },
                             decoration:
-                                kinputDecoration.copyWith(hintText: "Calories"),
+                                kinputDecoration.copyWith(hintText: "nutrition"),
                           ),
                         ),
                       ),
@@ -465,7 +465,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             onPressed: () async {
                               if (name != "" &&
                                   Category != "" &&
-                                  Calories != "" &&
+                                  nutrition != "" &&
                                   time != "" &&
                                   Servings != "" &&
                                   name != "" &&
@@ -486,7 +486,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                     await Provider.of<AdminRecipesController>(
                                             context,
                                             listen: false)
-                                        .AddRecipe(name, Category, Calories,
+                                        .AddRecipe(name, Category, nutrition,
                                             time, Servings, Image);
 
                                 Future.forEach(

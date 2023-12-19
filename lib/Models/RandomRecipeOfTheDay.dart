@@ -45,7 +45,7 @@ class RandomRecipeOfTheDay extends ChangeNotifier {
 
   Future<QuerySnapshot> QueryRecipe(String Category) async {
     return await FirebaseFirestore.instance
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .where("Category", isEqualTo: Category)
         .get();
   }
@@ -65,7 +65,7 @@ class RandomRecipeOfTheDay extends ChangeNotifier {
     final responce =
         await _firestore.collection("UserInformation").doc(kUserId).get();
     final responce2 = await _firestore
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .doc(responce["ROTD Link"])
         .get();
     ROTD = DefaultRecipeRepo.fromJson(responce2.id, responce2.data()!, [], []);

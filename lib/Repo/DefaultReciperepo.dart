@@ -5,7 +5,7 @@ import 'DefaultIngredientsRepo.dart';
 class DefaultRecipeRepo {
   String ID;
   String Name;
-  String Calories;
+  String nutrition;
   String Category;
   String time;
   String Image;
@@ -18,7 +18,7 @@ class DefaultRecipeRepo {
       {required this.ID,
       required this.Name,
       required this.Image,
-      required this.Calories,
+      required this.nutrition,
       required this.Category,
       required this.time,
       required this.Servings,
@@ -32,7 +32,7 @@ class DefaultRecipeRepo {
         ID: RecipeID,
         Name: data["Name"].toString(),
         Image: data["Image"].toString(),
-        Calories: data["Calories"].toString(),
+        nutrition: data["nutrition"].toString(),
         Category: data["Category"].toString(),
         time: data["Time"].toString(),
         ingredients: ing,
@@ -44,7 +44,7 @@ class DefaultRecipeRepo {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["Name"] = Name;
-    data["Calories"] = Calories;
+    data["nutrition"] = nutrition;
     data["Category"] = Category;
     data["Servings"] = Servings;
     data["Image"] = Image;

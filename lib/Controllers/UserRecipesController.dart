@@ -124,7 +124,7 @@ class UserRecipesController extends ChangeNotifier {
     responce.reference.delete();
   }
 
-  Future<String> AddRecipe(String name, String Category, String Calories,
+  Future<String> AddRecipe(String name, String Category, String nutrition,
       String Time, String Servings, String image) async {
     final responce = await _firestore
         .collection("UserRecipes")
@@ -132,7 +132,7 @@ class UserRecipesController extends ChangeNotifier {
         .collection("Recipe List")
         .add({
       "Name": name,
-      "Calories": Calories,
+      "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
@@ -141,11 +141,11 @@ class UserRecipesController extends ChangeNotifier {
     return responce.id.toString();
   }
 
-  Future<void> EditRecipe(String name, String Category, String Calories,
+  Future<void> EditRecipe(String name, String Category, String nutrition,
       String Time, String Servings, String image) async {
     Recipe!.Name = name;
     Recipe!.Category = Category;
-    Recipe!.Calories = Calories;
+    Recipe!.nutrition = nutrition;
     Recipe!.time = Time;
     Recipe!.Servings = Servings;
     Recipe!.Image = image;
@@ -156,7 +156,7 @@ class UserRecipesController extends ChangeNotifier {
         .doc(Recipe!.ID)
         .update({
       "Name": name,
-      "Calories": Calories,
+      "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
       "Category": Category,

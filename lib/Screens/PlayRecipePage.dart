@@ -202,7 +202,7 @@ class _PlayRecipePageState extends State<PlayRecipePage> {
                                 child:
                                     Icon(Icons.refresh, color: kPrimaryColor),
                                 onTap: () {
-                                  Provider.of<DefaultRecipesController>(context,
+                                  Provider.of<DefaultRecipeController>(context,
                                           listen: false)
                                       .restartStep();
                                 },
@@ -217,7 +217,7 @@ class _PlayRecipePageState extends State<PlayRecipePage> {
                                 child: Icon(Icons.arrow_forward,
                                     color: kPrimaryColor),
                                 onTap: () {
-                                  Provider.of<DefaultRecipesController>(context,
+                                  Provider.of<DefaultRecipeController>(context,
                                           listen: false)
                                       .addStep();
                                 },

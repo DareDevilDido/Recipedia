@@ -23,7 +23,7 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
     });
     super.initState();
     Future.delayed(Duration.zero).then((_) async {
-      await Provider.of<DefaultRecipesController>(context, listen: false)
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .FilterCategory(widget.Category);
       setState(() {
         Provider.of<Loading>(context, listen: false).changeBool();
@@ -51,7 +51,7 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2),
                           itemCount:
-                              Provider.of<DefaultRecipesController>(context)
+                              Provider.of<DefaultRecipeController>(context)
                                   .Recipes
                                   .length,
                           itemBuilder: (context, index) {
@@ -64,7 +64,7 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
                                       MaterialPageRoute(
                                           builder: (_) => ViewRecipePage(
                                                 RecipeId: Provider.of<
-                                                            DefaultRecipesController>(
+                                                            DefaultRecipeController>(
                                                         context)
                                                     .Recipes[index]
                                                     .ID,
@@ -76,7 +76,7 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
                                       child: Image.network(
-                                          Provider.of<DefaultRecipesController>(
+                                          Provider.of<DefaultRecipeController>(
                                                   context)
                                               .Recipes[index]
                                               .Image,
@@ -97,7 +97,7 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
                                           color: Colors.black.withOpacity(0.5),
                                           alignment: Alignment.center,
                                           child: Text(
-                                            Provider.of<DefaultRecipesController>(
+                                            Provider.of<DefaultRecipeController>(
                                                     context)
                                                 .Recipes[index]
                                                 .Name,

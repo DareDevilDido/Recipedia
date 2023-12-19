@@ -33,7 +33,7 @@ class AdminRecipesController extends ChangeNotifier {
   Future<void> getRecipes(String? userID) async {
     Recipes = [];
     if (userID != null) {
-      final responce = await _firestore.collection("DefaultRecipes").get();
+      final responce = await _firestore.collection("DefaultRecipe").get();
       Future.forEach(responce.docs, (Recipe) async {
         Recipes.add(DefaultRecipeRepo.fromJson(
             Recipe.id, Recipe.data(), ingredients, insrtuctions));
@@ -46,7 +46,7 @@ class AdminRecipesController extends ChangeNotifier {
     ingredients = [];
     ingredientsID = [];
     final responce = await _firestore
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .doc(RecipeID)
         .collection("Ingredients")
         .get();
@@ -65,7 +65,7 @@ class AdminRecipesController extends ChangeNotifier {
     insrtuctions = [];
     if (userID != null) {
       final responce =
-          await _firestore.collection("DefaultRecipes").doc(RecipeID).get();
+          await _firestore.collection("DefaultRecipe").doc(RecipeID).get();
       await getIngredients(RecipeID);
       await getInsrtuctions(kUserId, RecipeID);
       reorganizeInstructions();
@@ -79,7 +79,7 @@ class AdminRecipesController extends ChangeNotifier {
     insrtuctions = [];
     if (userID != null) {
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(RecipeID)
           .collection("Instructions")
           .get();
@@ -97,16 +97,16 @@ class AdminRecipesController extends ChangeNotifier {
 
   Future<void> DeleteRecipe(RecipeID) async {
     final responce =
-        await _firestore.collection("DefaultRecipes").doc(RecipeID).get();
+        await _firestore.collection("DefaultRecipe").doc(RecipeID).get();
     responce.reference.delete();
     notifyListeners();
   }
 
-  Future<String> AddRecipe(String name, String Category, String Calories,
+  Future<String> AddRecipe(String name, String Category, String nutrition,
       String Time, String Servings, String image) async {
-    final responce = await _firestore.collection("DefaultRecipes").add({
+    final responce = await _firestore.collection("DefaultRecipe").add({
       "Name": name,
-      "Calories": Calories,
+      "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
@@ -116,18 +116,18 @@ class AdminRecipesController extends ChangeNotifier {
     return responce.id.toString();
   }
 
-  Future<void> EditRecipe(String name, String Category, String Calories,
+  Future<void> EditRecipe(String name, String Category, String nutrition,
       String Time, String Servings, String image) async {
     Recipe!.Name = name;
     Recipe!.Category = Category;
-    Recipe!.Calories = Calories;
+    Recipe!.nutrition = nutrition;
     Recipe!.time = Time;
     Recipe!.Servings = Servings;
     Recipe!.Image = image;
     final responce =
-        await _firestore.collection("DefaultRecipes").doc(Recipe!.ID).update({
+        await _firestore.collection("DefaultRecipe").doc(Recipe!.ID).update({
       "Name": name,
-      "Calories": Calories,
+      "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
       "Category": Category,

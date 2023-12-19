@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:recipedia/Screens/DefaultRecipesPage.dart';
-import 'package:recipedia/Screens/MyRecipesPage.dart';
+import 'package:recipedia/Screens/DefaultRecipePage.dart';
+import 'package:recipedia/Screens/MyRecipePage.dart';
 import 'package:recipedia/Screens/ProfilePage.dart';
 import '../Constants/Constants.dart';
 import '../Screens/FavroitesPage.dart';
@@ -19,7 +19,7 @@ class _NavigationsBarState extends State<NavigationsBar> {
     const FavroitesPage(),
     const MyRecipesPage(),
     const HomePage(),
-    const DefaultRecipesPage(),
+    const DefaultRecipePage(),
     ProfilePage()
   ];
 

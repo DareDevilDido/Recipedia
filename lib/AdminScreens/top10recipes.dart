@@ -20,7 +20,7 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
       setState(() {
         Provider.of<Loading>(context, listen: false).changeBool();
       });
-      await Provider.of<DefaultRecipesController>(context, listen: false)
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .getTop10Recipes(kUserId);
     });
     setState(() {
@@ -46,7 +46,7 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
               gridDelegate:
                   const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
               itemCount:
-                  Provider.of<DefaultRecipesController>(context).Recipes.length,
+                  Provider.of<DefaultRecipeController>(context).Recipes.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -54,7 +54,7 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
                     borderRadius: BorderRadius.circular(15.0),
                     child: Stack(children: [
                       Image.network(
-                          Provider.of<DefaultRecipesController>(context)
+                          Provider.of<DefaultRecipeController>(context)
                               .Recipes[index]
                               .Image,
                           height: 200,
@@ -99,7 +99,7 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        Provider.of<DefaultRecipesController>(
+                                        Provider.of<DefaultRecipeController>(
                                                 context)
                                             .Recipes[index]
                                             .Name,
@@ -113,7 +113,7 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            "${Provider.of<DefaultRecipesController>(context).Recipes[index].TimesFavorited} ",
+                                            "${Provider.of<DefaultRecipeController>(context).Recipes[index].TimesFavorited} ",
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
@@ -157,7 +157,7 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
           //       ),
           //       Expanded(
           //         child: ListView.builder(
-          //             itemCount: Provider.of<DefaultRecipesController>(context)
+          //             itemCount: Provider.of<DefaultRecipeController>(context)
           //                 .Recipes
           //                 .length,
           //             itemBuilder: (context, index) {
@@ -165,17 +165,17 @@ class _top10RecipesPageState extends State<top10RecipesPage> {
           //                 padding: const EdgeInsets.only(bottom: 8.0),
           //                 child: ListTile(
           //                     leading: Image.network(
-          //                         Provider.of<DefaultRecipesController>(context)
+          //                         Provider.of<DefaultRecipeController>(context)
           //                             .Recipes[index]
           //                             .Image,
           //                         height: 50,
           //                         width: 50),
           //                     title: Text(
-          //                         Provider.of<DefaultRecipesController>(context)
+          //                         Provider.of<DefaultRecipeController>(context)
           //                             .Recipes[index]
           //                             .Name),
           //                     trailing: Text(
-          //                         Provider.of<DefaultRecipesController>(context)
+          //                         Provider.of<DefaultRecipeController>(context)
           //                             .Recipes[index]
           //                             .TimesFavorited)),
           //               );

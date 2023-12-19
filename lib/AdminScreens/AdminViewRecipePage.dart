@@ -26,7 +26,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
       Provider.of<Loading>(context, listen: false).changeBool();
     });
     Future.delayed(Duration.zero).then((_) async {
-      await Provider.of<DefaultRecipesController>(context, listen: false)
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .getSingleRecipe(kUserId, widget.RecipeId);
       await Provider.of<AdminRecipesController>(context, listen: false)
           .getSingleRecipe(kUserId, widget.RecipeId);
@@ -56,7 +56,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Image.network(
-                        Provider.of<DefaultRecipesController>(context)
+                        Provider.of<DefaultRecipeController>(context)
                             .Recipe!
                             .Image)),
                 Center(
@@ -68,7 +68,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                         Expanded(
                           flex: 4,
                           child: Text(
-                            Provider.of<DefaultRecipesController>(context)
+                            Provider.of<DefaultRecipeController>(context)
                                 .Recipe!
                                 .Name,
                             style: TextStyle(
@@ -90,7 +90,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                                     MaterialPageRoute(
                                         builder: (_) => editDefaultRecipePage(
                                               RecipeId: Provider.of<
-                                                          DefaultRecipesController>(
+                                                          DefaultRecipeController>(
                                                       context)
                                                   .Recipe!
                                                   .ID,
@@ -102,7 +102,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                                             context,
                                             listen: false)
                                         .getRecipes(kUserId);
-                                    await Provider.of<DefaultRecipesController>(
+                                    await Provider.of<DefaultRecipeController>(
                                             context,
                                             listen: false)
                                         .getSingleRecipe(
@@ -139,7 +139,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                         ),
                         child: Center(
                           child: Text(
-                            "Calories \t\t\t\t\t\t\t  ${Provider.of<DefaultRecipesController>(context).Recipe!.Calories}",
+                            "nutrition \t\t\t\t\t\t\t  ${Provider.of<DefaultRecipeController>(context).Recipe!.nutrition}",
                             maxLines: 2,
                             style: TextStyle(
                                 color: kPrimaryColor,
@@ -161,7 +161,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                         ),
                         child: Center(
                           child: Text(
-                            "Category \t\t\t  ${Provider.of<DefaultRecipesController>(context).Recipe!.Category}",
+                            "Category \t\t\t  ${Provider.of<DefaultRecipeController>(context).Recipe!.Category}",
                             maxLines: 2,
                             style: TextStyle(
                                 color: kPrimaryColor,
@@ -183,7 +183,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                         ),
                         child: Center(
                           child: Text(
-                            "Time \t\t\t\t\t\t\t   ${Provider.of<DefaultRecipesController>(context).Recipe!.time}",
+                            "Time \t\t\t\t\t\t\t   ${Provider.of<DefaultRecipeController>(context).Recipe!.time}",
                             maxLines: 2,
                             style: TextStyle(
                                 color: kButtonColor,
@@ -205,7 +205,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                         ),
                         child: Center(
                           child: Text(
-                            "Servings   \t  \t ${Provider.of<DefaultRecipesController>(context).Recipe!.Servings}",
+                            "Servings   \t  \t ${Provider.of<DefaultRecipeController>(context).Recipe!.Servings}",
                             maxLines: 2,
                             style: TextStyle(
                                 color: kPrimaryColor,
@@ -223,7 +223,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                   height: 80,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: Provider.of<DefaultRecipesController>(context)
+                      itemCount: Provider.of<DefaultRecipeController>(context)
                           .Recipe!
                           .ingredients
                           .length,
@@ -232,7 +232,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                           padding: const EdgeInsets.all(3.0),
                           child: CircleAvatar(
                             backgroundImage: NetworkImage(
-                              Provider.of<DefaultRecipesController>(context)
+                              Provider.of<DefaultRecipeController>(context)
                                   .Recipe!
                                   .ingredients[index]
                                   .image,
@@ -246,7 +246,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                 SizedBox(
                   height: 100,
                   child: ListView.builder(
-                      itemCount: Provider.of<DefaultRecipesController>(context)
+                      itemCount: Provider.of<DefaultRecipeController>(context)
                           .insrtuctions
                           .length,
                       itemBuilder: (context, index) {
@@ -259,7 +259,7 @@ class _AdminViewRecipePageState extends State<AdminViewRecipePage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Text(
-                                    "Step ${Provider.of<DefaultRecipesController>(context).insrtuctions[index].Step} :${Provider.of<DefaultRecipesController>(context).insrtuctions[index].Description}"),
+                                    "Step ${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step} :${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Description}"),
                               ),
                             ),
                           ),

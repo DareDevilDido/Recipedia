@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-String kUserId = "VM6eQaWrkaMfOJ4vPIWQWIu2PvP2";
-String kUserEmail = "azoz5falak@hotmail.com";
-String kDatejoined = "02-December-2022";
-String kLastName = "Falak";
-String kFirstName = "Abdulaziz";
+String kUserId = "sixA0xwbmVW2TF8K7pw04Xg3hzp1";
+String kUserEmail = "abdelrahman0213@gmail.com";
+String kDatejoined = "19-December-2023";
+String kLastName = "Mo";
+String kFirstName = "Abdelrahman";
 String kCategory = "All";
 Color kPrimaryColor = const Color(0xfffdb51b);
 Color kBackGroundColor = const Color(0xfffcf4dc);

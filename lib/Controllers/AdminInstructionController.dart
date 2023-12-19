@@ -11,7 +11,7 @@ class AdminInsrtuctionCntroller extends ChangeNotifier {
     await DeleteInstructionCollection(RecipeID);
     Future.forEach(Instructions, (Instruction) async {
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(RecipeID)
           .collection("Instructions")
           .add({
@@ -24,7 +24,7 @@ class AdminInsrtuctionCntroller extends ChangeNotifier {
 
   Future<void> AddInstruction(String RecipeID, InstructionsRepo inst) async {
     final responce = await _firestore
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .doc(RecipeID)
         .collection("Instructions")
         .add({
@@ -36,13 +36,13 @@ class AdminInsrtuctionCntroller extends ChangeNotifier {
 
   Future<void> DeleteInstructionCollection(String RecipeID) async {
     final responce = await _firestore
-        .collection("DefaultRecipes")
+        .collection("DefaultRecipe")
         .doc(RecipeID)
         .collection("Instructions")
         .get();
     Future.forEach(responce.docs, (Instruction) async {
       final subresponce = _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(RecipeID)
           .collection("Instructions")
           .doc(Instruction.id);

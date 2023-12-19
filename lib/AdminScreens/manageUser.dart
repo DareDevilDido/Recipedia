@@ -50,7 +50,7 @@ class _ManageUserPageState extends State<ManageUserPage> {
     String Category = Recip.Category;
     String Servings = Recip.Servings;
     String time = Recip.time;
-    String Calories = Recip.Calories;
+    String nutrition = Recip.nutrition;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favroites"),
@@ -76,11 +76,11 @@ class _ManageUserPageState extends State<ManageUserPage> {
                 height: 8.0,
               ),
               TextField(
-                controller: TextEditingController(text: Recip.Calories),
+                controller: TextEditingController(text: Recip.nutrition),
                 onChanged: (value) {
-                  Calories = value;
+                  nutrition = value;
                 },
-                decoration: kinputDecoration.copyWith(hintText: "Calories"),
+                decoration: kinputDecoration.copyWith(hintText: "nutrition"),
               ),
               const SizedBox(
                 height: 8.0,
@@ -265,7 +265,7 @@ class _ManageUserPageState extends State<ManageUserPage> {
                               .uploadRecipeFile();
                           await Provider.of<UserRecipesController>(context,
                                   listen: false)
-                              .EditRecipe(name, Category, Calories, time,
+                              .EditRecipe(name, Category, nutrition, time,
                                   Servings, Image);
                           Provider.of<UserRecipeIngredientController>(context,
                                   listen: false)

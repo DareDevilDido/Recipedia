@@ -180,7 +180,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                         padding:
                                             const EdgeInsets.only(right: 8),
                                         child: Text(
-                                          "${Provider.of<UserRecipesController>(context).Recipe!.Calories} Kcal",
+                                          "${Provider.of<UserRecipesController>(context).Recipe!.nutrition} Kcal",
                                           style: TextStyle(
                                               color: kPrimaryColor,
                                               fontSize: 15,

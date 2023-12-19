@@ -89,7 +89,7 @@ class CookRecipePage extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        "Calories   3000",
+                        "nutrition   3000",
                         maxLines: 2,
                         style: TextStyle(
                             color: kPrimaryColor,

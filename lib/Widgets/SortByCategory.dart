@@ -27,7 +27,7 @@ class _SortCategoryState extends State<SortCategory> {
                 onTap: () async {
                   if (Provider.of<Loading>(context, listen: false).kCategory ==
                       "Dinner") {
-                    await Provider.of<DefaultRecipesController>(context,
+                    await Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .getRecipes(kUserId);
                     setState(() {
@@ -35,7 +35,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipesController>(context,
+                    Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .FilterCategory("Dinner");
                     setState(() {
@@ -66,7 +66,7 @@ class _SortCategoryState extends State<SortCategory> {
                 onTap: () async {
                   if (Provider.of<Loading>(context, listen: false).kCategory ==
                       "Breakfast") {
-                    await Provider.of<DefaultRecipesController>(context,
+                    await Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .getRecipes(kUserId);
                     setState(() {
@@ -74,7 +74,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipesController>(context,
+                    Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .FilterCategory("Breakfast");
                     setState(() {
@@ -105,7 +105,7 @@ class _SortCategoryState extends State<SortCategory> {
                 onTap: () async {
                   if (Provider.of<Loading>(context, listen: false).kCategory ==
                       "Lunch") {
-                    await Provider.of<DefaultRecipesController>(context,
+                    await Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .getRecipes(kUserId);
                     setState(() {
@@ -113,7 +113,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipesController>(context,
+                    Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .FilterCategory("Lunch");
                     setState(() {
@@ -144,7 +144,7 @@ class _SortCategoryState extends State<SortCategory> {
                 onTap: () async {
                   if (Provider.of<Loading>(context, listen: false).kCategory ==
                       "Sweets") {
-                    await Provider.of<DefaultRecipesController>(context,
+                    await Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .getRecipes(kUserId);
                     setState(() {
@@ -152,7 +152,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipesController>(context,
+                    Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .FilterCategory("Sweets");
                     setState(() {

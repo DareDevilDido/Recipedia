@@ -77,7 +77,7 @@ class _AdminRecipeState extends State<AdminRecipe> {
                   padding: const EdgeInsets.only(bottom: 10.0),
                   child: GestureDetector(
                     onTap: () async {
-                      await Provider.of<DefaultRecipesController>(context,
+                      await Provider.of<DefaultRecipeController>(context,
                               listen: false)
                           .getSingleRecipe(
                               kUserId,
@@ -90,7 +90,7 @@ class _AdminRecipeState extends State<AdminRecipe> {
                           MaterialPageRoute(
                               builder: (_) => editDefaultRecipePage(
                                     RecipeId:
-                                        Provider.of<DefaultRecipesController>(
+                                        Provider.of<DefaultRecipeController>(
                                                 context)
                                             .Recipe!
                                             .ID,

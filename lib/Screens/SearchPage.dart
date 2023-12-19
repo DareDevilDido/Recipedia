@@ -49,12 +49,12 @@ class _SearchPageState extends State<SearchPage> {
                             child: const Icon(Icons.search),
                             onTap: () async {
                               if (input != "" || input != null) {
-                                await Provider.of<DefaultRecipesController>(
+                                await Provider.of<DefaultRecipeController>(
                                         context,
                                         listen: false)
                                     .ProcessSearch(input);
                               } else {
-                                await Provider.of<DefaultRecipesController>(
+                                await Provider.of<DefaultRecipeController>(
                                         context,
                                         listen: false)
                                     .getRecipes(kUserId);
@@ -70,7 +70,7 @@ class _SearchPageState extends State<SearchPage> {
                         child: Container(
                           child: ListView.builder(
                               itemCount:
-                                  Provider.of<DefaultRecipesController>(context)
+                                  Provider.of<DefaultRecipeController>(context)
                                       .NewRecipes
                                       .length,
                               itemBuilder: (context, index) {
@@ -86,7 +86,7 @@ class _SearchPageState extends State<SearchPage> {
                                             MaterialPageRoute(
                                                 builder: (_) => ViewRecipePage(
                                                       RecipeId: Provider.of<
-                                                                  DefaultRecipesController>(
+                                                                  DefaultRecipeController>(
                                                               context)
                                                           .NewRecipes[index]
                                                           .ID,
@@ -96,7 +96,7 @@ class _SearchPageState extends State<SearchPage> {
                                         children: [
                                           ListTile(
                                             trailing: Image.network(
-                                                Provider.of<DefaultRecipesController>(
+                                                Provider.of<DefaultRecipeController>(
                                                         context)
                                                     .NewRecipes[index]
                                                     .Image,
@@ -104,7 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                                                 width: 70,
                                                 fit: BoxFit.cover),
                                             leading: Text(
-                                              Provider.of<DefaultRecipesController>(
+                                              Provider.of<DefaultRecipeController>(
                                                       context)
                                                   .NewRecipes[index]
                                                   .Name,

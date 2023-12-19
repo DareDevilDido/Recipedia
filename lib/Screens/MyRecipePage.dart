@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipedia/Screens/ViewMyRecipesPage.dart';
+import 'package:recipedia/Screens/ViewMyRecipePage.dart';
 import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/UserRecipesController.dart';
@@ -85,7 +85,7 @@ class _MyRecipesPageState extends State<MyRecipesPage> {
                         child: Stack(
                           children: [
                             Image.network(
-                              "https://firebasestorage.googleapis.com/v0/b/finalproject-7fadb.appspot.com/o/DefaultImages%2FBreakfast.jpg?alt=media&token=f2f335d7-c426-4993-905d-e3ee09b0c047",
+                              "https://firebasestorage.googleapis.com/v0/b/recipedia-401e0.appspot.com/o/DefaultImages%2FBreakfast.jpg?alt=media&token=ad76ff84-bde1-44d7-bf58-cfc195594d3b",
                               fit: BoxFit.cover,
                               height: 200,
                               width: 400,
@@ -134,7 +134,7 @@ class _MyRecipesPageState extends State<MyRecipesPage> {
                         child: Stack(
                           children: [
                             Image.network(
-                              "https://firebasestorage.googleapis.com/v0/b/finalproject-7fadb.appspot.com/o/DefaultImages%2FLunch.jpg?alt=media&token=b3d36eae-2325-409a-a3ed-86eefc99992d",
+                              "https://firebasestorage.googleapis.com/v0/b/recipedia-401e0.appspot.com/o/DefaultImages%2FLunch.jpg?alt=media&token=53637bc0-ca01-4180-880a-15dc7633f275",
                               fit: BoxFit.cover,
                               height: 200,
                               width: 400,
@@ -183,7 +183,7 @@ class _MyRecipesPageState extends State<MyRecipesPage> {
                         child: Stack(
                           children: [
                             Image.network(
-                              "https://firebasestorage.googleapis.com/v0/b/finalproject-7fadb.appspot.com/o/DefaultImages%2FDinner.jpg?alt=media&token=5c257337-ac9d-4114-984b-392ae64911e7",
+                              "https://firebasestorage.googleapis.com/v0/b/recipedia-401e0.appspot.com/o/DefaultImages%2FDinner.jpg?alt=media&token=d2b0504a-2f8d-4879-af83-f4fab582e422",
                               fit: BoxFit.cover,
                               height: 200,
                               width: 400,
@@ -232,7 +232,7 @@ class _MyRecipesPageState extends State<MyRecipesPage> {
                         child: Stack(
                           children: [
                             Image.network(
-                              "https://firebasestorage.googleapis.com/v0/b/finalproject-7fadb.appspot.com/o/DefaultImages%2FDessert.jpg?alt=media&token=374ea6d6-a1ed-428f-b907-0839c13d7924",
+                              "https://firebasestorage.googleapis.com/v0/b/recipedia-401e0.appspot.com/o/DefaultImages%2FDessert.jpg?alt=media&token=f6cec9fd-eabb-4cb2-bb4f-f4173274c70f",
                               fit: BoxFit.cover,
                               height: 200,
                               width: 400,

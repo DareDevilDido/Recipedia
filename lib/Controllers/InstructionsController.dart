@@ -10,7 +10,7 @@ class InsrtuctionCntroller extends ChangeNotifier {
     if (userID != null) {
       insrtuctions = [];
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(userID)
           .collection("Instructions")
           .get();
@@ -28,7 +28,7 @@ class InsrtuctionCntroller extends ChangeNotifier {
     InstructionsRepo? ingredient;
     if (userID != null) {
       final responce = await _firestore
-          .collection("DefaultRecipes")
+          .collection("DefaultRecipe")
           .doc(userID)
           .collection("Instructions")
           .doc(IngID)

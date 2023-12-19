@@ -60,7 +60,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
     String Category = Recip.Category;
     String Servings = Recip.Servings;
     String time = Recip.time;
-    String Calories = Recip.Calories;
+    String nutrition = Recip.nutrition;
     String description = "";
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
@@ -191,10 +191,10 @@ class _EditRecipePageState extends State<EditRecipePage> {
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
                                 onChanged: (value) {
-                                  Calories = value;
+                                  nutrition = value;
                                 },
                                 decoration: kinputDecoration.copyWith(
-                                    hintText: Calories),
+                                    hintText: nutrition),
                               ),
                             ),
                           ),
@@ -471,7 +471,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                   }
                                   if (name != "" &&
                                       Category != "" &&
-                                      Calories != "" &&
+                                      nutrition != "" &&
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
@@ -490,7 +490,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                     await Provider.of<UserRecipesController>(
                                             context,
                                             listen: false)
-                                        .EditRecipe(name, Category, Calories,
+                                        .EditRecipe(name, Category, nutrition,
                                             time, Servings, Image);
                                     Provider.of<UserRecipeIngredientController>(
                                             context,
@@ -604,12 +604,12 @@ class _EditRecipePageState extends State<EditRecipePage> {
             //           height: 8.0,
             //         ),
             //         TextField(
-            //           controller: TextEditingController(text: Recip.Calories),
+            //           controller: TextEditingController(text: Recip.nutrition),
             //           onChanged: (value) {
-            //             Calories = value;
+            //             nutrition = value;
             //           },
             //           decoration:
-            //               kinputDecoration.copyWith(hintText: "Calories"),
+            //               kinputDecoration.copyWith(hintText: "nutrition"),
             //         ),
             //         const SizedBox(
             //           height: 8.0,
@@ -821,7 +821,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
             //                     }
             //                     if (name != "" &&
             //                         Category != "" &&
-            //                         Calories != "" &&
+            //                         nutrition != "" &&
             //                         time != "" &&
             //                         Servings != "" &&
             //                         name != "" &&
@@ -837,7 +837,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
             //                       await Provider.of<UserRecipesController>(
             //                               context,
             //                               listen: false)
-            //                           .EditRecipe(name, Category, Calories,
+            //                           .EditRecipe(name, Category, nutrition,
             //                               time, Servings, Image);
             //                       Provider.of<UserRecipeIngredientController>(
             //                               context,
