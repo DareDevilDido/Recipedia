@@ -280,7 +280,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
-                          "© All rights reserved by \n Aziz AlRafaei 2022",
+                          "© All rights reserved by \n AbdelRahman Mohamed, Amr ElDeeb, AbdelRahman AbdelMageed, Mohamed Ehab 2022",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.grey),
                         ),
