@@ -8,17 +8,22 @@ import '../Widgets/LoadingScreen.dart';
 import 'AdminAddRecipe.dart';
 import 'editDefaultRecipePage.dart';
 
+// StatefulWidget for managing and displaying default recipes in admin view
 class AdminRecipe extends StatefulWidget {
   const AdminRecipe({super.key});
+
+  // Static constant for the route identifier
   static const String id = "MyRecipesPage";
 
   @override
   State<AdminRecipe> createState() => _AdminRecipeState();
 }
 
+// State class for AdminRecipe
 class _AdminRecipeState extends State<AdminRecipe> {
   @override
   void initState() {
+    // Initialize the state and load recipes when the widget is initialized
     setState(() {
       Provider.of<Loading>(context, listen: false).changeBool();
     });
@@ -44,11 +49,13 @@ class _AdminRecipeState extends State<AdminRecipe> {
             centerTitle: true,
             backgroundColor: kPrimaryColor,
             actions: [
+              // Add button to navigate to the page for creating a new recipe
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: GestureDetector(
                   child: const Icon(Icons.add, color: Colors.white),
                   onTap: () async {
+                    // Load recipe ingredients before navigating to create recipe page
                     await Provider.of<AdminIngredientController>(context,
                             listen: false)
                         .getRecipeIngredients();
@@ -58,6 +65,7 @@ class _AdminRecipeState extends State<AdminRecipe> {
                         MaterialPageRoute(
                             builder: (_) => const AdminCreateRecipePage()));
                     if (refresh) {
+                      // Refresh the recipe list after creating a new recipe
                       await Provider.of<AdminRecipesController>(context,
                               listen: false)
                           .getRecipes(kUserId);
@@ -68,8 +76,8 @@ class _AdminRecipeState extends State<AdminRecipe> {
             ],
           ),
           body: GridView.builder(
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
               itemCount:
                   Provider.of<AdminRecipesController>(context).Recipes.length,
               itemBuilder: (context, index) {
@@ -77,6 +85,7 @@ class _AdminRecipeState extends State<AdminRecipe> {
                   padding: const EdgeInsets.only(bottom: 10.0),
                   child: GestureDetector(
                     onTap: () async {
+                      // Load a single recipe before navigating to edit recipe page
                       await Provider.of<DefaultRecipeController>(context,
                               listen: false)
                           .getSingleRecipe(
@@ -96,6 +105,7 @@ class _AdminRecipeState extends State<AdminRecipe> {
                                             .ID,
                                   )));
                       if (refresh) {
+                        // Refresh the recipe list after editing a recipe
                         await Provider.of<AdminRecipesController>(context,
                                 listen: false)
                             .getRecipes(kUserId);
@@ -142,6 +152,5 @@ class _AdminRecipeState extends State<AdminRecipe> {
                     ]),
                   ),
                 );
-              })
-          );
+              }));
 }
