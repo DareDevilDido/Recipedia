@@ -6,9 +6,9 @@ String kDatejoined = "19-December-2023";
 String kLastName = "Mo";
 String kFirstName = "Abdelrahman";
 String kCategory = "All";
-Color kPrimaryColor = Color.fromARGB(255,217 , 126, 150);
-Color kBackGroundColor = Color.fromARGB(255,255,255, 255);
-Color kButtonColor = const Color.fromARGB(255,217 , 126, 150);
+Color kPrimaryColor = Color.fromARGB(255, 217, 126, 150);
+Color kBackGroundColor = Color.fromARGB(255, 255, 255, 255);
+Color kButtonColor = const Color.fromARGB(255, 217, 126, 150);
 Color kContainerColor = const Color.fromARGB(255, 217, 217, 217);
 
 class Loading extends ChangeNotifier {
@@ -34,7 +34,7 @@ const kMessageTextFieldDecoration = InputDecoration(
 
 const kMessageContainerDecoration = BoxDecoration(
   border: Border(
-    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    top: BorderSide(color: Color.fromARGB(255, 255, 220, 64), width: 2.0),
   ),
 );
 
@@ -45,11 +45,13 @@ const kinputDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color:Color.fromARGB(255, 163, 101, 132), width: 2.0),
+    borderSide:
+        BorderSide(color: Color.fromARGB(255, 163, 101, 132), width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color.fromARGB(255, 163, 101, 132), width: 4.0),
+    borderSide:
+        BorderSide(color: Color.fromARGB(255, 163, 101, 132), width: 4.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );

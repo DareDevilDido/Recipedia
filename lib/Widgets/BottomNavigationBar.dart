@@ -31,7 +31,7 @@ class _NavigationsBarState extends State<NavigationsBar> {
       body: _pages[index],
       bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: kBackGroundColor,
-          buttonBackgroundColor: const Color(0xfff45d2c),
+          buttonBackgroundColor: const Color.fromARGB(255, 163, 101, 132),
           animationDuration: const Duration(milliseconds: 350),
           color: kPrimaryColor,
           height: 55,

@@ -85,8 +85,7 @@ class _DefaultRecipePageState extends State<DefaultRecipePage> {
                                         color: Colors.black.withOpacity(0.5),
                                         alignment: Alignment.centerLeft,
                                         child: const Padding(
-                                          padding:
-                                              EdgeInsets.only(left: 15.0),
+                                          padding: EdgeInsets.only(left: 15.0),
                                           child: Text(
                                             "Breakfast",
                                             style: TextStyle(
@@ -134,8 +133,7 @@ class _DefaultRecipePageState extends State<DefaultRecipePage> {
                                         color: Colors.black.withOpacity(0.5),
                                         alignment: Alignment.centerLeft,
                                         child: const Padding(
-                                          padding:
-                                              EdgeInsets.only(left: 15.0),
+                                          padding: EdgeInsets.only(left: 15.0),
                                           child: Text(
                                             "Lunch",
                                             style: TextStyle(
@@ -183,8 +181,7 @@ class _DefaultRecipePageState extends State<DefaultRecipePage> {
                                         color: Colors.black.withOpacity(0.5),
                                         alignment: Alignment.centerLeft,
                                         child: const Padding(
-                                          padding:
-                                              EdgeInsets.only(left: 15.0),
+                                          padding: EdgeInsets.only(left: 15.0),
                                           child: Text(
                                             "Dinner",
                                             style: TextStyle(
@@ -232,8 +229,7 @@ class _DefaultRecipePageState extends State<DefaultRecipePage> {
                                         color: Colors.black.withOpacity(0.5),
                                         alignment: Alignment.centerLeft,
                                         child: const Padding(
-                                          padding:
-                                              EdgeInsets.only(left: 15.0),
+                                          padding: EdgeInsets.only(left: 15.0),
                                           child: Text(
                                             "Dessert",
                                             style: TextStyle(
