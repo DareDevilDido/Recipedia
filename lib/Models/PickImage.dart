@@ -40,7 +40,7 @@ class PickImage extends ChangeNotifier {
   }
 }
 
-//Provider.of<PickImage>(context).selectFile(),
+// Provider.of<PickImage>(context).selectFile(),
 
 // onPressed: () {
 // Provider.of<PickImage>(context, listen: false).selectFile();

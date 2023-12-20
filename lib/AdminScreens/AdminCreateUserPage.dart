@@ -14,7 +14,7 @@ class AdminCreateUserPage extends StatefulWidget {
   @override
   _AdminCreateUserPageState createState() => _AdminCreateUserPageState();
 }
-
+// State class for AdminCreateUserPage
 class _AdminCreateUserPageState extends State<AdminCreateUserPage> {
   final _auth = FirebaseAuth.instance;
   late String userEmail;
@@ -40,6 +40,7 @@ class _AdminCreateUserPageState extends State<AdminCreateUserPage> {
                 //Do something with the user input.
                 userEmail = value;
               },
+              // Input field for user email
               decoration:
                   kinputDecoration.copyWith(hintText: "Enter your Email"),
             ),
@@ -52,6 +53,7 @@ class _AdminCreateUserPageState extends State<AdminCreateUserPage> {
                 //Do something with the user input.
                 userPassword = value;
               },
+               // Store user input in userPassword variable
               decoration:
                   kinputDecoration.copyWith(hintText: "Enter your password"),
             ),
@@ -61,10 +63,12 @@ class _AdminCreateUserPageState extends State<AdminCreateUserPage> {
             Row(
               children: <Widget>[
                 Expanded(
+                    // Input field for firstname
                   child: TextField(
                     onChanged: (value) {
                       firstName = value;
                     },
+                      // Input field for store in firstname
                     decoration:
                         kinputDecoration.copyWith(hintText: "First Name"),
                   ),
@@ -74,6 +78,7 @@ class _AdminCreateUserPageState extends State<AdminCreateUserPage> {
                     onChanged: (value) {
                       lastName = value;
                     },
+                    // Store user input in lastname
                     decoration:
                         kinputDecoration.copyWith(hintText: "Last Name"),
                   ),

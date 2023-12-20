@@ -6,10 +6,10 @@ String kDatejoined = "19-December-2023";
 String kLastName = "Mo";
 String kFirstName = "Abdelrahman";
 String kCategory = "All";
-Color kPrimaryColor = const Color(0xfffdb51b);
-Color kBackGroundColor = const Color(0xfffcf4dc);
-Color kButtonColor = Colors.orange;
-Color kContainerColor = Colors.orange.shade100;
+Color kPrimaryColor = Color.fromARGB(255,217 , 126, 150);
+Color kBackGroundColor = Color.fromARGB(255,255,255, 255);
+Color kButtonColor = const Color.fromARGB(255,217 , 126, 150);
+Color kContainerColor = const Color.fromARGB(255, 217, 217, 217);
 
 class Loading extends ChangeNotifier {
   bool kIsLoading = false;
@@ -45,11 +45,11 @@ const kinputDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.orange, width: 2.0),
+    borderSide: BorderSide(color:Color.fromARGB(255, 163, 101, 132), width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.orange, width: 4.0),
+    borderSide: BorderSide(color: Color.fromARGB(255, 163, 101, 132), width: 4.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
