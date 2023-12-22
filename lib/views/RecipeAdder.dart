@@ -76,7 +76,7 @@ class RecipeAdder extends StatelessWidget {
                       Navigator.of(context).pop(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return NavigationsBar();                  //<- Home Page when done (REPLACE "HOMEPAGE") 
+                            return const NavigationsBar();                  //<- Home Page when done (REPLACE "HOMEPAGE") 
                           },
                         ),
                       );

@@ -4,6 +4,8 @@ import 'SignUpPage.dart';
 
 
 class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +101,7 @@ class SignInPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => NavigationsBar()),
+                      MaterialPageRoute(builder: (context) => const NavigationsBar()),
                     );
                 },
                 style: ElevatedButton.styleFrom(

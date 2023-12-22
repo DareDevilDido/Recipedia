@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'SignInPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false, // This removes the debug banner
       home: Scaffold(
         body: SplashPage(),
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -94,7 +98,7 @@ class SplashPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignInPage()),
+                      MaterialPageRoute(builder: (context) => const SignInPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

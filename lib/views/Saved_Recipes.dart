@@ -3,15 +3,18 @@ import 'package:recipe_widget/views/widgets/recipe_card.dart';
 
 
 class Saved_Recipes extends StatefulWidget {
+  const Saved_Recipes({super.key});
+
   @override
   _Saved_RecipesState createState() => _Saved_RecipesState();
 }
 
 class _Saved_RecipesState extends State<Saved_Recipes> {
-   Widget build(BuildContext context) {
+   @override
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(backgroundColor: Colors.white,
-          title: Row(
+          title: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.restaurant_menu,color: Colors.black,),
@@ -24,7 +27,7 @@ class _Saved_RecipesState extends State<Saved_Recipes> {
             ],
           ),
         ),
-        body:SingleChildScrollView(
+        body:const SingleChildScrollView(
           child:Column(
         children:[ RecipeCard(
           title: 'Burger',

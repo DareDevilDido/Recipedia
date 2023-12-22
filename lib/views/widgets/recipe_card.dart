@@ -8,7 +8,7 @@ class RecipeCard extends StatelessWidget {
   final String thumbnailUrl;
   final String chefName;
 
-  RecipeCard({
+  const RecipeCard({super.key, 
     required this.title,
     required this.cookTime,
     required this.rating,
@@ -28,7 +28,7 @@ class RecipeCard extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         width: MediaQuery.of(context).size.width,
         height: 180,
         decoration: BoxDecoration(
@@ -37,7 +37,7 @@ class RecipeCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.6),
-              offset: Offset(
+              offset: const Offset(
                 0.0,
                 10.0,
               ),
@@ -57,24 +57,25 @@ class RecipeCard extends StatelessWidget {
         child: Stack(
           children: [
             Align(
+              alignment: Alignment.center,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 19,
                       ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       'Chef: $chefName',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white70,
                       ),
@@ -82,53 +83,52 @@ class RecipeCard extends StatelessWidget {
                   ],
                 ),
               ),
-              alignment: Alignment.center,
             ),
             Align(
+              alignment: Alignment.bottomLeft,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.yellow,
                           size: 18,
                         ),
-                        SizedBox(width: 7),
+                        const SizedBox(width: 7),
                         Text(rating),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.schedule,
                           color: Colors.yellow,
                           size: 18,
                         ),
-                        SizedBox(width: 7),
+                        const SizedBox(width: 7),
                         Text(cookTime),
                       ],
                     ),
                   )
                 ],
               ),
-              alignment: Alignment.bottomLeft,
             ),
           ],
         ),

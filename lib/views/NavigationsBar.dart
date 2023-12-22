@@ -3,6 +3,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 
 import 'package:flutter/material.dart';
+import 'package:recipe_widget/views/HomePage.dart';
 import 'package:recipe_widget/views/ProfilePage.dart';
 import 'package:recipe_widget/views/Saved_Recipes.dart';
 import 'package:recipe_widget/views/search_for_recipe.dart';
@@ -10,13 +11,15 @@ import 'package:recipe_widget/views/search_for_recipe.dart';
 
 
 class NavigationsBar extends StatefulWidget {
+  const NavigationsBar({super.key});
+
   @override
   State<NavigationsBar> createState() => _NavigationsBarState();
 }
 
 class _NavigationsBarState extends State<NavigationsBar> {
   final List<Widget> _pages = [
-    Saved_Recipes(),search_for_recipe(),ProfilePage()
+    const HomePage(),const Saved_Recipes(),const search_for_recipe(),const ProfilePage()
 
   ];
   //the page that's gonna show first
@@ -28,7 +31,7 @@ class _NavigationsBarState extends State<NavigationsBar> {
       body: _pages[index],
       bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
-          animationDuration: Duration(milliseconds: 350),
+          animationDuration: const Duration(milliseconds: 350),
           color: Colors.blue,
           height: 55,
           onTap: (pageIndex) {
