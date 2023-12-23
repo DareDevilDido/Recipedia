@@ -94,7 +94,8 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const adminNavigationsBar()));
+                              builder: (context) =>
+                                  const adminNavigationsBar()));
                     },
                   ),
                 )

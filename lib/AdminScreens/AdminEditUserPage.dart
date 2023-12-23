@@ -4,19 +4,25 @@ import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Widgets/roundedbutton.dart';
 
+// StatefulWidget for editing user information by an admin
 class AdminEditUserPage extends StatefulWidget {
-  String UserId;
+  final String UserId;
+
+  // Constructor to receive the user ID to edit
   AdminEditUserPage({super.key, required this.UserId});
+
+  // Static constant for the route identifier
   static const String id = "AdminEditUserPage";
 
   @override
   State<AdminEditUserPage> createState() => _AdminEditUserPageState();
 }
 
+// State class for AdminEditUserPage
 class _AdminEditUserPageState extends State<AdminEditUserPage> {
   @override
   void initState() {
-    // TODO: implement initState
+    // Load user information when the widget is initialized
     Future.delayed(Duration.zero).then((_) async {
       await Provider.of<UserController>(context, listen: false)
           .getUserInfo(widget.UserId);
@@ -26,10 +32,12 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Retrieve user information from the UserController
     String fName =
         Provider.of<UserController>(context, listen: false).userInfo!.fName;
     String lName =
         Provider.of<UserController>(context, listen: false).userInfo!.lName;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Edit User"),
@@ -40,6 +48,7 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Column(
           children: <Widget>[
+            // ListView for displaying user information
             ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
@@ -47,6 +56,7 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
                   const SizedBox(
                     height: 8.0,
                   ),
+                  // Text field for editing first name
                   TextField(
                     onChanged: (value) {
                       fName = value;
@@ -60,6 +70,7 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
                   const SizedBox(
                     height: 8.0,
                   ),
+                  // Text field for editing last name
                   TextField(
                     onChanged: (value) {
                       lName = value;
@@ -73,6 +84,7 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
                   const SizedBox(
                     height: 8.0,
                   ),
+                  // Button for updating user information
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -82,9 +94,11 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
                             color: kPrimaryColor,
                             text: 'Edit',
                             onPressed: () async {
+                              // Call the UserController to update user info
                               Provider.of<UserController>(context,
                                       listen: false)
                                   .updateUserInfo(widget.UserId, fName, lName);
+                              // Navigate back to the previous screen
                               Navigator.pop(context, true);
                             })
                       ],

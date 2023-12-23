@@ -114,7 +114,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                       child: Stack(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
                             child: Image.file(
                               File(
                                   Provider.of<PickImage>(context).image!.path!),
@@ -158,7 +159,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                     child: Stack(
                       children: [
                         ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           child: Image.asset(
                             "images/placeholder.jpg",
                             width: MediaQuery.of(context).size.width * 0.95,
@@ -214,8 +216,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             onChanged: (value) {
                               nutrition = value;
                             },
-                            decoration:
-                                kinputDecoration.copyWith(hintText: "nutrition"),
+                            decoration: kinputDecoration.copyWith(
+                                hintText: "nutrition"),
                           ),
                         ),
                       ),
@@ -245,7 +247,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                           padding: const EdgeInsets.only(
                               top: 5.0, bottom: 5, left: 20, right: 10),
                           child: ClipRRect(
-                            borderRadius: const BorderRadius.all(Radius.circular(5)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
                             child: Container(
                               color: Colors.white,
                               child: DropdownButton<String>(
@@ -301,7 +304,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                           color: Colors.white,
                           height: 30,
                           child: ClipRRect(
-                            borderRadius: const BorderRadius.all(Radius.circular(5)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
                             child: DropdownButton<int>(
                               items: Provider.of<AdminIngredientController>(
                                       context)
@@ -356,8 +360,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                     padding: const EdgeInsets.only(
                                         left: 20.0, top: 10),
                                     child: ClipRRect(
-                                      borderRadius:
-                                          const BorderRadius.all(Radius.circular(10)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
                                       child: Image.network(
                                         Provider.of<Recipe>(context)
                                             .ingredients[index]
@@ -369,8 +373,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   padding:
                                       const EdgeInsets.only(left: 20.0, top: 5),
                                   child: GestureDetector(
-                                    child:
-                                        const Icon(Icons.delete, color: Colors.red),
+                                    child: const Icon(Icons.delete,
+                                        color: Colors.red),
                                     onTap: () {
                                       Provider.of<Recipe>(context,
                                               listen: false)
@@ -426,8 +430,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 15.0),
                                     child: GestureDetector(
-                                      child:
-                                          const Icon(Icons.delete, color: Colors.red),
+                                      child: const Icon(Icons.delete,
+                                          color: Colors.red),
                                       onTap: () {
                                         Provider.of<Recipe>(context,
                                                 listen: false)

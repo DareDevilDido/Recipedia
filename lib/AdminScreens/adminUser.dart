@@ -1,3 +1,4 @@
+// Import statements for necessary packages and project files
 import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/UserController.dart';
 import 'package:provider/provider.dart';
@@ -6,21 +7,28 @@ import '../Widgets/LoadingScreen.dart';
 import 'AdminCreateUserPage.dart';
 import 'AdminEditUserPage.dart';
 
+// StatefulWidget for managing users in the admin view
 class AdminUser extends StatefulWidget {
   const AdminUser({super.key});
+
+  // Static constant for the route identifier
   static const String id = "MyRecipesPage";
 
   @override
   State<AdminUser> createState() => _AdminUserState();
 }
 
+// State class for AdminUser
 class _AdminUserState extends State<AdminUser> {
   @override
   void initState() {
+    // Initialize the state and load user information when the widget is initialized
+    super.initState();
     setState(() {
       Provider.of<Loading>(context, listen: false).changeBool();
     });
-    super.initState();
+
+    // Delayed execution to ensure the UI is built before loading user information
     Future.delayed(Duration.zero).then((_) async {
       await Provider.of<UserController>(context, listen: false)
           .getAllUserInfo();
@@ -43,16 +51,19 @@ class _AdminUserState extends State<AdminUser> {
             centerTitle: true,
             backgroundColor: kPrimaryColor,
             actions: [
+              // Add button to navigate to the page for creating a new user
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: GestureDetector(
                   child: const Icon(Icons.add, color: Colors.white),
                   onTap: () async {
+                    // Navigate to the page for creating a new user
                     bool refresh = await Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (_) => const AdminCreateUserPage()));
                     if (refresh) {
+                      // Refresh the list of users after creating a new user
                       await Provider.of<UserController>(context, listen: false)
                           .getAllUserInfo();
                     }
@@ -70,6 +81,7 @@ class _AdminUserState extends State<AdminUser> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () async {
+                      // Get detailed information of the selected user and navigate to edit page
                       await Provider.of<UserController>(context, listen: false)
                           .getUserInfo(Provider.of<UserController>(context,
                                   listen: false)
@@ -89,8 +101,11 @@ class _AdminUserState extends State<AdminUser> {
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
-                          child: Image.asset("images/profile.png",
-                              height: 200, width: 200, fit: BoxFit.cover),
+                          child: Image.asset(
+                              "images/profile.png", // Placeholder image
+                              height: 200,
+                              width: 200,
+                              fit: BoxFit.cover),
                         ),
                       ),
                       Positioned.fill(
@@ -104,6 +119,7 @@ class _AdminUserState extends State<AdminUser> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
+                                  // Display user's full name
                                   "${Provider.of<UserController>(context).userList[index].fName} ${Provider.of<UserController>(context).userList[index].lName}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -112,6 +128,7 @@ class _AdminUserState extends State<AdminUser> {
                                 ),
                                 Center(
                                   child: Text(
+                                    // Display user's email
                                     Provider.of<UserController>(context)
                                         .userList[index]
                                         .email,
@@ -129,48 +146,5 @@ class _AdminUserState extends State<AdminUser> {
                     ]),
                   );
                 }),
-          )
-//Padding(
-          //   padding: EdgeInsets.only(top: 10, bottom: 10),
-          //   child: Column(
-          //     children: <Widget>[
-          //       Expanded(
-          //         child: ListView.builder(
-          //             itemCount:
-          //                 Provider.of<UserController>(context).userList.length,
-          //             itemBuilder: (context, index) {
-          //               return Padding(
-          //                 padding: const EdgeInsets.only(bottom: 8.0),
-          //                 child: GestureDetector(
-          //                   onTap: () async {
-          //                     await Provider.of<UserController>(context,
-          //                             listen: false)
-          //                         .getUserInfo(Provider.of<UserController>(
-          //                                 context,
-          //                                 listen: false)
-          //                             .userList[index]
-          //                             .UID!);
-          //                     Navigator.push(
-          //                         context,
-          //                         MaterialPageRoute(
-          //                             builder: (_) => AdminEditUserPage(
-          //                                   UserId: Provider.of<UserController>(
-          //                                           context)
-          //                                       .userList[index]
-          //                                       .UID!,
-          //                                 )));
-          //                   },
-          //                   child: ListTile(
-          //                     leading: Text(Provider.of<UserController>(context)
-          //                         .userList[index]
-          //                         .email),
-          //                   ),
-          //                 ),
-          //               );
-          //             }),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          );
+          ));
 }
