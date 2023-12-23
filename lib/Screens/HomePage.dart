@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/DafualtRecipesController.dart';
 import 'package:recipedia/Screens/SearchPage.dart';
 import 'package:provider/provider.dart';
+import 'package:recipedia/Screens/ViewRecipePage.dart';
 import '../Constants/Constants.dart';
 import '../Models/RandomRecipeOfTheDay.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/LoadingScreen.dart';
-import 'ViewRecipePage.dart';
 import 'dart:math';
 
 class HomePage extends StatefulWidget {

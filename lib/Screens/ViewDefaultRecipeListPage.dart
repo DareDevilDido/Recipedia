@@ -108,15 +108,15 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
                                                 color: Colors.white),
                                           ),
                                         ),
-                                        Container(
-                                          child: const Text(
-                                            "text",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.red,
-                                            ),
-                                          ),
-                                        ),
+                                        // Container(
+                                        //   child: const Text(
+                                        //     "text",
+                                        //     style: TextStyle(
+                                        //       fontSize: 20,
+                                        //       color: Colors.red,
+                                        //     ),
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),

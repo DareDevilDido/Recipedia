@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:recipedia/AdminScreens/adminRecipe.dart';
 import 'package:recipedia/AdminScreens/adminUser.dart';
-import 'package:recipedia/AdminScreens/top10ingredients.dart';
+import 'package:recipedia/AdminScreens/AdminProfilePage.dart';
 import 'package:recipedia/AdminScreens/top10recipes.dart';
 
 import '../Constants/Constants.dart';
@@ -19,7 +19,7 @@ class _adminNavigationsBarState extends State<adminNavigationsBar> {
     const AdminRecipe(),
     const AdminUser(),
     const top10RecipesPage(),
-    const top10IngredientsPage()
+     AdminProfilePage()
   ];
 
   int index = 0;
@@ -44,7 +44,7 @@ class _adminNavigationsBarState extends State<adminNavigationsBar> {
             Icon(Icons.receipt_long, color: Colors.white),
             Icon(Icons.person, color: Colors.white),
             Icon(Icons.receipt, color: Colors.white),
-            Icon(Icons.receipt_outlined, color: Colors.white)
+            Icon(Icons.admin_panel_settings, color: Colors.white)
           ]),
     );
   }

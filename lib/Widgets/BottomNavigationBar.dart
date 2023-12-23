@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:recipedia/Screens/DefaultRecipePage.dart';
-import 'package:recipedia/Screens/MyRecipePage.dart';
+import 'package:recipedia/Screens/MyRecipesPage.dart';
 import 'package:recipedia/Screens/ProfilePage.dart';
 import '../Constants/Constants.dart';
 import '../Screens/FavroitesPage.dart';

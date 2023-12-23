@@ -26,7 +26,7 @@ import 'Models/Timer.dart';
 import 'Screens/DefaultRecipePage.dart';
 import 'Screens/MyIngredientPage.dart';
 import 'Screens/ProfilePage.dart';
-import 'Screens/MyRecipePage.dart';
+import 'Screens/MyRecipesPage.dart';
 import 'Screens/WelcomePage.dart';
 import 'Screens/SearchPage.dart';
 import 'Screens/IngredientsPage.dart';

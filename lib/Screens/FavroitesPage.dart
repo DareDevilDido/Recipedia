@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/FavroiteRecipeController.dart';
 import 'package:provider/provider.dart';
+import 'package:recipedia/Screens/ViewRecipePage.dart';
 import '../Constants/Constants.dart';
 import '../Widgets/LoadingScreen.dart';
-import 'ViewRecipePage.dart';
 
 class FavroitesPage extends StatefulWidget {
   const FavroitesPage({super.key});
