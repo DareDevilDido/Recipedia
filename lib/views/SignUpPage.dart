@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'SignInPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,8 +19,34 @@ class MyApp extends StatelessWidget {
 }
 
 class SignUpPage extends StatelessWidget {
+   SignUpPage({super.key});
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> signUpWithEmailAndPassword(
+      String email, String password, BuildContext context) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      
+      String userId = userCredential.user!.uid;
+      print('User ID: $userId');
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  SignInPage()),
+      );
+    } catch (e) {
+      print('Failed to create user: $e');
+      // You can show an error message here using a snackbar or dialog
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -32,67 +60,40 @@ class SignUpPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               const Text(
                 'Let’s help you set up your account, it won’t take long.',
                 style: TextStyle(
                   fontSize: 14,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 20),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top:0),
-                    child: Text(
-                      'Name',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      style: TextStyle(fontSize: 14), // Smaller text size
-                      decoration: InputDecoration(
-                        hintText: 'Enter Name',
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top:0),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 0),
                     child: Text(
                       'Email',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey,
+                        color: Colors.black, // Changed text color to black
                       ),
                     ),
                   ),
                   SizedBox(
                     height: 50,
                     child: TextField(
+                      controller: emailController,
                       textAlignVertical: TextAlignVertical.center,
-                      style: TextStyle(fontSize: 14), // Smaller text size
-                      obscureText: true,
-                      decoration: InputDecoration(
+                      style: const TextStyle(fontSize: 14),
+                      decoration: const InputDecoration(
                         hintText: 'Enter your Email',
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                         ),
@@ -102,28 +103,30 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top:0),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 0),
                     child: Text(
-                      'password',
+                      'Password',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey,
+                        color: Colors.black, // Changed text color to black
                       ),
                     ),
                   ),
                   SizedBox(
                     height: 50,
                     child: TextField(
+                      controller: passwordController,
                       textAlignVertical: TextAlignVertical.center,
-                      style: TextStyle(fontSize: 14), // Smaller text size
                       obscureText: true,
-                      decoration: InputDecoration(
+                      style: const TextStyle(fontSize: 14),
+                      decoration: const InputDecoration(
                         hintText: 'Enter your password',
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                         ),
@@ -132,45 +135,18 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top:0),
-                    child: Text(
-                      'Confirm Password',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      style: TextStyle(fontSize: 14), // Smaller text size
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Retype your password',
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignInPage()),
-                    );
+                  String email = emailController.text.trim();
+                  String password = passwordController.text.trim();
+                  
+                  if (email.isNotEmpty && password.isNotEmpty) {
+                    signUpWithEmailAndPassword(email, password, context);
+                  } else {
+                    // Handle empty email or password here
+                    print('Email and password cannot be empty');
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF496886),
@@ -187,56 +163,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: SizedBox(
-                      height: 30,
-                      width: 30,
-                      child: IconButton(
-                        onPressed: () {
-                          // Add functionality for Google sign-in
-                        },
-                        icon: Image.asset('assets/google_icon.png'),
-                        padding: const EdgeInsets.all(0),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: SizedBox(
-                      height: 30,
-                      width: 30,
-                      child: IconButton(
-                        onPressed: () {
-                          // Add functionality for Facebook sign-in
-                        },
-                        icon: Image.asset('assets/facebook_icon.png'),
-                        padding: const EdgeInsets.all(0),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignInPage()),
-                    );
-                },
-                child: const Text(
-                  "Already a member? Sign in",
-                  style: TextStyle(
-                    color: Color(0xFFFF9C00),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 50), // Additional spacing at the bottom
+              // ... rest of your UI code
             ],
           ),
         ),
