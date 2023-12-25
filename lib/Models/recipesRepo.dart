@@ -1,4 +1,4 @@
-import 'package:recipe_widget/Models/DefaultIngredients.dart';
+import 'package:recipe_widget/Models/DefaultIngredientsRepo.dart';
 import 'package:recipe_widget/Models/instructionsRepo.dart';
 
 class recipesRepo{
