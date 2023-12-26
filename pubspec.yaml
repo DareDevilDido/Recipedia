@@ -10,15 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: 1.1.0
+  http: ^1.1.0
   curved_labeled_navigation_bar: ^2.0.2
   cupertino_icons: ^1.0.2
   image_picker: ^1.0.4
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.3
-  cloud_firestore: ^4.13.6
-  intl: ^0.19.0
-
+  cloud_firestore: ^2.5.0
+  firebase_storage: ^11.0.6
+  flutter_tts: ^3.6.2
+  firebase_core_web: ^2.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
