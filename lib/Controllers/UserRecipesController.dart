@@ -7,7 +7,7 @@ import '../constantVariables/Constant.dart';
 import 'UserIngredientsController.dart';
 
 
-s
+
 class UserRecipesController extends ChangeNotifier {
   List<recipesRepo> Recipes = [];
   List<DefaultIngredientsRepo> ingredients = [];
@@ -127,7 +127,7 @@ class UserRecipesController extends ChangeNotifier {
   }
 
   Future<String> AddRecipe(String name, String Category, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String videoUrl,String category) async {
     final responce = await _firestore
         .collection("UserRecipes")
         .doc(kUserId)
@@ -138,13 +138,15 @@ class UserRecipesController extends ChangeNotifier {
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
-      "Image": image
+      "Image": image,
+      "VideoUrl":videoUrl,
+      "category":category
     });
     return responce.id.toString();
   }
 
   Future<void> EditRecipe(String name, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String videoUrl, String category ) async {
     Recipe!.recipe_name = name;
     Recipe!.nutrition = nutrition;
     Recipe!.time = Time;
@@ -160,30 +162,32 @@ class UserRecipesController extends ChangeNotifier {
       "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
-      "Image": image
+      "Image": image,
+      "VideoUrl":videoUrl,
+       "category":category
     });
   }
 
-  // Future<QuerySnapshot> QueryCategoryRecipe(String Category) async {
-  //   return await FirebaseFirestore.instance
-  //       .collection("UserRecipes")
-  //       .doc(kUserId)
-  //       .collection("Recipe List")
-  //       .where("Category", isEqualTo: Category)
-  //       .get();
-  // }
+  Future<QuerySnapshot> QueryCategoryRecipe(String Category) async {
+    return await FirebaseFirestore.instance
+        .collection("UserRecipes")
+        .doc(kUserId)
+        .collection("Recipe List")
+        .where("Category", isEqualTo: Category)
+        .get();
+  }
 
-//   Future<void> FilterCategory(String Category) async {
-//     Recipes = [];
-//     QuerySnapshot snapshot = await QueryCategoryRecipe(Category);
-//     if (snapshot.docs.isNotEmpty) {
-//       Recipes += snapshot.docs.map((e) {
-//         return recipesRepo.fromJson(
-//             e.id, e.data() as Map<String, dynamic>, [], []);
-//       }).toList();
-//     }
-//     notifyListeners();
-//   }
+  Future<void> FilterCategory(String Category) async {
+    Recipes = [];
+    QuerySnapshot snapshot = await QueryCategoryRecipe(Category);
+    if (snapshot.docs.isNotEmpty) {
+      Recipes += snapshot.docs.map((e) {
+        return recipesRepo.fromJson(
+            e.id, e.data() as Map<String, dynamic>, [], []);
+      }).toList();
+    }
+    notifyListeners();
+  }
  }
 
 //Ingredient.data()["Link"])

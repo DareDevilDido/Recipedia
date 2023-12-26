@@ -29,7 +29,7 @@ class InsrtuctionCntroller extends ChangeNotifier {
     instructionsRepo? ingredient;
     if (userID != null) {
       final responce = await _firestore
-          .collection("DefaultRecipe")
+          .collection("recipes")
           .doc(userID)
           .collection("Instructions")
           .doc(IngID)

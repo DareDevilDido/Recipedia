@@ -37,7 +37,7 @@ class AdminIngredientController extends ChangeNotifier {
   /// Adds an ingredient to a recipe.
   Future<void> AddIngredient(String RecipeID, String ingid) async {
     final responce = await _firestore
-        .collection("DefaultRecipe")
+        .collection("recipes")
         .doc(RecipeID)
         .collection("Ingredients")
         .add({"Link": ingid});
@@ -60,7 +60,7 @@ class AdminIngredientController extends ChangeNotifier {
 
     Future.forEach(ingredientsId, (Ingredient) async {
       final responce = await _firestore
-          .collection("DefaultRecipe")
+          .collection("recipes")
           .doc(RecipeID)
           .collection("Ingredients")
           .add({
@@ -73,13 +73,13 @@ class AdminIngredientController extends ChangeNotifier {
   /// Deletes the collection of ingredients for a recipe.
   Future<void> DeleteIngredientCollection(String RecipeID) async {
     final responce = await _firestore
-        .collection("DefaultRecipe")
+        .collection("recipes")
         .doc(RecipeID)
         .collection("Ingredients")
         .get();
     Future.forEach(responce.docs, (Ingredient) async {
       final subresponce = _firestore
-          .collection("DefaultRecipe")
+          .collection("recipes")
           .doc(RecipeID)
           .collection("Ingredients")
           .doc(Ingredient.id);

@@ -59,7 +59,7 @@ class UserRecipeIngredientController extends ChangeNotifier {
       String RecipeID, List<String> ingredientsId) async {
     await DeleteIngredientCollection(RecipeID);
     Future.forEach(ingredientsId, (Ingredient) async {
-      await AddNumber(Ingredient);
+      // await AddNumber(Ingredient);
       final responce = await _firestore
           .collection("UserRecipes")
           .doc(kUserId)
@@ -81,7 +81,7 @@ class UserRecipeIngredientController extends ChangeNotifier {
         .collection("Ingredients")
         .get();
     Future.forEach(responce.docs, (Ingredient) async {
-      await DeductNumber(Ingredient["Link"]);
+      // await DeductNumber(Ingredient["Link"]);
       final subresponce = _firestore
           .collection("UserRecipes")
           .doc(kUserId)
@@ -98,7 +98,7 @@ class UserRecipeIngredientController extends ChangeNotifier {
     final responce = _firestore
         .collection("UserIngredients")
         .doc(kUserId)
-        .collection("Ingredient List")
+        .collection("Ingredients ")
         .doc(ID);
     responce.update({"TimesUsed": FieldValue.increment(1)});
   }
@@ -107,7 +107,7 @@ class UserRecipeIngredientController extends ChangeNotifier {
     final responce = _firestore
         .collection("UserIngredients")
         .doc(kUserId)
-        .collection("Ingredient List")
+        .collection("Ingredients")
         .doc(ID);
     responce.update({"TimesUsed": FieldValue.increment(-1)});
   }

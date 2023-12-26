@@ -72,7 +72,7 @@ class AdminRecipesController extends ChangeNotifier {
           await _firestore.collection("recipes").doc(RecipeID).get();
       await getIngredients(RecipeID);
       await getInsrtuctions(kUserId, RecipeID);// i need the if of the user
-      //reorganizeInstructions();//still dont know how to do it
+      reorganizeInstructions();
       Recipe = recipesRepo.fromJson(
           responce.id, responce.data()!, ingredients, insrtuctions);
     }
@@ -95,9 +95,9 @@ class AdminRecipesController extends ChangeNotifier {
     }
   }
 
-  // void reorganizeInstructions() {
-  //   insrtuctions.sort((a, b) => a.Step.compareTo(b.Step));
-  // }
+  void reorganizeInstructions() {
+    insrtuctions.sort((a, b) => a.Step.compareTo(b.Step));
+  }
 
   Future<void> DeleteRecipe(RecipeID) async {
     final responce =
@@ -121,19 +121,20 @@ class AdminRecipesController extends ChangeNotifier {
   }
 
   Future<void> EditRecipe(String name, String Category, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String videoUrl) async {
     Recipe!.recipe_name = name;
     Recipe!.nutrition = nutrition;
     Recipe!.time = Time;
     Recipe!.Servings = Servings;
     Recipe!.Image = image;
+    Recipe!.VideoUrl=videoUrl;
     final responce =
-        await _firestore.collection("DefaultRecipe").doc(Recipe!.ID).update({
+        await _firestore.collection("recipes").doc(Recipe!.ID).update({
       "recipe_name": name,
       "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
-      
+      "VideoUrl":videoUrl,
       "Image": image
     });
     notifyListeners();
