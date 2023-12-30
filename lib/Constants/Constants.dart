@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-String kUserId = "sixA0xwbmVW2TF8K7pw04Xg3hzp1";
-String kUserEmail = "abdelrahman0213@gmail.com";
-String kDatejoined = "19-December-2023";
-String kLastName = "Mo";
-String kFirstName = "Abdelrahman";
-String kCategory = "All";
+String kUserId = "";
+String kUserEmail = "";
+String kDatejoined = "";
+String kLastName = "";
+String kFirstName = "";
+String kCategory = "";
 Color kPrimaryColor = Color.fromARGB(255, 217, 126, 150);
 Color kBackGroundColor = Color.fromARGB(255, 255, 255, 255);
 Color kButtonColor = const Color.fromARGB(255, 217, 126, 150);

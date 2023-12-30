@@ -19,11 +19,21 @@ class UserIngredientController extends ChangeNotifier {
           .doc(kUserId)
           .collection("Ingredient List")
           .get();
+          //just addthis
+          final responce1 = await _firestore.collection("DefaultIngredients").get();
+
       for (var Ingredient in responce.docs) {
         ingredientID.add(Ingredient.id);
         ingredients.add(
             DefaultIngredientsRepo.fromJson(Ingredient.id, Ingredient.data()));
         notifyListeners();
+      }
+      //just addthis
+     for (var Ingredient in responce1.docs) {
+         ingredientID.add(Ingredient.id);
+        ingredients.add(
+            DefaultIngredientsRepo.fromJson(Ingredient.id, Ingredient.data()));
+             notifyListeners();
       }
       notifyListeners();
     }
@@ -52,6 +62,7 @@ class UserIngredientController extends ChangeNotifier {
         .doc(kUserId)
         .collection("Ingredient List")
         .add({"Image": IngID.image, "Name": IngID.Name, "TimesUsed": 0});
+        
     notifyListeners();
   }
 

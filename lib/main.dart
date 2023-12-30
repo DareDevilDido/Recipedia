@@ -73,6 +73,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  static ThemeData theme=ThemeData.light();
+
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -101,8 +103,7 @@ class MyApp extends StatelessWidget {
           SelectIngredientsPage.id: (context) => const SelectIngredientsPage(),
           SelectIngredientsPage.id: (context) => const AdminCreateRecipePage(),
           SelectIngredientsPage.id: (context) => const AdminCreateUserPage(),
-          CreateAdminIngredientPage.id: (context) =>
-              const CreateAdminIngredientPage(),
+          CreateAdminIngredientPage.id: (context) =>const CreateAdminIngredientPage(),
         },
         home: const WelcomeScreen(),
       );

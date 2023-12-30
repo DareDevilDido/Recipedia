@@ -37,7 +37,8 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
         Provider.of<UserController>(context, listen: false).userInfo!.fName;
     String lName =
         Provider.of<UserController>(context, listen: false).userInfo!.lName;
-
+String email=Provider.of<UserController>(context, listen: false).userInfo!.email;
+String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.dateJoined!.toString();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Edit User"),
@@ -84,6 +85,37 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
                   const SizedBox(
                     height: 8.0,
                   ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  // Text field for editing first name
+                  TextField(
+                    onChanged: (value) {
+                      email = value;
+                    },
+                    decoration: kinputDecoration.copyWith(
+                        hintText:
+                            Provider.of<UserController>(context, listen: false)
+                                .userInfo!
+                                .email),
+                  ),
+                   const SizedBox(
+                    height: 8.0,
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  // Text field for editing first name
+                  TextField(
+                    onChanged: (value) {
+                      dateJoined = value;
+                    },
+                    decoration: kinputDecoration.copyWith(
+                        hintText:
+                            Provider.of<UserController>(context, listen: false)
+                                .userInfo!
+                                .dateJoined),
+                  ),
                   // Button for updating user information
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -92,12 +124,12 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
                       children: [
                         RoundedButton(
                             color: kPrimaryColor,
-                            text: 'Edit',
+                            text: 'Suspend User',
                             onPressed: () async {
                               // Call the UserController to update user info
                               Provider.of<UserController>(context,
                                       listen: false)
-                                  .updateUserInfo(widget.UserId, fName, lName);
+                                  .deleteUserInfo(widget.UserId);
                               // Navigate back to the previous screen
                               Navigator.pop(context, true);
                             })

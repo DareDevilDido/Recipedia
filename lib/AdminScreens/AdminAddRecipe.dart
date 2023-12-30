@@ -33,7 +33,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
   String time = "";
 
   String nutrition = "";
-
+  String description = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -55,7 +55,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    String description = "";
+   
     return Scaffold(
         appBar: AppBar(
           title: const Text("Add Recipe"),
@@ -450,7 +450,11 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                       const EdgeInsets.only(left: 10.0, right: 10, top: 10),
                   child: TextField(
                     onChanged: (value) {
-                      description = value;
+                     setState(() {
+                      description = value; 
+                     }); 
+                      
+
                     },
                     minLines: 4,
                     keyboardType: TextInputType.multiline,
@@ -528,8 +532,9 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                         child: RoundedButton(
                             color: kPrimaryColor,
                             text: 'Add Instruction',
-                            onPressed: () {
+                            onPressed: () { print(description);
                               if (description != "") {
+                               
                                 var instruction = InstructionsRepo(
                                     ID: "",
                                     Description: description,

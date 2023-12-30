@@ -274,13 +274,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-                  ),
+                  ), 
+                  SizedBox(
+                                                        width: 80,
+                                                        child: RoundedButton(color: kButtonColor,text: "DarkMode",
+                                                        onPressed: () =>{ kBackGroundColor =const Color.fromARGB(0, 0, 0, 0)}
+                                                        )
+                                                           
+                                                        ),
+                  
                   const Expanded(
                       flex: 4,
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
-                          "© All rights reserved by \n AbdelRahman Mohamed, Amr ElDeeb, AbdelRahman AbdelMageed, Mohamed Ehab 2022",
+                          "© All rights reserved by \n AbdelRahman Mohamed, Amr ElDeeb, AbdelRahman AbdelMageed, Mohamed Ehab 2023",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.grey),
                         ),

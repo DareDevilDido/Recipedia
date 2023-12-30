@@ -45,4 +45,13 @@ class UserController extends ChangeNotifier {
     }
     notifyListeners();
   }
+  Future<void> deleteUserInfo(String? userID) async {
+  if (userID != null) {
+    final responce = _firestore.collection("UserInformation").doc(userID);
+    await responce.delete();
+    
+    notifyListeners();
+  }
+  notifyListeners();
+}
 }

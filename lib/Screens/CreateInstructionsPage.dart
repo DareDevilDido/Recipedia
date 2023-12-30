@@ -66,7 +66,8 @@ class CreateInstructionPage extends StatelessWidget {
                             Provider.of<Recipe>(context, listen: false)
                                 .addInstructionsToList(instruction);
                             Navigator.pop(context);
-                          } else {
+                          } 
+                          else {
                             ScaffoldMessenger.of(context)
                               ..hideCurrentSnackBar()
                               ..showSnackBar(MessagePrompt().snack("Error",

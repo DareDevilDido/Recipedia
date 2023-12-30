@@ -18,6 +18,7 @@ import '../Widgets/roundedbutton.dart';
 class CreateRecipePage extends StatefulWidget {
   static const String id = "CreateRecipePage";
 
+
   const CreateRecipePage({super.key});
 
   @override
@@ -25,6 +26,12 @@ class CreateRecipePage extends StatefulWidget {
 }
 
 class _CreateRecipePageState extends State<CreateRecipePage> {
+  String name = "";
+  String Category = "";
+  String Servings = "";
+  String time = "";
+  String nutrition = "";
+  String description = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -32,6 +39,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
       await Provider.of<UserIngredientController>(context, listen: false)
           .getIngredients(kUserId);
     });
+    
 
     Provider.of<Recipe>(context, listen: false).insrtuctions = [];
     Provider.of<Recipe>(context, listen: false).ingredientID = [];
@@ -39,16 +47,11 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
     super.initState();
   }
 
-  String name = "";
-  String Category = "";
-  String Servings = "";
-  String time = "";
-  String nutrition = "";
+ 
 
   @override
   Widget build(BuildContext context) {
-    String description = "";
-    String SelectedIng = "Ingredients";
+    
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -258,102 +261,101 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                       height: 8.0,
                     ),
                     const LineDivider(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Text("ingredients"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Container(
-                              color: Colors.white,
-                              height: 30,
-                              child: ClipRRect(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(5)),
-                                child: DropdownButton<int>(
-                                  items: Provider.of<UserIngredientController>(
-                                          context)
-                                      .ingredients
-                                      .map((item) => DropdownMenuItem<int>(
-                                            value: Provider.of<
-                                                        UserIngredientController>(
-                                                    context)
-                                                .ingredients
-                                                .indexOf(item),
-                                            child: Text(item.Name),
-                                          ))
-                                      .toList(),
-                                  onChanged: (Select) {
-                                    setState(() {
-                                      var index = Provider.of<
-                                                  UserIngredientController>(
+                   Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text("ingredients"),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Container(
+                          color: Colors.white,
+                          height: 30,
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                            child: DropdownButton<int>(
+                              items: Provider.of<UserIngredientController>(
+                                      context)
+                               
+                                  .ingredients
+                                  .map((item) => DropdownMenuItem<int>(
+                                        value: Provider.of<
+                                                    UserIngredientController>(
+                                                context)
+                                            .ingredients
+                                            .indexOf(item),
+                                        child: Text(item.Name),
+                                      ))
+                                  .toList(),
+                              onChanged: (Select) {
+                                setState(() {
+                                  var index =
+                                      Provider.of<UserIngredientController>(
                                               context,
                                               listen: false)
                                           .ingredients
                                           .where((item) => item.Name == Select);
+                                  Provider.of<Recipe>(context, listen: false)
+                                      .addIngredientToList(
+                                          Provider.of<UserIngredientController>(
+                                                  context,
+                                                  listen: false)
+                                              .ingredients[Select!],
+                                          Provider.of<UserIngredientController>(
+                                                  context,
+                                                  listen: false)
+                                              .ingredientID[Select]);
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                    (Provider.of<Recipe>(context).ingredients.isNotEmpty)
+                    ? SizedBox(
+                        height: 130,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount:
+                                Provider.of<Recipe>(context).ingredients.length,
+                            itemBuilder: (context, index) {
+                              return Column(children: [
+                                Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20.0, top: 10),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      child: Image.network(
+                                        Provider.of<Recipe>(context)
+                                            .ingredients[index]
+                                            .image,
+                                        height: 75,
+                                      ),
+                                    )),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 20.0, top: 5),
+                                  child: GestureDetector(
+                                    child: const Icon(Icons.delete,
+                                        color: Colors.red),
+                                    onTap: () {
                                       Provider.of<Recipe>(context,
                                               listen: false)
-                                          .addIngredientToList(
-                                              Provider.of<UserIngredientController>(
-                                                      context,
-                                                      listen: false)
-                                                  .ingredients[Select!],
-                                              Provider.of<UserIngredientController>(
-                                                      context,
-                                                      listen: false)
-                                                  .ingredientID[Select]);
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    (Provider.of<Recipe>(context).ingredients.isNotEmpty)
-                        ? SizedBox(
-                            height: 130,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: Provider.of<Recipe>(context)
-                                    .ingredients
-                                    .length,
-                                itemBuilder: (context, index) {
-                                  return Column(children: [
-                                    Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 20.0, top: 10),
-                                        child: ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: Image.network(
-                                            Provider.of<Recipe>(context)
-                                                .ingredients[index]
-                                                .image,
-                                            height: 75,
-                                          ),
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 20.0, top: 5),
-                                      child: GestureDetector(
-                                        child: const Icon(Icons.delete,
-                                            color: Colors.red),
-                                        onTap: () {
-                                          Provider.of<Recipe>(context,
-                                                  listen: false)
-                                              .removeIngrecientFromList(index);
-                                          // Navigator.pushNamed(context, SearchPage.id);
-                                        },
-                                      ),
-                                    )
-                                  ]);
-                                }),
-                          )
-                        : Container(),
+                                          .removeIngrecientFromList(index);
+                                      // Navigator.pushNamed(context, SearchPage.id);
+                                    },
+                                  ),
+                                )
+                              ]);
+                            }),
+                      )
+                    : Container(),
                     const LineDivider(),
                     const Padding(
                       padding: EdgeInsets.only(left: 20),
@@ -505,7 +507,8 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                     Navigator.pop(context, true);
                                     Provider.of<Loading>(context, listen: false)
                                         .changeBool();
-                                  } else {
+                                   } 
+                                   else {
                                     ScaffoldMessenger.of(context)
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(
@@ -535,7 +538,8 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                             .toString());
                                     Provider.of<Recipe>(context, listen: false)
                                         .addInstructionsToList(instruction);
-                                  } else {
+                                  } 
+                                  else {
                                     ScaffoldMessenger.of(context)
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(

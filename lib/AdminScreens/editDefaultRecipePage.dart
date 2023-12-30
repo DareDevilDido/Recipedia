@@ -188,7 +188,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                     color: Colors.black.withOpacity(0.5),
                                     alignment: Alignment.center,
                                     child: const Text(
-                                      "Add Photo",
+                                      "Edit Photo",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
