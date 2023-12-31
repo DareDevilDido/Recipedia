@@ -28,7 +28,8 @@ class UserController extends ChangeNotifier {
     });
     notifyListeners();
   }
-
+  
+//if (UserInfo.Role == "User")
   Future<void> updateUserInfo(
       String? userID, String firstName, String lastName) async {
     if (userID != null) {
@@ -54,4 +55,5 @@ class UserController extends ChangeNotifier {
   }
   notifyListeners();
 }
+
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/UserController.dart';
 import 'package:provider/provider.dart';
+import 'package:recipedia/Screens/LoginPage.dart';
 import '../Constants/Constants.dart';
+import '../Screens/WelcomePage.dart';
 import '../Widgets/roundedbutton.dart';
 
 // StatefulWidget for editing user information by an admin
@@ -39,6 +41,7 @@ class _AdminEditUserPageState extends State<AdminEditUserPage> {
         Provider.of<UserController>(context, listen: false).userInfo!.lName;
 String email=Provider.of<UserController>(context, listen: false).userInfo!.email;
 String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.dateJoined!.toString();
+String Role=Provider.of<UserController>(context, listen: false).userInfo!.Role!.toString();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Edit User"),
@@ -59,6 +62,7 @@ String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.
                   ),
                   // Text field for editing first name
                   TextField(
+                    enabled: false,
                     onChanged: (value) {
                       fName = value;
                     },
@@ -73,6 +77,7 @@ String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.
                   ),
                   // Text field for editing last name
                   TextField(
+                    enabled: false,
                     onChanged: (value) {
                       lName = value;
                     },
@@ -90,6 +95,7 @@ String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.
                   ),
                   // Text field for editing first name
                   TextField(
+                    enabled: false,
                     onChanged: (value) {
                       email = value;
                     },
@@ -107,6 +113,7 @@ String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.
                   ),
                   // Text field for editing first name
                   TextField(
+                    enabled: false,
                     onChanged: (value) {
                       dateJoined = value;
                     },
@@ -115,6 +122,21 @@ String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.
                             Provider.of<UserController>(context, listen: false)
                                 .userInfo!
                                 .dateJoined),
+                  ),
+                    const SizedBox(
+                    height: 8.0,
+                  ),
+                  // Text field for editing first name
+                  TextField(
+                    enabled: false,
+                    onChanged: (value) {
+                      Role = value;
+                    },
+                    decoration: kinputDecoration.copyWith(
+                        hintText:
+                            Provider.of<UserController>(context, listen: false)
+                                .userInfo!
+                                .Role),
                   ),
                   // Button for updating user information
                   Padding(
@@ -126,12 +148,26 @@ String dateJoined=Provider.of<UserController>(context, listen: false).userInfo!.
                             color: kPrimaryColor,
                             text: 'Suspend User',
                             onPressed: () async {
+                              if(email==kUserEmail)
+                              {Provider.of<UserController>(context,
+                                      listen: false)
+                                  .deleteUserInfo(widget.UserId);
+                              // Navigate back to the previous screen
+                              Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const WelcomeScreen()));
+
+                              }
+                              else{
                               // Call the UserController to update user info
                               Provider.of<UserController>(context,
                                       listen: false)
                                   .deleteUserInfo(widget.UserId);
                               // Navigate back to the previous screen
                               Navigator.pop(context, true);
+                              }
                             })
                       ],
                     ),
