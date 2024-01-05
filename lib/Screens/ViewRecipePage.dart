@@ -56,15 +56,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    FlutterTts fluttertts = FlutterTts();
-
-    Future<void> speak(text) async {
-      fluttertts.speak(text);
-    }
-
-    Future<void> stop() async {
-      fluttertts.stop();
-    }
+   
 
     List<int> valueList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
     bool checking = Provider.of<FavortieRecipesController>(context).isFavorited;
@@ -474,3 +466,12 @@ final videoID = YoutubePlayer.convertUrlToId(videoUrl);
 
         return videoID;
 }
+ FlutterTts fluttertts = FlutterTts();
+
+    Future<void> speak(text) async {
+      fluttertts.speak(text);
+    }
+
+    Future<void> stop() async {
+      fluttertts.stop();
+    }

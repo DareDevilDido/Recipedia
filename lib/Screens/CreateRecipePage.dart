@@ -32,6 +32,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
   String time = "";
   String nutrition = "";
   String description = "";
+  String VideoLink = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -190,6 +191,18 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                               ),
                             ),
                           ),
+                          Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: TextField(
+                            onChanged: (value) {
+                              VideoLink = value;
+                            },
+                            decoration: kinputDecoration.copyWith(
+                                hintText: "VideoLink"),
+                          ),
+                        ),
+                      ),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
