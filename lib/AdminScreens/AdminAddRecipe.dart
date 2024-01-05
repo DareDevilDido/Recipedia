@@ -494,6 +494,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   time != "" &&
                                   Servings != "" &&
                                   name != "" &&
+                                  VideoLink!= "" &&
                                   Provider.of<Recipe>(context, listen: false)
                                           .insrtuctions !=
                                       [] &&
@@ -512,7 +513,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                             context,
                                             listen: false)
                                         .AddRecipe(name, Category, nutrition,
-                                            time, Servings, Image);
+                                            time, Servings, Image,VideoLink);
 
                                 Future.forEach(
                                     Provider.of<Recipe>(context, listen: false)

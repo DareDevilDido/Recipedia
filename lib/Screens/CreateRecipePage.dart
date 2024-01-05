@@ -460,6 +460,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
+                                      VideoLink!=""&&
                                       Provider.of<PickImage>(context,
                                                   listen: false)
                                               .image !=
@@ -486,7 +487,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                                 UserRecipesController>(context,
                                             listen: false)
                                         .AddRecipe(name, Category, nutrition,
-                                            time, Servings, Image);
+                                            time, Servings, Image,VideoLink);
 
                                     Future.forEach(
                                         Provider.of<Recipe>(context,

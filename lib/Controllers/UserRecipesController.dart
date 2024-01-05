@@ -125,7 +125,7 @@ class UserRecipesController extends ChangeNotifier {
   }
 
   Future<String> AddRecipe(String name, String Category, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String VideoLink) async {
     final responce = await _firestore
         .collection("UserRecipes")
         .doc(kUserId)
@@ -136,7 +136,8 @@ class UserRecipesController extends ChangeNotifier {
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
-      "Image": image
+      "Image": image,
+      "VideoLink":VideoLink
     });
     return responce.id.toString();
   }
