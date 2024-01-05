@@ -51,6 +51,7 @@ class _ManageUserPageState extends State<ManageUserPage> {
     String Servings = Recip.Servings;
     String time = Recip.time;
     String nutrition = Recip.nutrition;
+    String VideoLink=Recip.VideoLink;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favroites"),
@@ -81,6 +82,17 @@ class _ManageUserPageState extends State<ManageUserPage> {
                   nutrition = value;
                 },
                 decoration: kinputDecoration.copyWith(hintText: "nutrition"),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              TextField(
+                controller: TextEditingController(text: Recip.VideoLink),
+                onChanged: (value) {
+                  VideoLink = value;
+                },
+                
+                decoration: kinputDecoration.copyWith(hintText: "VideoLink"),
               ),
               const SizedBox(
                 height: 8.0,
@@ -266,7 +278,7 @@ class _ManageUserPageState extends State<ManageUserPage> {
                           await Provider.of<UserRecipesController>(context,
                                   listen: false)
                               .EditRecipe(name, Category, nutrition, time,
-                                  Servings, Image);
+                                  Servings, Image,VideoLink);
                           Provider.of<UserRecipeIngredientController>(context,
                                   listen: false)
                               .AddAllIngredient(

@@ -62,6 +62,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
     String time = Recip.time;
     String nutrition = Recip.nutrition;
     String description = "";
+    String VideoLink = "";
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -195,6 +196,18 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                 },
                                 decoration: kinputDecoration.copyWith(
                                     hintText: nutrition),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextField(
+                                onChanged: (value) {
+                                  VideoLink = value;
+                                },
+                                decoration: kinputDecoration.copyWith(
+                                    hintText: VideoLink),
                               ),
                             ),
                           ),
@@ -475,6 +488,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
+                                      VideoLink != "" &&
                                       Provider.of<Recipe>(context,
                                                   listen: false)
                                               .insrtuctions !=
@@ -491,7 +505,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                             context,
                                             listen: false)
                                         .EditRecipe(name, Category, nutrition,
-                                            time, Servings, Image);
+                                            time, Servings, Image,VideoLink);
                                     Provider.of<UserRecipeIngredientController>(
                                             context,
                                             listen: false)

@@ -51,6 +51,7 @@ class _ManageRecipePageState extends State<ManageRecipePage> {
     String Servings = Recip.Servings;
     String time = Recip.time;
     String Calories = Recip.nutrition;
+    String VideoLink=Recip.VideoLink;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favroites"),
@@ -81,6 +82,16 @@ class _ManageRecipePageState extends State<ManageRecipePage> {
                   Calories = value;
                 },
                 decoration: kinputDecoration.copyWith(hintText: "Calories"),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+               TextField(
+                controller: TextEditingController(text: Recip.VideoLink),
+                onChanged: (value) {
+                  VideoLink = value;
+                },
+                decoration: kinputDecoration.copyWith(hintText: "VideoLink"),
               ),
               const SizedBox(
                 height: 8.0,
@@ -266,7 +277,7 @@ class _ManageRecipePageState extends State<ManageRecipePage> {
                           await Provider.of<UserRecipesController>(context,
                                   listen: false)
                               .EditRecipe(name, Category, Calories, time,
-                                  Servings, Image);
+                                  Servings, Image,VideoLink);
                           Provider.of<UserRecipeIngredientController>(context,
                                   listen: false)
                               .AddAllIngredient(

@@ -117,13 +117,14 @@ class AdminRecipesController extends ChangeNotifier {
   }
 
   Future<void> EditRecipe(String name, String Category, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String VideoLink) async {
     Recipe!.Name = name;
     Recipe!.Category = Category;
     Recipe!.nutrition = nutrition;
     Recipe!.time = Time;
     Recipe!.Servings = Servings;
     Recipe!.Image = image;
+    Recipe!.VideoLink=VideoLink;
     final responce =
         await _firestore.collection("DefaultRecipe").doc(Recipe!.ID).update({
       "Name": name,
@@ -131,7 +132,8 @@ class AdminRecipesController extends ChangeNotifier {
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
-      "Image": image
+      "Image": image,
+      "VidepLink":VideoLink
     });
     notifyListeners();
   }

@@ -500,6 +500,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
+                                      VideoLink != "" &&
                                       Provider.of<Recipe>(context,
                                                   listen: false)
                                               .insrtuctions !=
@@ -534,7 +535,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                             context,
                                             listen: false)
                                         .EditRecipe(name, Category, nutrition,
-                                            time, Servings, Image);
+                                            time, Servings, Image,VideoLink);
                                     await Provider.of<
                                                 AdminIngredientController>(
                                             context,
