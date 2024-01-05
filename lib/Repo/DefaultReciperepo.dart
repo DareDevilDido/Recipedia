@@ -11,6 +11,7 @@ class DefaultRecipeRepo {
   String Image;
   String Servings;
   String TimesFavorited;
+  String VideoLink;
   List<DefaultIngredientsRepo> ingredients;
   List<InstructionsRepo> instructions;
 
@@ -24,7 +25,8 @@ class DefaultRecipeRepo {
       required this.Servings,
       required this.ingredients,
       required this.TimesFavorited,
-      required this.instructions});
+      required this.instructions,
+      required this.VideoLink});
 
   static DefaultRecipeRepo fromJson(String RecipeID, Map<String, dynamic> data,
       List<DefaultIngredientsRepo> ing, List<InstructionsRepo> inst) {
@@ -38,7 +40,8 @@ class DefaultRecipeRepo {
         ingredients: ing,
         Servings: data["Servings"].toString(),
         TimesFavorited: data["TimesFavorited"].toString(),
-        instructions: inst);
+        instructions: inst,
+        VideoLink:data["VideoLink"].toString());
   }
 
   Map<String, dynamic> toJson() {
@@ -50,6 +53,7 @@ class DefaultRecipeRepo {
     data["Image"] = Image;
     data["Time"] = time;
     data["TimesFavorited"] = 0;
+    data["VideoLink"] =VideoLink;
     return data;
   }
 }

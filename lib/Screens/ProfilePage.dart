@@ -275,13 +275,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ), 
-                  SizedBox(
-                                                        width: 80,
-                                                        child: RoundedButton(color: kButtonColor,text: "DarkMode",
-                                                        onPressed: () =>{ kBackGroundColor =const Color.fromARGB(0, 0, 0, 0)}
-                                                        )
-                                                           
-                                                        ),
+                  
                   
                   const Expanded(
                       flex: 4,

@@ -8,12 +8,17 @@ import '../Controllers/UserIngredientsController.dart';
 import '../Models/Timer.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/LoadingScreen.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../Widgets/video.dart';
+
 
 class ViewRecipePage extends StatefulWidget {
   static const String id = "ViewRecipePage";
   String RecipeId;
   ViewRecipePage({super.key, required this.RecipeId});
-
+   
+  // String videoPlayer=" ";
   bool islistening = true;
   bool timerWorking = true;
 
@@ -22,6 +27,8 @@ class ViewRecipePage extends StatefulWidget {
 }
 
 class _ViewRecipePageState extends State<ViewRecipePage> {
+  var videoID;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -62,6 +69,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
     List<int> valueList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
     bool checking = Provider.of<FavortieRecipesController>(context).isFavorited;
 
+    YoutubePlayerController _controller;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -102,9 +110,10 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
             ),
             body: Container(
               padding:
-                  const EdgeInsets.only(bottom: 20, right: 20, left: 20, top: 10),
+                  const EdgeInsets.only(bottom: 20, right: 10, left: 10, top: 10),
               color: kBackGroundColor,
-              child: ListView(
+              child:
+               ListView(
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
@@ -218,6 +227,23 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                       ],
                     ),
                   ),
+                  const LineDivider(),
+                  Center(
+                      child: Container(
+                        width: 300,
+                        height: 170,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          // image: const DecorationImage(
+                          //   image: AssetImage("assets/girl-box.png"),
+                          //   fit: BoxFit.cover,
+                          // ),
+                        ),
+                        child:  VideoPage(Videotool("${Provider.of<DefaultRecipeController>(context).Recipe!.VideoLink}"))
+                      ),
+                    ),
+                 
+
                   const LineDivider(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0, left: 8),
@@ -442,4 +468,9 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
             ),
           );
   }
+}
+String? Videotool(String videoUrl){
+final videoID = YoutubePlayer.convertUrlToId(videoUrl);
+
+        return videoID;
 }

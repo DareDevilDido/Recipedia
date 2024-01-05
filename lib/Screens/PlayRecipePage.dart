@@ -8,6 +8,8 @@ import '../Widgets/LineDivider.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../Widgets/LoadingScreen.dart';
+import '../Widgets/roundedbutton.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlayRecipePage extends StatefulWidget {
   static const String id = "PlayRecipePage";
@@ -176,6 +178,8 @@ class _PlayRecipePageState extends State<PlayRecipePage> {
                           )
                         ],
                       ),
+                       const LineDivider(),
+                      //here we add the button
                       const LineDivider(),
                       Row(
                         children: [

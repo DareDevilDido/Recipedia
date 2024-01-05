@@ -3,10 +3,12 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:recipedia/Controllers/UserRecipesController.dart';
 import 'package:recipedia/Screens/EditRecipePage.dart';
 import 'package:provider/provider.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../Constants/Constants.dart';
 import '../Models/Timer.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/LoadingScreen.dart';
+import '../Widgets/video.dart';
 
 class UserViewRecipePage extends StatefulWidget {
   static const String id = "UserViewRecipePage";
@@ -197,7 +199,21 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                         )
                       ],
                     ),
-                  ),
+                  ),const LineDivider(),
+                   Center(
+                      child: Container(
+                        width: 300,
+                        height: 170,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          // image: const DecorationImage(
+                          //   image: AssetImage("assets/girl-box.png"),
+                          //   fit: BoxFit.cover,
+                          // ),
+                        ),
+                        child:  VideoPage(Videotool("${Provider.of<UserRecipesController>(context).Recipe!.VideoLink}"))
+                      ),
+                    ),
                   const LineDivider(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0, left: 8),
@@ -234,6 +250,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                         }),
                   ),
                   const LineDivider(),
+                  
                   Row(
                     children: [
                       Padding(
@@ -419,4 +436,9 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
               ),
             ));
   }
+}
+String? Videotool(String videoUrl){
+final videoID = YoutubePlayer.convertUrlToId(videoUrl);
+
+        return videoID;
 }

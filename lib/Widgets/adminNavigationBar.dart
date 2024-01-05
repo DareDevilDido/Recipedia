@@ -45,6 +45,7 @@ class _adminNavigationsBarState extends State<adminNavigationsBar> {
             Icon(Icons.person, color: Colors.white),
             Icon(Icons.receipt, color: Colors.white),
             Icon(Icons.admin_panel_settings, color: Colors.white)
+            
           ]),
     );
   }

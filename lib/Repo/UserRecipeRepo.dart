@@ -8,6 +8,7 @@ class UserRecipeRepo {
   String time;
   String Image;
   String Servings;
+  String VideoLink;
   List<DefaultIngredientsRepo> ingredients;
 
   UserRecipeRepo(
@@ -18,7 +19,8 @@ class UserRecipeRepo {
       required this.Category,
       required this.time,
       required this.Servings,
-      required this.ingredients});
+      required this.ingredients,
+      required this.VideoLink});
 
   static UserRecipeRepo fromJson(String RecipeID, Map<String, dynamic> data,
       List<DefaultIngredientsRepo> ing) {
@@ -30,7 +32,8 @@ class UserRecipeRepo {
         Category: data["Category"].toString(),
         time: data["Time"].toString(),
         ingredients: ing,
-        Servings: data["Servings"].toString());
+        Servings: data["Servings"].toString(),
+        VideoLink:data["VideoLink"].toString());
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +44,7 @@ class UserRecipeRepo {
     data["Servings"] = Servings;
     data["Image"] = Image;
     data["Time"] = time;
+    data["VideoLink"]=VideoLink;
     return data;
   }
 }

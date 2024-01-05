@@ -34,6 +34,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
 
   String nutrition = "";
   String description = "";
+  String VideoLink="";
   @override
   void initState() {
     // TODO: implement initState
@@ -226,6 +227,19 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                           padding: const EdgeInsets.all(5.0),
                           child: TextField(
                             onChanged: (value) {
+                              VideoLink = value;
+                            },
+                            decoration: kinputDecoration.copyWith(
+                                hintText: "VideoLink"),
+                          ),
+                        ),
+                      ),
+                      
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: TextField(
+                            onChanged: (value) {
                               time = value;
                             },
                             decoration: kinputDecoration.copyWith(
@@ -292,6 +306,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                   height: 8.0,
                 ),
                 const LineDivider(),
+                
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Row(
@@ -386,6 +401,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                               ]);
                             }),
                       )
+                      
                     : Container(),
                 const LineDivider(),
                 const Padding(

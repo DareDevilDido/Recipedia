@@ -63,6 +63,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
     String Servings = Recip.Servings;
     String time = Recip.time;
     String nutrition = Recip.nutrition;
+    String VideoLink=Recip.VideoLink;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -226,6 +227,18 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                 },
                                 decoration: kinputDecoration.copyWith(
                                     hintText: nutrition),
+                              ),
+                            ),
+                          ),
+                             Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextField(
+                                onChanged: (value) {
+                                  VideoLink = value;
+                                },
+                                decoration: kinputDecoration.copyWith(
+                                    hintText: VideoLink),
                               ),
                             ),
                           ),
