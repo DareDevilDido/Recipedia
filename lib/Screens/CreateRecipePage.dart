@@ -24,7 +24,7 @@ class CreateRecipePage extends StatefulWidget {
   @override
   State<CreateRecipePage> createState() => _CreateRecipePageState();
 }
-
+ 
 class _CreateRecipePageState extends State<CreateRecipePage> {
   String name = "";
   String Category = "";
@@ -527,7 +527,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(
                                           "Error",
-                                          "Instruction is empty",
+                                          "Please fill all the requirments",
                                           ContentType.failure));
                                   }
                                 }),

@@ -63,6 +63,24 @@ class DefaultRecipeController extends ChangeNotifier {
       notifyListeners();
     });
   }
+  Future<List<DefaultIngredientsRepo>> getIngredientsFromRecipe(String RecipeID) async {
+  List<DefaultIngredientsRepo> ingredientList = [];
+
+  final response = await _firestore
+      .collection("DefaultRecipe")
+      .doc(RecipeID)
+      .collection("Ingredients")
+      .get();
+
+  for (var ingredient in response.docs) {
+    final ingredientData = ingredient.data();
+    final ingredientLink = ingredientData["Link"];
+    final ingredientObject = await DefaultIngredientCntroller().getIngredientById(kUserId, ingredientLink);
+    ingredientList.add(ingredientObject);
+  }
+
+  return ingredientList;
+}
 
   Future<void> getSingleRecipe(String? userID, String RecipeID) async {
     ingredients = [];

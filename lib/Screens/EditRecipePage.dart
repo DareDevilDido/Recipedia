@@ -555,7 +555,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(
                                           "Error",
-                                          "Instruction is empty",
+                                          "fill the required information",
                                           ContentType.failure));
                                     Provider.of<Loading>(context, listen: false)
                                         .changeBool();

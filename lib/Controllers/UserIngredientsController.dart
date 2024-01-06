@@ -85,6 +85,19 @@ class UserIngredientController extends ChangeNotifier {
     responce.update({"Image": Ing.image, "Name": Ing.Name});
     notifyListeners();
   }
+  Future<void> getRecipeIngredients() async {
+    ingredients = [];
+    ingredientID = [];
+    final responce = await _firestore .collection("UserIngredients")
+        .doc(kUserId)
+        .collection("Ingredient List").get();
+    for (var Ingredient in responce.docs) {
+      ingredientID.add(Ingredient.id);
+      ingredients.add(
+          DefaultIngredientsRepo.fromJson(Ingredient.id, Ingredient.data()));
+    }
+    notifyListeners();
+    }
 
   Future<void> DeleteOriginalIngredient(String ID) async {
     final responce = _firestore

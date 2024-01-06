@@ -22,7 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late String userPassword;
   late String firstName;
   late String lastName;
-
+  late String confirmPassword;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 15.0,
             ),
-            TextField(
+              TextField(
               obscureText: true,
               onChanged: (value) {
                 //Do something with the user input.
@@ -93,7 +93,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               obscureText: true,
               onChanged: (value) {
                 //Do something with the user input.
-                userPassword = value;
+                confirmPassword = value;
               },
               decoration:
                   kinputDecoration.copyWith(hintText: "Confirm password"),
@@ -102,43 +102,67 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 10.0,
             ),
             RoundedButton(
-                color: kPrimaryColor,
-                text: 'Register',
-                onPressed: () async {
-                  try {
-                    if (userEmail != "" &&
-                        lastName != "" &&
-                        firstName != "" &&
-                        userPassword != "") {
+              color: kPrimaryColor,
+              text: 'Register',
+              onPressed: () async {
+                if (userEmail != "" &&
+                    lastName != "" &&
+                    firstName != "" &&
+                    userPassword != "" &&
+                    confirmPassword != "") {
+                  if (userPassword == confirmPassword) {
+                    try {
                       final newUser =
                           await _auth.createUserWithEmailAndPassword(
                               email: userEmail, password: userPassword);
                       UserRepo(
-                              fName: firstName,
-                              lName: lastName,
-                              email: userEmail)
-                          .addUserToFireStore(newUser.user?.uid ?? "no ID");
+                        fName: firstName,
+                        lName: lastName,
+                        email: userEmail,
+                      ).addUserToFireStore(newUser.user?.uid ?? "no ID");
                       kUserEmail = userEmail;
                       kUserId = newUser.user!.uid;
                       Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
-                                        } else {
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    } catch (e) {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(MessagePrompt().snack(
+                        ..showSnackBar(
+                          MessagePrompt().snack(
                             "Error",
-                            "Please fill in all the fields",
-                            ContentType.failure));
+                            e.toString(),
+                            ContentType.failure,
+                          ),
+                        );
                     }
-                  } catch (e) {
+                  } else {
                     ScaffoldMessenger.of(context)
                       ..hideCurrentSnackBar()
-                      ..showSnackBar(MessagePrompt()
-                          .snack("Error", e.toString(), ContentType.failure));
+                      ..showSnackBar(
+                        MessagePrompt().snack(
+                          "Error",
+                          "Passwords do not match",
+                          ContentType.failure,
+                        ),
+                      );
                   }
-                }),
+                } else {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      MessagePrompt().snack(
+                        "Error",
+                        "Please fill in all the fields",
+                        ContentType.failure,
+                      ),
+                    );
+                }
+              },
+            ),
           ],
         ),
       ),

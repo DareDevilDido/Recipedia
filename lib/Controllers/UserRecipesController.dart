@@ -33,6 +33,17 @@ class UserRecipesController extends ChangeNotifier {
     currentStep = 0;
     notifyListeners();
   }
+Future<void> getRecipeIngredients() async {
+    ingredients = [];
+    var ingredientID = [];
+    final responce = await _firestore.collection("DefaultIngredients").get();
+    for (var Ingredient in responce.docs) {
+      ingredientID.add(Ingredient.id);
+      ingredients.add(
+          DefaultIngredientsRepo.fromJson(Ingredient.id, Ingredient.data()));
+    }
+    notifyListeners();
+    }
 
   Future<void> getRecipes(String? userID) async {
     Recipes = [];
@@ -151,12 +162,12 @@ class UserRecipesController extends ChangeNotifier {
     Recipe!.Servings = Servings;
     Recipe!.Image = image;
     Recipe!.VideoLink=videoLink;
-    final responce = await _firestore
+  
+     final responce = await _firestore
         .collection("UserRecipes")
         .doc(kUserId)
         .collection("Recipe List")
-        .doc(Recipe!.ID)
-        .update({
+        .doc(Recipe?.ID).update({
       "Name": name,
       "nutrition": nutrition,
       "Time": Time,
@@ -165,6 +176,8 @@ class UserRecipesController extends ChangeNotifier {
       "Image": image,
       "VideoLink":videoLink
     });
+    notifyListeners();
+    
   }
 
   Future<QuerySnapshot> QueryCategoryRecipe(String Category) async {
