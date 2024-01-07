@@ -4,7 +4,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class VideoPage extends StatefulWidget {
   final String? videoUrl;
 
-  const VideoPage(this.videoUrl);
+  const VideoPage(this.videoUrl, {super.key});
 
   @override
   State<VideoPage> createState() => _VideoPageState();

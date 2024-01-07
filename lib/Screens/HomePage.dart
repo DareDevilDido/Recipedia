@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: kBackGroundColor,
           appBar: AppBar(
             leading: GestureDetector(),
-            title: const Text("Recipedia"),
+            title: const Text("Home"),
             centerTitle: true,
             backgroundColor: kPrimaryColor,
             actions: [
@@ -110,7 +110,8 @@ class _HomePageState extends State<HomePage> {
                     Provider.of<RandomRecipeOfTheDay>(context, listen: false)
                         .ROTD!
                         .Name,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ),
                 const LineDivider(),

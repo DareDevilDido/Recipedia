@@ -274,9 +274,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-                  ), 
-                  
-                  
+                  ),
                   const Expanded(
                       flex: 4,
                       child: Padding(

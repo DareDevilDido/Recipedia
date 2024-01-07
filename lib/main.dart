@@ -41,13 +41,12 @@ import 'firebase_options.dart';
 
 // ...
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => PickImage()),
@@ -73,7 +72,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static ThemeData theme=ThemeData.light();
+  static ThemeData theme = ThemeData.light();
 
   const MyApp({super.key});
 
@@ -103,7 +102,8 @@ class MyApp extends StatelessWidget {
           SelectIngredientsPage.id: (context) => const SelectIngredientsPage(),
           SelectIngredientsPage.id: (context) => const AdminCreateRecipePage(),
           SelectIngredientsPage.id: (context) => const AdminCreateUserPage(),
-          CreateAdminIngredientPage.id: (context) =>const CreateAdminIngredientPage(),
+          CreateAdminIngredientPage.id: (context) =>
+              const CreateAdminIngredientPage(),
         },
         home: const WelcomeScreen(),
       );

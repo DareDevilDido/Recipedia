@@ -32,16 +32,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: 30,
+            ),
             Flexible(
               child: Hero(
                 tag: 'logo',
                 child: SizedBox(
-                  height: 200.0,
+                  height: 250.0,
                   child: Image.asset('images/logo.png'),
                 ),
               ),
             ),
-            Text("Recipedia",
+            Text("Register",
                 style: TextStyle(
                   color: kPrimaryColor,
                   fontSize: 40.0,
@@ -124,7 +127,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const LoginScreen()));
-                                        } else {
+                    } else {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
                         ..showSnackBar(MessagePrompt().snack(

@@ -211,7 +211,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                           //   fit: BoxFit.cover,
                           // ),
                         ),
-                        child:  VideoPage(Videotool("${Provider.of<UserRecipesController>(context).Recipe!.VideoLink}"))
+                        child:  VideoPage(Videotool(Provider.of<UserRecipesController>(context).Recipe!.VideoLink))
                       ),
                     ),
                   const LineDivider(),

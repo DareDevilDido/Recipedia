@@ -12,12 +12,11 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../Widgets/video.dart';
 
-
 class ViewRecipePage extends StatefulWidget {
   static const String id = "ViewRecipePage";
   String RecipeId;
   ViewRecipePage({super.key, required this.RecipeId});
-   
+
   // String videoPlayer=" ";
   bool islistening = true;
   bool timerWorking = true;
@@ -31,7 +30,6 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     setState(() {
       setState(() {
         Provider.of<Loading>(context, listen: false).changeBool();
@@ -69,7 +67,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
     List<int> valueList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
     bool checking = Provider.of<FavortieRecipesController>(context).isFavorited;
 
-    YoutubePlayerController _controller;
+    YoutubePlayerController controller;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -89,7 +87,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                 .isFavorited
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        color: Colors.white),
+                        color: Colors.black),
                     onTap: () {
                       !checking
                           ? Provider.of<FavortieRecipesController>(context,
@@ -109,11 +107,10 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
               backgroundColor: kPrimaryColor,
             ),
             body: Container(
-              padding:
-                  const EdgeInsets.only(bottom: 20, right: 10, left: 10, top: 10),
+              padding: const EdgeInsets.only(
+                  bottom: 20, right: 10, left: 10, top: 10),
               color: kBackGroundColor,
-              child:
-               ListView(
+              child: ListView(
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
@@ -145,11 +142,11 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                             left: 8.0, top: 8),
                                         child: Text(
                                           "Time: ${Provider.of<DefaultRecipeController>(context).Recipe!.time}",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                       Padding(
@@ -157,8 +154,8 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                             right: 8.0, top: 8),
                                         child: Text(
                                           "${Provider.of<DefaultRecipeController>(context).Recipe!.Servings} Servings",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
+                                          style: const TextStyle(
+                                              color: Colors.white,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.center,
@@ -187,17 +184,23 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              Provider.of<DefaultRecipeController>(context).Recipe!.Name,
+                                              Provider.of<DefaultRecipeController>(
+                                                      context)
+                                                  .Recipe!
+                                                  .Name,
                                               style: TextStyle(
-                                                  color: kButtonColor,
+                                                  color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                               textAlign: TextAlign.start,
                                             ),
                                             Text(
-                                              Provider.of<DefaultRecipeController>(context).Recipe!.Category,
+                                              Provider.of<DefaultRecipeController>(
+                                                      context)
+                                                  .Recipe!
+                                                  .Category,
                                               style: TextStyle(
-                                                  color: kButtonColor,
+                                                  color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                               textAlign: TextAlign.start,
@@ -210,8 +213,8 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                             const EdgeInsets.only(right: 8),
                                         child: Text(
                                           "${Provider.of<DefaultRecipeController>(context).Recipe!.nutrition} Kcal",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
+                                          style: const TextStyle(
+                                              color: Colors.white,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.center,
@@ -229,28 +232,24 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                   ),
                   const LineDivider(),
                   Center(
-                      child: Container(
+                    child: Container(
                         width: 300,
                         height: 170,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          // image: const DecorationImage(
-                          //   image: AssetImage("assets/girl-box.png"),
-                          //   fit: BoxFit.cover,
-                          // ),
                         ),
-                        child:  VideoPage(Videotool("${Provider.of<DefaultRecipeController>(context).Recipe!.VideoLink}"))
-                      ),
-                    ),
-                 
-
+                        child: VideoPage(Videotool(
+                            Provider.of<DefaultRecipeController>(context)
+                                .Recipe!
+                                .VideoLink))),
+                  ),
                   const LineDivider(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0, left: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0, left: 8),
                     child: Text("Ingredients",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: kPrimaryColor,
+                            color: Colors.black,
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -258,11 +257,10 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                     height: 75,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount:
-                            Provider.of<DefaultRecipeController>(context)
-                                .Recipe!
-                                .ingredients
-                                .length,
+                        itemCount: Provider.of<DefaultRecipeController>(context)
+                            .Recipe!
+                            .ingredients
+                            .length,
                         itemBuilder: (context, index) {
                           return Padding(
                               padding: const EdgeInsets.all(3.0),
@@ -283,12 +281,12 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                   const LineDivider(),
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0, left: 8),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 8.0, left: 8),
                         child: Text("Timer",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                color: kPrimaryColor,
+                                color: Colors.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold)),
                       ),
@@ -313,7 +311,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        child: Icon(Icons.refresh, color: kPrimaryColor),
+                        child: Icon(Icons.refresh, color: Colors.black),
                         onTap: () {
                           Provider.of<CountDownTimer>(context, listen: false)
                               .ResetTimer(Provider.of<CountDownTimer>(context,
@@ -324,12 +322,12 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                       Text(
                           "${Provider.of<CountDownTimer>(context).minutes.toString()}:${Provider.of<CountDownTimer>(context).seconds.toString()}",
                           style: TextStyle(
-                              color: kPrimaryColor,
+                              color: Colors.black,
                               fontSize: 22,
                               fontWeight: FontWeight.bold)),
                       widget.timerWorking
                           ? GestureDetector(
-                              child: Icon(Icons.timer, color: kPrimaryColor),
+                              child: Icon(Icons.timer, color: Colors.black),
                               onTap: () {
                                 Provider.of<CountDownTimer>(context,
                                         listen: false)
@@ -344,7 +342,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                             )
                           : GestureDetector(
                               child:
-                                  Icon(Icons.stop_circle, color: kPrimaryColor),
+                                  Icon(Icons.stop_circle, color: Colors.black),
                               onTap: () {
                                 Provider.of<CountDownTimer>(context,
                                         listen: false)
@@ -357,22 +355,21 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                     ],
                   ),
                   const LineDivider(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0, left: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0, left: 8),
                     child: Text("Instructions",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: kPrimaryColor,
+                            color: Colors.black,
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.3,
                     child: ListView.builder(
-                        itemCount:
-                            Provider.of<DefaultRecipeController>(context)
-                                .insrtuctions
-                                .length,
+                        itemCount: Provider.of<DefaultRecipeController>(context)
+                            .insrtuctions
+                            .length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -404,7 +401,10 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                             MediaQuery.of(context).size.width *
                                                 0.61,
                                         child: Text(
-                                          Provider.of<DefaultRecipeController>(context).insrtuctions[index].Description,
+                                          Provider.of<DefaultRecipeController>(
+                                                  context)
+                                              .insrtuctions[index]
+                                              .Description,
                                           maxLines: 10,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
@@ -414,11 +414,12 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: widget.islistening
                                             ? Padding(
-                                                padding:
-                                                    const EdgeInsets.only(right: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
                                                 child: GestureDetector(
-                                                  child: const Icon(Icons.volume_down,
-                                                      color: Colors.white),
+                                                  child: const Icon(
+                                                      Icons.volume_down,
+                                                      color: Colors.black),
                                                   onTap: () {
                                                     speak(Provider.of<
                                                                 DefaultRecipeController>(
@@ -439,17 +440,17 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                                 ),
                                               )
                                             : Padding(
-                                                padding:
-                                                    const EdgeInsets.only(right: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
                                                 child: GestureDetector(
-                                                  child: const Icon(Icons.volume_mute,
-                                                      color: Colors.white),
+                                                  child: const Icon(
+                                                      Icons.volume_mute,
+                                                      color: Colors.black),
                                                   onTap: () {
                                                     stop();
                                                     setState(() {
                                                       print("object");
-                                                      widget.islistening =
-                                                          true;
+                                                      widget.islistening = true;
                                                     });
                                                   },
                                                 ),
@@ -469,8 +470,9 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
           );
   }
 }
-String? Videotool(String videoUrl){
-final videoID = YoutubePlayer.convertUrlToId(videoUrl);
 
-        return videoID;
+String? Videotool(String videoUrl) {
+  final videoID = YoutubePlayer.convertUrlToId(videoUrl);
+
+  return videoID;
 }
