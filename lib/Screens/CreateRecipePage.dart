@@ -58,7 +58,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
         : Scaffold(
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
-              title: const Text("Create Recipe"),
+              title: Text("Create Recipe" , style: TextStyle(color: kTextColor),),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
             ),
@@ -279,7 +279,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text("ingredients"),
+                      Text("ingredients" , style: TextStyle(color: kTextColor),),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Container(
@@ -370,12 +370,12 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                       )
                     : Container(),
                     const LineDivider(),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text("Instructions"),
+                          Text("Instructions" , style: TextStyle(color: kTextColor),),
                         ],
                       ),
                     ),

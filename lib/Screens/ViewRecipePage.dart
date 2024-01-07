@@ -384,10 +384,10 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         children: [
                                           Container(
                                             child: Text(
-                                                "${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step}. "),
+                                                "${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step}. ", style: TextStyle(color: kTextColor)),
                                           ),
                                           Container(
-                                            child: const Text(""),
+                                            child: Text("", style: TextStyle(color: kTextColor)),
                                           )
                                         ],
                                       ),
@@ -400,6 +400,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                           maxLines: 10,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
+                                          style: TextStyle(color: kTextColor),
                                         ),
                                       ),
                                       Padding(

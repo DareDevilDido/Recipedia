@@ -37,11 +37,13 @@ class _ProfilePageState extends State<ProfilePage> {
     String lName = kLastName;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
-        : Scaffold(
+        : DefaultTextStyle(
+          style: TextStyle(color: kTextColor),
+          child : Scaffold(
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
               leading: GestureDetector(),
-              title: const Text("My Profile"),
+              title: Text("My Profile" , style: TextStyle(color: kTextColor)),
               centerTitle: true,
               actions: const [],
               backgroundColor: kPrimaryColor,
@@ -73,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Text(
                       "Joined on $kDatejoined",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18, color: kTextColor),
                     ),
                   ),
                   Expanded(
@@ -94,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             BorderRadius.circular(25)),
                                     child: widget.isEditing
                                         ? ListTile(
-                                            title: Text("$fName $lName"),
+                                            title: Text("$fName $lName", style: TextStyle(color: kTextColor)),
                                             leading: const Icon(
                                               Icons.person,
                                               size: 40,
@@ -157,40 +159,43 @@ class _ProfilePageState extends State<ProfilePage> {
                                                             .spaceEvenly,
                                                     children: [
                                                       SizedBox(
-                                                        width: 80,
-                                                        child: RoundedButton(
-                                                            color: Colors
-                                                                .deepOrange,
-                                                            text: 'Save',
-                                                            onPressed:
-                                                                () async {
-                                                              await Provider.of<
-                                                                          UserController>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .updateUserInfo(
-                                                                      kUserId,
-                                                                      fName,
-                                                                      lName);
-                                                              setState(() {
-                                                                kFirstName =
-                                                                    fName;
-                                                                kLastName =
-                                                                    lName;
-
-                                                                widget.isEditing =
-                                                                    true;
-                                                                ScaffoldMessenger
-                                                                    .of(context)
-                                                                  ..hideCurrentSnackBar()
-                                                                  ..showSnackBar(MessagePrompt().snack(
-                                                                      "Success",
-                                                                      "Username changed",
-                                                                      ContentType
-                                                                          .success));
-                                                              });
-                                                            }),
+                                                        width: 50,
+                                                        child:
+                                                            FloatingActionButton(
+                                                          backgroundColor:
+                                                              Colors.deepOrange,
+                                                          onPressed: () async {
+                                                            await Provider.of<
+                                                                        UserController>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .updateUserInfo(
+                                                                    kUserId,
+                                                                    fName,
+                                                                    lName);
+                                                            setState(() {
+                                                              kFirstName =
+                                                                  fName;
+                                                              kLastName = lName;
+                                                              widget.isEditing =
+                                                                  true;
+                                                              ScaffoldMessenger
+                                                                  .of(context)
+                                                                ..hideCurrentSnackBar()
+                                                                ..showSnackBar(
+                                                                    MessagePrompt()
+                                                                        .snack(
+                                                                  "Success",
+                                                                  "Username changed",
+                                                                  ContentType
+                                                                      .success,
+                                                                ));
+                                                            });
+                                                          },
+                                                          child:
+                                                              Icon(Icons.save),
+                                                        ),
                                                       )
                                                     ],
                                                   ),
@@ -209,7 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 padding: const EdgeInsets.all(6.0),
                                 child: Container(
                                   child: ListTile(
-                                      title: Text(kUserEmail),
+                                      title: Text(kUserEmail, style: TextStyle(color: kTextColor)),
                                       leading: const Icon(
                                         Icons.mail,
                                         size: 40,
@@ -267,6 +272,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                   ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          updateColorsForTheme();
+                                          setState(() {});
+                                        },
+                                        child: Text('Switch to Dark Theme'),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               )
                             ],
@@ -274,9 +292,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-                  ), 
-                  
-                  
+                  ),
                   const Expanded(
                       flex: 4,
                       child: Padding(
@@ -289,6 +305,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ))
                 ],
               ),
+            ),
             ),
           );
   }

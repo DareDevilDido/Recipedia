@@ -36,7 +36,7 @@ class _FavroitesPageState extends State<FavroitesPage> {
           : Scaffold(
               backgroundColor: kBackGroundColor,
               appBar: AppBar(
-                title: const Text("Favorites "),
+                title: Text("Favorites " , style: TextStyle(color: kTextColor),),
                 centerTitle: true,
                 leading: GestureDetector(),
                 backgroundColor: kPrimaryColor,

@@ -54,11 +54,13 @@ class _HomePageState extends State<HomePage> {
               listen: true)
           .kIsLoading
       ? const LoadingScreen()
-      : Scaffold(
+      : DefaultTextStyle(
+        style: TextStyle(color: kTextColor),
+        child: Scaffold(
           backgroundColor: kBackGroundColor,
           appBar: AppBar(
             leading: GestureDetector(),
-            title: const Text("Recipedia"),
+            title: Text("Recipedia", style: TextStyle(color: kTextColor),),
             centerTitle: true,
             backgroundColor: kPrimaryColor,
             actions: [
@@ -77,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: <Widget>[
-                const Text("Recipe of the day", style: TextStyle(fontSize: 20)),
+                Text("Recipe of the day", style: TextStyle(fontSize: 20, color: kTextColor)),
                 const LineDivider(),
                 GestureDetector(
                   onTap: () {
@@ -110,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                     Provider.of<RandomRecipeOfTheDay>(context, listen: false)
                         .ROTD!
                         .Name,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: kTextColor),
                   ),
                 ),
                 const LineDivider(),
@@ -118,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 15.0, bottom: 10),
                   child: Text(
                       "Other ${Provider.of<RandomRecipeOfTheDay>(context, listen: false).ROTD!.Category} recipe's",
-                      style: const TextStyle(fontSize: 20)),
+                      style: TextStyle(fontSize: 20, color: kTextColor)),
                 ),
                 Expanded(
                   child: Row(
@@ -176,10 +178,10 @@ class _HomePageState extends State<HomePage> {
                                                           context)
                                                       .Recipes[index]
                                                       .Name,
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 18)),
+                                                      fontSize: 18, color: kTextColor)),
                                             ),
                                           )
                                         ],
@@ -198,5 +200,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        );
+        ),
+      );
 }

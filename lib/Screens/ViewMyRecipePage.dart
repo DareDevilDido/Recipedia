@@ -36,7 +36,7 @@ class _ViewMyRecipePageState extends State<ViewMyRecipePage> {
           ? const LoadingScreen()
           : Scaffold(
               appBar: AppBar(
-                title: Text(widget.Category),
+                title: Text(widget.Category, style: TextStyle(color: kTextColor),),
                 centerTitle: true,
                 backgroundColor: kPrimaryColor,
               ),
@@ -99,10 +99,10 @@ class _ViewMyRecipePageState extends State<ViewMyRecipePage> {
                                                     context)
                                                 .Recipes[index]
                                                 .Name,
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20,
-                                                color: Colors.white),
+                                                color: kTextColor),
                                           ),
                                         ),
                                         Container(),

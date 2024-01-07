@@ -39,7 +39,7 @@ class _MyRecipesPageState extends State<MyRecipesPage> {
       : Scaffold(
           backgroundColor: kBackGroundColor,
           appBar: AppBar(
-            title: const Text("My Recipes"),
+            title: Text("My Recipes", style: TextStyle(color: kTextColor),),
             leading: GestureDetector(
               child: const Icon(Icons.receipt, color: Colors.white),
               onTap: () {

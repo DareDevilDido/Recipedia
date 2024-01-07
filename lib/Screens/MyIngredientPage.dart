@@ -38,7 +38,7 @@ class _MyIngredientPageState extends State<MyIngredientPage> {
           : Scaffold(
               backgroundColor: kBackGroundColor,
               appBar: AppBar(
-                  title: const Text("My Ingredients"),
+                  title: Text("My Ingredients", style: TextStyle(color: kTextColor),),
                   centerTitle: true,
                   backgroundColor: kPrimaryColor,
                   actions: [

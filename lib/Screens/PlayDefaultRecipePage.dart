@@ -52,7 +52,7 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
         ? const LoadingScreen()
         : Scaffold(
             appBar: AppBar(
-              title: const Text("Recipe"),
+              title: Text("Recipe", style: TextStyle(color: kTextColor),),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
             ),
@@ -302,8 +302,9 @@ class _PlayDefaultRecipePageState extends State<PlayDefaultRecipePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 17,
+                                color: kTextColor,
                               ),
                               Provider.of<DefaultRecipeController>(context).insrtuctions[Provider.of<DefaultRecipeController>(context, listen: false).currentStep].Description),
                         ),

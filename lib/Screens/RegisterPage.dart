@@ -44,11 +44,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Text("Recipedia",
                 style: TextStyle(
                   color: kPrimaryColor,
-                  fontSize: 40.0,
+                  fontSize: 39.0,
                   fontWeight: FontWeight.w900,
                 )),
             const SizedBox(
-              height: 20.0,
+              height: 5.0,
             ),
             TextField(
               onChanged: (value) {
@@ -57,7 +57,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: kinputDecoration.copyWith(hintText: "First Name"),
             ),
             const SizedBox(
-              height: 15.0,
+              height: 10.0,
             ),
             TextField(
               onChanged: (value) {
@@ -66,7 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: kinputDecoration.copyWith(hintText: "Last Name"),
             ),
             const SizedBox(
-              height: 15.0,
+              height: 10.0,
             ),
             TextField(
               onChanged: (value) {
@@ -76,7 +76,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: kinputDecoration.copyWith(hintText: "Email"),
             ),
             const SizedBox(
-              height: 15.0,
+              height: 10.0,
             ),
               TextField(
               obscureText: true,
@@ -87,7 +87,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               decoration: kinputDecoration.copyWith(hintText: "Password"),
             ),
             const SizedBox(
-              height: 15.0,
+              height: 10.0,
             ),
             TextField(
               obscureText: true,

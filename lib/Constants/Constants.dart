@@ -6,10 +6,53 @@ String kDatejoined = "";
 String kLastName = "";
 String kFirstName = "";
 String kCategory = "";
-Color kPrimaryColor = Color.fromARGB(255, 217, 126, 150);
-Color kBackGroundColor = Color.fromARGB(255, 255, 255, 255);
+Color kPrimaryColor = const Color.fromARGB(255, 217, 126, 150);
+Color kBackGroundColor = const Color.fromARGB(255, 255, 255, 255);
 Color kButtonColor = const Color.fromARGB(255, 217, 126, 150);
 Color kContainerColor = const Color.fromARGB(255, 217, 217, 217);
+Color kTextColor = const Color.fromARGB(255, 0, 0, 0);
+
+bool isDarkTheme = false;
+
+TextStyle kSendButtonTextStyle = const TextStyle(
+  color: Colors.lightBlueAccent,
+  fontWeight: FontWeight.bold,
+  fontSize: 18.0,
+);
+
+void updateColorsForTheme() {
+  if (isDarkTheme) {
+    // Update other colors for dark mode
+    kPrimaryColor = const Color.fromARGB(255, 217, 126, 150);
+    kBackGroundColor = const Color.fromARGB(255, 255, 255, 255);
+    kButtonColor = const Color.fromARGB(255, 217, 126, 150);
+    kContainerColor = const Color.fromARGB(255, 217, 217, 217);
+    kTextColor = Colors.black; // Update text color for dark mode
+
+    // Update text colors for dark mode
+    kSendButtonTextStyle = const TextStyle(
+      color: Colors.lightBlueAccent, // Change this to your preferred text color
+      fontWeight: FontWeight.bold,
+      fontSize: 18.0,
+    );
+  } else {
+    // Update other colors for light mode
+    kPrimaryColor = Colors.grey[800]!;
+    kBackGroundColor = Colors.grey[900]!;
+    kButtonColor = Colors.grey[800]!;
+    kContainerColor = Colors.grey[850]!;
+    kTextColor = Colors.white; // Update text color for light mode
+
+    // Update text colors for light mode
+    kSendButtonTextStyle = const TextStyle(
+      color: Colors.black, // Change this to your preferred text color
+      fontWeight: FontWeight.bold,
+      fontSize: 18.0,
+    );
+  }
+  isDarkTheme = !isDarkTheme;
+}
+
 
 
 class Loading extends ChangeNotifier {
@@ -20,12 +63,6 @@ class Loading extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-const kSendButtonTextStyle = TextStyle(
-  color: Colors.lightBlueAccent,
-  fontWeight: FontWeight.bold,
-  fontSize: 18.0,
-);
 
 const kMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
