@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:recipedia/Controllers/UserRecipesController.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../Constants/Constants.dart';
 import '../Models/Timer.dart';
+import '../Widgets/BottomNavigationBar.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/LoadingScreen.dart';
 import '../Widgets/video.dart';
@@ -62,6 +64,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
               centerTitle: true,
               backgroundColor: kPrimaryColor,
               actions: [
+               
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: GestureDetector(

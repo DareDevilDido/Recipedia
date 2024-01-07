@@ -10,6 +10,7 @@ import '../Controllers/UserRecipeIngredientController.dart';
 import '../Controllers/UserRecipesController.dart';
 import '../Models/PickImage.dart';
 import '../Repo/InstructionRepo.dart';
+import '../Widgets/BottomNavigationBar.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/LoadingScreen.dart';
 import '../Widgets/MessagePrompt.dart';
@@ -72,6 +73,36 @@ class _EditRecipePageState extends State<EditRecipePage> {
               title: const Text("Edit Recipe"),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
+              actions: [
+                 Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                    onTap: () async {
+                      await Provider.of<UserRecipesController>(context,
+                              listen: false)
+                          .DeleteRecipe(Recip.ID);
+                      Provider.of<Recipe>(context, listen: false).insrtuctions =
+                          [];
+                      Provider.of<Recipe>(context, listen: false).ingredientID =
+                          [];
+                      Provider.of<Recipe>(context, listen: false).ingredients =
+                          [];
+                      Provider.of<PickImage>(context, listen: false).image =
+                          null;
+                      setState(() {});
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const NavigationsBar()));
+                    },
+                  ),
+                ),
+              ],
             ),
             body: Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
