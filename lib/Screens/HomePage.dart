@@ -112,7 +112,12 @@ class _HomePageState extends State<HomePage> {
                     Provider.of<RandomRecipeOfTheDay>(context, listen: false)
                         .ROTD!
                         .Name,
+<<<<<<< HEAD
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
+=======
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: kTextColor),
+>>>>>>> de37f54e20170441b37ce7efe06e4e76330322d0
                   ),
                 ),
                 const LineDivider(),

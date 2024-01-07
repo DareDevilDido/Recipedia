@@ -1,4 +1,3 @@
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/UserController.dart';
@@ -38,12 +37,15 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Hero(
                 tag: 'logo',
                 child: SizedBox(
-                  height: 200.0,
+                  height: 280.0,
                   child: Image.asset('images/logo.png'),
                 ),
               ),
             ),
-            Text("Recipedia",
+            const SizedBox(
+              height: 20,
+            ),
+            Text("Login",
                 style: TextStyle(
                   color: kPrimaryColor,
                   fontSize: 40.0,
@@ -53,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 20.0,
             ),
             TextField(
+              style: TextStyle(color: kLightTextColor),
               onChanged: (value) {
                 //Do something with the user input.
                 email = value;
@@ -101,9 +104,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const adminNavigationsBar()));
+                                builder: (context) =>
+                                    const adminNavigationsBar()));
                       }
-                                        } else {
+                    } else {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
                         ..showSnackBar(MessagePrompt().snack(
@@ -121,11 +125,11 @@ class _LoginScreenState extends State<LoginScreen> {
             Center(
                 child: GestureDetector(
               child: const Text(
-                "Forget Password?",
+                "Forgot Password?",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 15),
+                    fontSize: 16),
               ),
               onTap: () {
                 Navigator.pushNamed(context, RequestPasswordChange.id);

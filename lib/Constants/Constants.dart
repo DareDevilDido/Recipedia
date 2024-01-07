@@ -53,7 +53,10 @@ void updateColorsForTheme() {
   isDarkTheme = !isDarkTheme;
 }
 
-
+//Dark Mode Colors (By Dido)
+Color kDarkBackgroundColor = const Color.fromRGBO(44, 44, 44, 1);
+Color kDarkTextColor = const Color.fromRGBO(255, 255, 255, 1);
+Color kLightTextColor = const Color.fromARGB(255, 0, 0, 0);
 
 class Loading extends ChangeNotifier {
   bool kIsLoading = false;
@@ -72,12 +75,15 @@ const kMessageTextFieldDecoration = InputDecoration(
 
 const kMessageContainerDecoration = BoxDecoration(
   border: Border(
-    top: BorderSide(color: Color.fromARGB(255, 255, 220, 64), width: 2.0),
+    top: BorderSide(color: Color.fromARGB(255, 255, 201, 64), width: 2.0),
   ),
 );
 
 const kinputDecoration = InputDecoration(
   hintText: '',
+  hintStyle: TextStyle(
+    color: Color.fromRGBO(169, 169, 169, 1),
+  ),
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),

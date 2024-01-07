@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:recipedia/Constants/Constants.dart';
 import 'package:recipedia/Controllers/DefaultIngredientController.dart';
 import 'package:recipedia/Repo/DefaultReciperepo.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../Repo/DefaultIngredientsRepo.dart';
 import '../Repo/InstructionRepo.dart';
 

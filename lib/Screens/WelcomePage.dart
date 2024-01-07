@@ -31,7 +31,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               Hero(
                 tag: 'logo',
                 child: SizedBox(
-                  height: 260.0,
+                  height: 300.0,
                   child: Image.asset('images/logo.png'),
                 ),
               ),
@@ -41,9 +41,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               Center(
                 child: TypewriterAnimatedTextKit(
                   speed: const Duration(milliseconds: 100),
-                  text: const ["Recipedia"],
-                  textStyle: TextStyle(
-                    color: kPrimaryColor,
+                  text: const ["  Let's get cookin'"],
+                  textStyle: const TextStyle(
+                    color: Color.fromARGB(255, 163, 101, 132),
                     fontSize: 40.0,
                     fontWeight: FontWeight.w900,
                   ),

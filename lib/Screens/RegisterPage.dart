@@ -32,16 +32,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: 30,
+            ),
             Flexible(
               child: Hero(
                 tag: 'logo',
                 child: SizedBox(
-                  height: 200.0,
+                  height: 250.0,
                   child: Image.asset('images/logo.png'),
                 ),
               ),
             ),
-            Text("Recipedia",
+            Text("Register",
                 style: TextStyle(
                   color: kPrimaryColor,
                   fontSize: 39.0,
@@ -78,7 +81,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 10.0,
             ),
-              TextField(
+            TextField(
               obscureText: true,
               onChanged: (value) {
                 //Do something with the user input.

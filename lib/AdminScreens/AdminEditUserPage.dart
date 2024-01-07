@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/UserController.dart';
 import 'package:provider/provider.dart';
-import 'package:recipedia/Screens/LoginPage.dart';
 import '../Constants/Constants.dart';
 import '../Screens/WelcomePage.dart';
 import '../Widgets/roundedbutton.dart';
@@ -11,7 +10,7 @@ class AdminEditUserPage extends StatefulWidget {
   final String UserId;
 
   // Constructor to receive the user ID to edit
-  AdminEditUserPage({super.key, required this.UserId});
+  const AdminEditUserPage({super.key, required this.UserId});
 
   // Static constant for the route identifier
   static const String id = "AdminEditUserPage";
