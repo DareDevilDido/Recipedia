@@ -1,8 +1,11 @@
+// Import necessary libraries and packages
 import 'dart:io';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:recipedia/AdminScreens/CreateAdminIngredientPage.dart';
 import 'package:provider/provider.dart';
+
+// Import custom dependencies and components
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:recipedia/AdminScreens/CreateAdminIngredientPage.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/AdminIngredientController.dart';
 import '../Controllers/AdminInstructionController.dart';
@@ -14,6 +17,7 @@ import '../Widgets/LineDivider.dart';
 import '../Widgets/MessagePrompt.dart';
 import '../Widgets/roundedbutton.dart';
 
+// Define a StatefulWidget for the AdminCreateRecipePage
 class AdminCreateRecipePage extends StatefulWidget {
   static const String id = "CreateRecipePage";
 
@@ -23,87 +27,101 @@ class AdminCreateRecipePage extends StatefulWidget {
   State<AdminCreateRecipePage> createState() => _AdminCreateRecipePageState();
 }
 
+// Define the state for AdminCreateRecipePage
 class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
+  // Declare and initialize various fields to store recipe information
   String name = "";
-
   String Category = "";
-
   String Servings = "";
-
   String time = "";
-
   String nutrition = "";
   String description = "";
-  String VideoLink="";
+  String VideoLink = "";
+
   @override
   void initState() {
-    // TODO: implement initState
+    // Initialize the state when the page is created
     setState(() {
       Provider.of<Loading>(context, listen: false).changeBool();
     });
+
+    // Use a Future to asynchronously load data and update the state
     Future.delayed(Duration.zero).then((_) async {
       await Provider.of<AdminIngredientController>(context, listen: false)
           .getRecipeIngredients();
+
+      // Update the loading state again
       setState(() {
         Provider.of<Loading>(context, listen: false).changeBool();
       });
     });
+
+    // Initialize the recipe-related fields
     Provider.of<Recipe>(context, listen: false).insrtuctions = [];
     Provider.of<Recipe>(context, listen: false).ingredientID = [];
     Provider.of<Recipe>(context, listen: false).ingredients = [];
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Add Recipe"),
-          centerTitle: true,
-          backgroundColor: kPrimaryColor,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: GestureDetector(
-                child: const Icon(Icons.add, color: Colors.white),
-                onTap: () async {
-                  bool refresh = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const CreateAdminIngredientPage()));
-                  if (refresh) {
+      appBar: AppBar(
+        title: const Text("Add Recipe"),
+        centerTitle: true,
+        backgroundColor: kPrimaryColor,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              child: const Icon(Icons.add, color: Colors.white),
+              onTap: () async {
+                // Navigate to a new page to create a new ingredient
+                bool refresh = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const CreateAdminIngredientPage()));
+
+                // Refresh the page if needed
+                if (refresh) {
+                  setState(() {
+                    Provider.of<Loading>(context, listen: false).changeBool();
+                  });
+
+                  // Use a Future to asynchronously load data and update the state
+                  Future.delayed(Duration.zero).then((_) async {
+                    await Provider.of<AdminIngredientController>(context,
+                            listen: false)
+                        .getRecipeIngredients();
+
+                    // Update the loading state again
                     setState(() {
                       Provider.of<Loading>(context, listen: false).changeBool();
                     });
-                    Future.delayed(Duration.zero).then((_) async {
-                      await Provider.of<AdminIngredientController>(context,
-                              listen: false)
-                          .getRecipeIngredients();
-                      setState(() {
-                        Provider.of<Loading>(context, listen: false)
-                            .changeBool();
-                      });
-                    });
-                    Provider.of<Recipe>(context, listen: false).insrtuctions =
-                        [];
-                    Provider.of<Recipe>(context, listen: false).ingredientID =
-                        [];
-                    Provider.of<Recipe>(context, listen: false).ingredients =
-                        [];
-                    super.initState();
-                  }
-                },
-              ),
-            )
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 10, bottom: 10),
-          child: ListView(
-            children: <Widget>[
-              Column(children: <Widget>[
+                  });
+
+                  // Reset recipe-related fields
+                  Provider.of<Recipe>(context, listen: false).insrtuctions = [];
+                  Provider.of<Recipe>(context, listen: false).ingredientID = [];
+                  Provider.of<Recipe>(context, listen: false).ingredients = [];
+
+                  super.initState();
+                }
+              },
+            ),
+          )
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        child: ListView(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                // Display an image or a placeholder for the recipe
                 if (Provider.of<PickImage>(context).image != null)
+                  // Display the selected image if available
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.95,
                     height: MediaQuery.of(context).size.height * 0.3,
@@ -126,32 +144,34 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             ),
                           ),
                           Positioned.fill(
-                              child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(),
-                              Container(
-                                child: Container(
-                                  height: 65,
-                                  color: Colors.black.withOpacity(0.5),
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "Edit Photo",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: Colors.white),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(),
+                                Container(
+                                  child: Container(
+                                    height: 65,
+                                    color: Colors.black.withOpacity(0.5),
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      "Edit Photo",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.white),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(),
-                            ],
-                          ))
+                                Container(),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   )
                 else
+                  // Display a placeholder image if no image is selected
                   GestureDetector(
                     onTap: () {
                       Provider.of<PickImage>(context, listen: false)
@@ -170,43 +190,45 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                           ),
                         ),
                         Positioned.fill(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(),
-                            Container(
-                              child: Container(
-                                height: 65,
-                                color: Colors.black.withOpacity(0.5),
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  "Add Photo",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.white),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(),
+                              Container(
+                                child: Container(
+                                  height: 65,
+                                  color: Colors.black.withOpacity(0.5),
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    "Add Photo",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.white),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(),
-                          ],
-                        ))
+                              Container(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 const SizedBox(
                   height: 8.0,
                 ),
+                // Input field for recipe name
                 TextField(
                   onChanged: (value) {
                     name = value;
                   },
-                  decoration:
-                      kinputDecoration.copyWith(hintText: "Recipe Name"),
+                  decoration: kinputDecoration.copyWith(hintText: "Recipe Name"),
                 ),
                 const SizedBox(
                   height: 8.0,
                 ),
+                // Input fields for nutrition, video link, and time to cook
                 Container(
                   child: Row(
                     children: [
@@ -217,8 +239,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             onChanged: (value) {
                               nutrition = value;
                             },
-                            decoration: kinputDecoration.copyWith(
-                                hintText: "nutrition"),
+                            decoration:
+                                kinputDecoration.copyWith(hintText: "Nutrition"),
                           ),
                         ),
                       ),
@@ -229,12 +251,11 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             onChanged: (value) {
                               VideoLink = value;
                             },
-                            decoration: kinputDecoration.copyWith(
-                                hintText: "VideoLink"),
+                            decoration:
+                                kinputDecoration.copyWith(hintText: "Video Link"),
                           ),
                         ),
                       ),
-                      
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
@@ -243,7 +264,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                               time = value;
                             },
                             decoration: kinputDecoration.copyWith(
-                                hintText: "Time to cook "),
+                                hintText: "Time to cook"),
                           ),
                         ),
                       ),
@@ -253,6 +274,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                 const SizedBox(
                   height: 8.0,
                 ),
+                // Input fields for recipe category and servings
                 Container(
                   child: Row(
                     children: [
@@ -269,7 +291,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                 items: <String>[
                                   'Dinner',
                                   'Lunch',
-                                  'BreakFast',
+                                  'Breakfast',
                                   'Sweet'
                                 ]
                                     .map((item) => DropdownMenuItem<String>(
@@ -305,14 +327,16 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                 const SizedBox(
                   height: 8.0,
                 ),
+                // Divider to separate sections
                 const LineDivider(),
-                
+
+                // Section for selecting ingredients
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text("ingredients"),
+                      const Text("Ingredients"),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Container(
@@ -324,7 +348,6 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             child: DropdownButton<int>(
                               items: Provider.of<AdminIngredientController>(
                                       context)
-                               
                                   .ingredients
                                   .map((item) => DropdownMenuItem<int>(
                                         value: Provider.of<
@@ -362,6 +385,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                     ],
                   ),
                 ),
+
+                // Display selected ingredients with images
                 (Provider.of<Recipe>(context).ingredients.isNotEmpty)
                     ? SizedBox(
                         height: 130,
@@ -394,16 +419,18 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                       Provider.of<Recipe>(context,
                                               listen: false)
                                           .removeIngrecientFromList(index);
-                                      // Navigator.pushNamed(context, SearchPage.id);
                                     },
                                   ),
                                 )
                               ]);
                             }),
                       )
-                      
                     : Container(),
+
+                // Divider to separate sections
                 const LineDivider(),
+
+                // Section for adding instructions
                 const Padding(
                   padding: EdgeInsets.only(left: 20),
                   child: Row(
@@ -413,6 +440,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                     ],
                   ),
                 ),
+
+                // Display added instructions
                 (Provider.of<Recipe>(context).insrtuctions.isNotEmpty)
                     ? SizedBox(
                         height: 200,
@@ -452,7 +481,6 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                         Provider.of<Recipe>(context,
                                                 listen: false)
                                             .removeInstructionsToList(index);
-                                        // Navigator.pushNamed(context, SearchPage.id);
                                       },
                                     ),
                                   )
@@ -461,16 +489,15 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             }),
                       )
                     : Container(),
+
+                // Input field for adding instructions
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10.0, right: 10, top: 10),
+                  padding: const EdgeInsets.only(left: 10.0, right: 10, top: 10),
                   child: TextField(
                     onChanged: (value) {
-                     setState(() {
-                      description = value; 
-                     }); 
-                      
-
+                      setState(() {
+                        description = value;
+                      });
                     },
                     minLines: 4,
                     keyboardType: TextInputType.multiline,
@@ -479,6 +506,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                         kinputDecoration.copyWith(hintText: "Instruction Body"),
                   ),
                 ),
+
+                // Buttons for saving the recipe and adding instructions
                 Row(
                   children: [
                     Expanded(
@@ -504,10 +533,12 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   Provider.of<Recipe>(context, listen: false)
                                           .ingredientID !=
                                       []) {
+                                        // Upload the recipe image
                                 String Image = await Provider.of<PickImage>(
                                         context,
                                         listen: false)
                                     .uploadRecipeFile();
+                                    // Add the recipe to the database and retrieve its ID
                                 String ID =
                                     await Provider.of<AdminRecipesController>(
                                             context,
@@ -537,7 +568,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   ..hideCurrentSnackBar()
                                   ..showSnackBar(MessagePrompt().snack(
                                       "Error",
-                                      "Please fill in the ingredients",
+                                      "Please fill in All the required information",
                                       ContentType.failure));
                               }
                             }),

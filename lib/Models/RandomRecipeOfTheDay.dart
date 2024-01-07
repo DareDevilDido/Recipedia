@@ -5,7 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:recipedia/Constants/Constants.dart';
 
 import '../Repo/DefaultReciperepo.dart';
-
+//this class is responisble for changing the Recipe of the day
+// in the home page
+// for users
+//In the data base for every user there is an ROTD(Recipe of the day)
+//this is set to null
 class RandomRecipeOfTheDay extends ChangeNotifier {
   List<DefaultRecipeRepo> RecipeList = [];
   DefaultRecipeRepo? ROTD;

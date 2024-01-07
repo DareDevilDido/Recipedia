@@ -147,6 +147,10 @@ class DefaultRecipeController extends ChangeNotifier {
   Future<void> FilterCategory(String Category) async {
     Recipes = [];
     QuerySnapshot snapshot = await QueryCategoryRecipe(Category);
+//If the condition is true, it means that there are matching recipes in the search results. In that case,
+// it processes each document in the snapshot.docs list using the map method.
+//For each document e, it uses DefaultRecipeRepo.fromJson to convert the document data into a DefaultRecipeRepo object. This method takes the document's ID (e.id), the document data (e.data()), and empty lists as additional parameters.
+//The resulting DefaultRecipeRepo objects are added to the NewRecipes list using the += operator, which appends the elements of the mapped list to the existing NewRecipes list.
     if (snapshot.docs.isNotEmpty) {
       Recipes += snapshot.docs.map((e) {
         return DefaultRecipeRepo.fromJson(

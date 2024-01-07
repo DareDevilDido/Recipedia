@@ -1,5 +1,6 @@
-
-
+/*his section imports necessary packages and dependencies for the Flutter application, including awesome_snackbar_content for custom snackbars, firebase_auth for Firebase authentication
+, and various other Flutter components.
+*/
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,9 @@ import '../Controllers/UserController.dart';
 import '../Widgets/LoadingScreen.dart';
 import '../Widgets/MessagePrompt.dart';
 import '../Widgets/roundedbutton.dart';
-
+//AdminProfilePage is a StatefulWidget class for the admin's profile page.
+// It has a bool isEditing property initialized to true,
+// indicating whether the user is currently in edit mode.
 class AdminProfilePage extends StatefulWidget {
   AdminProfilePage({super.key});
   static const String id = "AdminProfilePage";
@@ -19,7 +22,9 @@ class AdminProfilePage extends StatefulWidget {
   @override
   State<AdminProfilePage> createState() => _AdminProfilePageState();
 }
-
+//AdminProfilePageState is the state class for AdminProfilePage.
+// It overrides the initState method to fetch user information when the widget
+// is initialized using Provider.of<UserController>.
 class _AdminProfilePageState extends State<AdminProfilePage> {
   @override
   void initState() {
@@ -43,6 +48,7 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
               leading: GestureDetector(),
+              //appbar title
               title: const Text("My Profile"),
               centerTitle: true,
               actions: const [],
@@ -56,6 +62,8 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
+                        //, ClipRRect uses its own bounds as the base rectangle for the clip, but the
+                        // size and location of the clip can be customized using a custom clipper.
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(200.0),
                           child: Container(
@@ -281,7 +289,6 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                       flex: 4,
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
-                        
                       ))
                 ],
               ),

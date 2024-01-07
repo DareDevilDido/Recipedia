@@ -24,6 +24,7 @@ class editDefaultRecipePage extends StatefulWidget {
 }
 
 class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
+ String description = "";
   @override
   void initState() {
     Provider.of<Loading>(context, listen: false).changeBool();
@@ -56,7 +57,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    String description = "";
+    
     var Recip = Provider.of<AdminRecipesController>(context).Recipe!;
     String name = Recip.Name;
     String Category = Recip.Category;
@@ -103,6 +104,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
               ],
             ),
             body: Padding(
+              
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: ListView(
                 children: <Widget>[
