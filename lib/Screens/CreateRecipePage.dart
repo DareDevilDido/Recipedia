@@ -24,7 +24,7 @@ class CreateRecipePage extends StatefulWidget {
   @override
   State<CreateRecipePage> createState() => _CreateRecipePageState();
 }
-
+ 
 class _CreateRecipePageState extends State<CreateRecipePage> {
   String name = "";
   String Category = "";
@@ -32,6 +32,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
   String time = "";
   String nutrition = "";
   String description = "";
+  String VideoLink = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -57,7 +58,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
         : Scaffold(
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
-              title: const Text("Create Recipe"),
+              title: Text("Create Recipe" , style: TextStyle(color: kTextColor),),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
             ),
@@ -191,6 +192,18 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                             ),
                           ),
                           Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: TextField(
+                            onChanged: (value) {
+                              VideoLink = value;
+                            },
+                            decoration: kinputDecoration.copyWith(
+                                hintText: "VideoLink"),
+                          ),
+                        ),
+                      ),
+                          Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
@@ -266,7 +279,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text("ingredients"),
+                      Text("ingredients" , style: TextStyle(color: kTextColor),),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Container(
@@ -357,12 +370,12 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                       )
                     : Container(),
                     const LineDivider(),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text("Instructions"),
+                          Text("Instructions" , style: TextStyle(color: kTextColor),),
                         ],
                       ),
                     ),
@@ -447,6 +460,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
+                                      VideoLink!=""&&
                                       Provider.of<PickImage>(context,
                                                   listen: false)
                                               .image !=
@@ -473,7 +487,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                                 UserRecipesController>(context,
                                             listen: false)
                                         .AddRecipe(name, Category, nutrition,
-                                            time, Servings, Image);
+                                            time, Servings, Image,VideoLink);
 
                                     Future.forEach(
                                         Provider.of<Recipe>(context,
@@ -513,7 +527,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(
                                           "Error",
-                                          "Instruction is empty",
+                                          "Please fill all the requirments",
                                           ContentType.failure));
                                   }
                                 }),

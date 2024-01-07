@@ -18,9 +18,10 @@ class CreateIngredientPage extends StatefulWidget {
 }
 
 class _CreateIngredientPageState extends State<CreateIngredientPage> {
+  String ingName = "";
   @override
   Widget build(BuildContext context) {
-    String ingName = "";
+    
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -30,11 +31,11 @@ class _CreateIngredientPageState extends State<CreateIngredientPage> {
               backgroundColor: kPrimaryColor,
             ),
             body: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 5),
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: ListView(
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,

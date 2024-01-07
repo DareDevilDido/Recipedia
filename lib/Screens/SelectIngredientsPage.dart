@@ -33,7 +33,7 @@ class _SelectIngredientsPageState extends State<SelectIngredientsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Select Ingredients"),
+          title: Text("Select Ingredients", style: TextStyle(color: kTextColor),),
           centerTitle: true,
           backgroundColor: kPrimaryColor,
           actions: [

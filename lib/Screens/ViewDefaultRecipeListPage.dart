@@ -37,7 +37,7 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
           ? const LoadingScreen()
           : Scaffold(
               appBar: AppBar(
-                title: Text(widget.Category),
+                title: Text(widget.Category, style: TextStyle(color: kTextColor),),
                 centerTitle: true,
                 backgroundColor: kPrimaryColor,
               ),
@@ -102,21 +102,12 @@ class _ViewDefaultRecipeListPageState extends State<ViewDefaultRecipeListPage> {
                                                 .Recipes[index]
                                                 .Name,
                                             textAlign: TextAlign.center,
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20,
-                                                color: Colors.white),
+                                                color: kTextColor),
                                           ),
                                         ),
-                                        // Container(
-                                        //   child: const Text(
-                                        //     "text",
-                                        //     style: TextStyle(
-                                        //       fontSize: 20,
-                                        //       color: Colors.red,
-                                        //     ),
-                                        //   ),
-                                        // ),
                                       ],
                                     ),
                                   ),

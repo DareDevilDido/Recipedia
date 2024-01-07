@@ -58,7 +58,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
         : Scaffold(
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
-              title: const Text("Recipe"),
+              title: Text("Recipe", style: TextStyle(color: kTextColor),),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
               actions: [

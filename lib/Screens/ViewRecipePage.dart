@@ -54,16 +54,6 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    FlutterTts fluttertts = FlutterTts();
-
-    Future<void> speak(text) async {
-      fluttertts.speak(text);
-    }
-
-    Future<void> stop() async {
-      fluttertts.stop();
-    }
-
     List<int> valueList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
     bool checking = Provider.of<FavortieRecipesController>(context).isFavorited;
 
@@ -389,10 +379,14 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                         children: [
                                           Container(
                                             child: Text(
-                                                "${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step}. "),
+                                                "${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step}. ",
+                                                style: TextStyle(
+                                                    color: kTextColor)),
                                           ),
                                           Container(
-                                            child: const Text(""),
+                                            child: Text("",
+                                                style: TextStyle(
+                                                    color: kTextColor)),
                                           )
                                         ],
                                       ),
@@ -408,6 +402,7 @@ class _ViewRecipePageState extends State<ViewRecipePage> {
                                           maxLines: 10,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
+                                          style: TextStyle(color: kTextColor),
                                         ),
                                       ),
                                       Padding(
@@ -475,4 +470,14 @@ String? Videotool(String videoUrl) {
   final videoID = YoutubePlayer.convertUrlToId(videoUrl);
 
   return videoID;
+}
+
+FlutterTts fluttertts = FlutterTts();
+
+Future<void> speak(text) async {
+  fluttertts.speak(text);
+}
+
+Future<void> stop() async {
+  fluttertts.stop();
 }

@@ -23,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
           : Scaffold(
               backgroundColor: kBackGroundColor,
               appBar: AppBar(
-                title: const Text("Search"),
+                title: Text("Search", style: TextStyle(color: kTextColor),),
                 centerTitle: true,
                 backgroundColor: kPrimaryColor,
               ),
@@ -108,9 +108,10 @@ class _SearchPageState extends State<SearchPage> {
                                                       context)
                                                   .NewRecipes[index]
                                                   .Name,
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
+                                                  fontWeight: FontWeight.bold
+                                                  , color: kTextColor),
                                             ),
                                           ),
                                           const Divider(

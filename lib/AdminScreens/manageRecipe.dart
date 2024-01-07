@@ -13,15 +13,15 @@ import '../Screens/SelectIngredientsPage.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/roundedbutton.dart';
 
-class ManageUserPage extends StatefulWidget {
+class ManageRecipePage extends StatefulWidget {
   static const String id = "EditRecipePage";
   String RecipeId;
-  ManageUserPage({super.key, required this.RecipeId});
+  ManageRecipePage({super.key, required this.RecipeId});
   @override
-  State<ManageUserPage> createState() => _ManageUserPageState();
+  State<ManageRecipePage> createState() => _ManageRecipePageState();
 }
 
-class _ManageUserPageState extends State<ManageUserPage> {
+class _ManageRecipePageState extends State<ManageRecipePage> {
   @override
   void initState() {
     Provider.of<Recipe>(context, listen: false).ingredients =
@@ -29,17 +29,17 @@ class _ManageUserPageState extends State<ManageUserPage> {
     Provider.of<Recipe>(context, listen: false).insrtuctions =
         Provider.of<UserRecipesController>(context, listen: false).insrtuctions;
 
-    // Provider.of<UserRecipesController>(context, listen: false)
-    //     .ingredients
-    //     .forEach((ingredient) {
-    //   Provider.of<Recipe>(context, listen: false)
-    //       .ingredientID
-    //       .add(ingredient.ID!);
-    // });
-    //
-    // Provider.of<Recipe>(context, listen: false).ingredientID =
-    //     Provider.of<UserRecipesController>(context, listen: false)
-    //         .ingredientsID;
+    Provider.of<UserRecipesController>(context, listen: false)
+        .ingredients
+        .forEach((ingredient) {
+      Provider.of<Recipe>(context, listen: false)
+          .ingredientID
+          .add(ingredient.ID!);
+    });
+    
+    Provider.of<Recipe>(context, listen: false).ingredientID =
+        Provider.of<UserRecipesController>(context, listen: false)
+            .ingredientsID;
     super.initState();
   }
 
@@ -50,7 +50,7 @@ class _ManageUserPageState extends State<ManageUserPage> {
     String Category = Recip.Category;
     String Servings = Recip.Servings;
     String time = Recip.time;
-    String nutrition = Recip.nutrition;
+    String Calories = Recip.nutrition;
     String VideoLink=Recip.VideoLink;
     return Scaffold(
       appBar: AppBar(
@@ -79,19 +79,18 @@ class _ManageUserPageState extends State<ManageUserPage> {
               TextField(
                 controller: TextEditingController(text: Recip.nutrition),
                 onChanged: (value) {
-                  nutrition = value;
+                  Calories = value;
                 },
-                decoration: kinputDecoration.copyWith(hintText: "nutrition"),
+                decoration: kinputDecoration.copyWith(hintText: "Calories"),
               ),
               const SizedBox(
                 height: 8.0,
               ),
-              TextField(
+               TextField(
                 controller: TextEditingController(text: Recip.VideoLink),
                 onChanged: (value) {
                   VideoLink = value;
                 },
-                
                 decoration: kinputDecoration.copyWith(hintText: "VideoLink"),
               ),
               const SizedBox(
@@ -277,7 +276,7 @@ class _ManageUserPageState extends State<ManageUserPage> {
                               .uploadRecipeFile();
                           await Provider.of<UserRecipesController>(context,
                                   listen: false)
-                              .EditRecipe(name, Category, nutrition, time,
+                              .EditRecipe(name, Category, Calories, time,
                                   Servings, Image,VideoLink);
                           Provider.of<UserRecipeIngredientController>(context,
                                   listen: false)

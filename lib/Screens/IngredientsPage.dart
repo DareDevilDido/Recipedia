@@ -26,7 +26,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Recipedia's Ingredients"),
+        title: Text("Recipedia's Ingredients", style: TextStyle(color: kTextColor),),
         centerTitle: true,
         backgroundColor: kPrimaryColor,
       ),

@@ -33,6 +33,17 @@ class UserRecipesController extends ChangeNotifier {
     currentStep = 0;
     notifyListeners();
   }
+Future<void> getRecipeIngredients() async {
+    ingredients = [];
+    var ingredientID = [];
+    final responce = await _firestore.collection("DefaultIngredients").get();
+    for (var Ingredient in responce.docs) {
+      ingredientID.add(Ingredient.id);
+      ingredients.add(
+          DefaultIngredientsRepo.fromJson(Ingredient.id, Ingredient.data()));
+    }
+    notifyListeners();
+    }
 
   Future<void> getRecipes(String? userID) async {
     Recipes = [];
@@ -125,7 +136,7 @@ class UserRecipesController extends ChangeNotifier {
   }
 
   Future<String> AddRecipe(String name, String Category, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String VideoLink) async {
     final responce = await _firestore
         .collection("UserRecipes")
         .doc(kUserId)
@@ -136,32 +147,37 @@ class UserRecipesController extends ChangeNotifier {
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
-      "Image": image
+      "Image": image,
+      "VideoLink":VideoLink
     });
     return responce.id.toString();
   }
 
   Future<void> EditRecipe(String name, String Category, String nutrition,
-      String Time, String Servings, String image) async {
+      String Time, String Servings, String image,String videoLink) async {
     Recipe!.Name = name;
     Recipe!.Category = Category;
     Recipe!.nutrition = nutrition;
     Recipe!.time = Time;
     Recipe!.Servings = Servings;
     Recipe!.Image = image;
-    final responce = await _firestore
+    Recipe!.VideoLink=videoLink;
+  
+     final responce = await _firestore
         .collection("UserRecipes")
         .doc(kUserId)
         .collection("Recipe List")
-        .doc(Recipe!.ID)
-        .update({
+        .doc(Recipe?.ID).update({
       "Name": name,
       "nutrition": nutrition,
       "Time": Time,
       "Servings": Servings,
       "Category": Category,
-      "Image": image
+      "Image": image,
+      "VideoLink":videoLink
     });
+    notifyListeners();
+    
   }
 
   Future<QuerySnapshot> QueryCategoryRecipe(String Category) async {
