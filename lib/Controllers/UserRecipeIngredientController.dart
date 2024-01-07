@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:recipedia/Constants/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../Repo/UserRecipeIngredientRepo.dart';
+import '../Models/Repo/UserRecipeIngredientRepo.dart';
 
 class UserRecipeIngredientController extends ChangeNotifier {
   final _firestore = FirebaseFirestore.instance;

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:recipedia/Repo/DefaultIngredientsRepo.dart';
+import 'package:recipedia/Models/Repo/DefaultIngredientsRepo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DefaultIngredientCntroller extends ChangeNotifier {

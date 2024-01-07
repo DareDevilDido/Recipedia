@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:recipedia/Repo/InstructionRepo.dart';
+import 'package:recipedia/Models/Repo/InstructionRepo.dart';
 
 import '../Constants/Constants.dart';
 

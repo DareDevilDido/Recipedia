@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:recipedia/Constants/Constants.dart';
 import 'package:recipedia/Controllers/DefaultIngredientController.dart';
-import 'package:recipedia/Repo/DefaultReciperepo.dart';
-import '../Repo/DefaultIngredientsRepo.dart';
-import '../Repo/InstructionRepo.dart';
+import 'package:recipedia/Models/Repo/DefaultReciperepo.dart';
+import '../Models/Repo/DefaultIngredientsRepo.dart';
+import '../Models/Repo/InstructionRepo.dart';
 
 class DefaultRecipeController extends ChangeNotifier {
   List<DefaultRecipeRepo> Recipes = [];
