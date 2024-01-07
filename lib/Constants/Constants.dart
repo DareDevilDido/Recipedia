@@ -11,6 +11,7 @@ Color kBackGroundColor = Color.fromARGB(255, 255, 255, 255);
 Color kButtonColor = const Color.fromARGB(255, 217, 126, 150);
 Color kContainerColor = const Color.fromARGB(255, 217, 217, 217);
 
+
 class Loading extends ChangeNotifier {
   bool kIsLoading = false;
   String kCategory = "All";
