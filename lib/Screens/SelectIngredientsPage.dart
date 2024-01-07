@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipedia/Models/Recipe.dart';
-import 'package:recipedia/Screens/CreateIngredientPage.dart';
+import 'package:recipedia/AdminScreens/CreateIngredientPage.dart';
 import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/UserIngredientsController.dart';

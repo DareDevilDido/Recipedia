@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipedia/Screens/ViewMyRecipePage.dart';
+import 'package:recipedia/Screens/ViewMyRecipeListPage.dart';
 import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/UserRecipesController.dart';

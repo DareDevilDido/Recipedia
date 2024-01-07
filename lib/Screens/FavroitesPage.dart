@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/FavroiteRecipeController.dart';
 import 'package:provider/provider.dart';
-import 'package:recipedia/Screens/ViewRecipePage.dart';
+import 'package:recipedia/Screens/ViewRecipeFromDefualtList.dart';
 import '../Constants/Constants.dart';
 import '../Widgets/LoadingScreen.dart';
 

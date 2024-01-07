@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/DafualtRecipesController.dart';
 import '../Widgets/LoadingScreen.dart';
-import 'ViewRecipePage.dart';
-
+import 'ViewRecipeFromDefualtList.dart';
+//categories of Default Recipes
 class ViewDefaultRecipeListPage extends StatefulWidget {
   String Category;
   ViewDefaultRecipeListPage({super.key, required this.Category});

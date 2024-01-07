@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipedia/Controllers/DafualtRecipesController.dart';
 import 'package:recipedia/Screens/SearchPage.dart';
 import 'package:provider/provider.dart';
-import 'package:recipedia/Screens/ViewRecipePage.dart';
+import 'package:recipedia/Screens/ViewRecipeFromDefualtList.dart';
 import '../Constants/Constants.dart';
 import '../Models/RandomRecipeOfTheDay.dart';
 import '../Widgets/LineDivider.dart';
@@ -112,12 +112,7 @@ class _HomePageState extends State<HomePage> {
                     Provider.of<RandomRecipeOfTheDay>(context, listen: false)
                         .ROTD!
                         .Name,
-<<<<<<< HEAD
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
-=======
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: kTextColor),
->>>>>>> de37f54e20170441b37ce7efe06e4e76330322d0
                   ),
                 ),
                 const LineDivider(),

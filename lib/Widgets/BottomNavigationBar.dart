@@ -6,7 +6,7 @@ import 'package:recipedia/Screens/ProfilePage.dart';
 import '../Constants/Constants.dart';
 import '../Screens/FavroitesPage.dart';
 import '../Screens/HomePage.dart';
-
+//Navigation Bar of the user
 class NavigationsBar extends StatefulWidget {
   const NavigationsBar({super.key});
 

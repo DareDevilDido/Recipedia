@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/UserRecipesController.dart';
 import '../Widgets/LoadingScreen.dart';
-import 'UserViewRecipePage.dart';
-
+import 'UserViewRecipeFromUserList.dart';
+//user Recipes page after clicking on category
 class ViewMyRecipePage extends StatefulWidget {
   String Category;
   ViewMyRecipePage({super.key, required this.Category});

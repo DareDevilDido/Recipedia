@@ -3,7 +3,7 @@ import 'package:recipedia/Constants/Constants.dart';
 import 'package:provider/provider.dart';
 import '../Controllers/UserIngredientsController.dart';
 import '../Widgets/LoadingScreen.dart';
-import 'CreateIngredientPage.dart';
+import '../AdminScreens/CreateIngredientPage.dart';
 import 'EditIngredientPage.dart';
 
 class MyIngredientPage extends StatefulWidget {

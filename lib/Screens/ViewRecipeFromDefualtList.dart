@@ -1,39 +1,49 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:recipedia/Controllers/UserRecipesController.dart';
-import 'package:recipedia/Screens/EditRecipePage.dart';
+import 'package:recipedia/Controllers/DafualtRecipesController.dart';
+import 'package:recipedia/Controllers/FavroiteRecipeController.dart';
 import 'package:provider/provider.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../Constants/Constants.dart';
+import '../Controllers/UserIngredientsController.dart';
 import '../Models/Timer.dart';
-import '../Widgets/BottomNavigationBar.dart';
 import '../Widgets/LineDivider.dart';
 import '../Widgets/LoadingScreen.dart';
-import '../Widgets/video.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class UserViewRecipePage extends StatefulWidget {
-  static const String id = "UserViewRecipePage";
+import '../Widgets/video.dart';
+//after clicking on a recipe from Defualt recipes page
+class ViewRecipePage extends StatefulWidget {
+  static const String id = "ViewRecipePage";
   String RecipeId;
+  ViewRecipePage({super.key, required this.RecipeId});
+
+  // String videoPlayer=" ";
   bool islistening = true;
   bool timerWorking = true;
-  UserViewRecipePage({super.key, required this.RecipeId});
 
   @override
-  State<UserViewRecipePage> createState() => _USerViewRecipePageState();
+  State<ViewRecipePage> createState() => _ViewRecipePageState();
 }
 
-class _USerViewRecipePageState extends State<UserViewRecipePage> {
+class _ViewRecipePageState extends State<ViewRecipePage> {
+  var videoID;
+
   @override
   void initState() {
-    // TODO: implement initState
     setState(() {
-      Provider.of<Loading>(context, listen: false).changeBool();
+      setState(() {
+        Provider.of<Loading>(context, listen: false).changeBool();
+      });
     });
+
     Future.delayed(Duration.zero).then((_) async {
-      await Provider.of<UserRecipesController>(context, listen: false)
+      await Provider.of<UserIngredientController>(context, listen: false)
+          .getIngredients(kUserId);
+      await Provider.of<FavortieRecipesController>(context, listen: false)
+          .CheckIfFavorited(widget.RecipeId);
+      await Provider.of<DefaultRecipeController>(context, listen: false)
           .getSingleRecipe(kUserId, widget.RecipeId);
-      Future.delayed(const Duration(milliseconds: 1)).then((_) async {
+      Future.delayed(const Duration(milliseconds: 100)).then((_) async {
         setState(() {
           Provider.of<Loading>(context, listen: false).changeBool();
         });
@@ -44,50 +54,51 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    FlutterTts fluttertts = FlutterTts();
-
-    Future<void> speak(text) async {
-      fluttertts.speak(text);
-    }
-
-    Future<void> stop() async {
-      fluttertts.stop();
-    }
-
     List<int> valueList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+    bool checking = Provider.of<FavortieRecipesController>(context).isFavorited;
+
+    YoutubePlayerController controller;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
-            backgroundColor: kBackGroundColor,
             appBar: AppBar(
-              title: Text("Recipe", style: TextStyle(color: kTextColor),),
+              title: const Text(
+                "Recipe",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
               centerTitle: true,
-              backgroundColor: kPrimaryColor,
               actions: [
-               
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: GestureDetector(
-                    child: const Icon(Icons.edit),
-                    onTap: () async {
-                      bool refresh = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) =>
-                                  EditRecipePage(RecipeId: widget.RecipeId)));
-                      if (refresh) {
-                        await Provider.of<UserRecipesController>(context,
-                                listen: false)
-                            .getSingleRecipe(kUserId, widget.RecipeId);
-                      }
+                    child: Icon(
+                        Provider.of<FavortieRecipesController>(context)
+                                .isFavorited
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Colors.black),
+                    onTap: () {
+                      !checking
+                          ? Provider.of<FavortieRecipesController>(context,
+                                  listen: false)
+                              .AddRecipe(widget.RecipeId)
+                          : Provider.of<FavortieRecipesController>(context,
+                                  listen: false)
+                              .DeleteRecipe(widget.RecipeId);
+                      Provider.of<FavortieRecipesController>(context,
+                              listen: false)
+                          .CheckIfFavorited(widget.RecipeId);
+                      // Navigator.pushNamed(context, SearchPage.id);
                     },
                   ),
                 )
               ],
+              backgroundColor: kPrimaryColor,
             ),
             body: Container(
-              padding:
-                  const EdgeInsets.only(bottom: 20, right: 20, left: 20, top: 10),
+              padding: const EdgeInsets.only(
+                  bottom: 20, right: 10, left: 10, top: 10),
               color: kBackGroundColor,
               child: ListView(
                 children: <Widget>[
@@ -96,7 +107,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                     child: Stack(
                       children: [
                         Image.network(
-                          Provider.of<UserRecipesController>(context)
+                          Provider.of<DefaultRecipeController>(context)
                               .Recipe!
                               .Image,
                           fit: BoxFit.fitWidth,
@@ -120,21 +131,21 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                         padding: const EdgeInsets.only(
                                             left: 8.0, top: 8),
                                         child: Text(
-                                          "Time: ${Provider.of<UserRecipesController>(context).Recipe!.time}",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
+                                          "Time: ${Provider.of<DefaultRecipeController>(context).Recipe!.time}",
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             right: 8.0, top: 8),
                                         child: Text(
-                                          "${Provider.of<UserRecipesController>(context).Recipe!.Servings} Servings",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
+                                          "${Provider.of<DefaultRecipeController>(context).Recipe!.Servings} Servings",
+                                          style: const TextStyle(
+                                              color: Colors.white,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.center,
@@ -163,17 +174,23 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              Provider.of<UserRecipesController>(context).Recipe!.Name,
+                                              Provider.of<DefaultRecipeController>(
+                                                      context)
+                                                  .Recipe!
+                                                  .Name,
                                               style: TextStyle(
-                                                  color: kButtonColor,
+                                                  color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                               textAlign: TextAlign.start,
                                             ),
                                             Text(
-                                              Provider.of<UserRecipesController>(context).Recipe!.Category,
+                                              Provider.of<DefaultRecipeController>(
+                                                      context)
+                                                  .Recipe!
+                                                  .Category,
                                               style: TextStyle(
-                                                  color: kButtonColor,
+                                                  color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                               textAlign: TextAlign.start,
@@ -185,9 +202,9 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                         padding:
                                             const EdgeInsets.only(right: 8),
                                         child: Text(
-                                          "${Provider.of<UserRecipesController>(context).Recipe!.nutrition} Kcal",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
+                                          "${Provider.of<DefaultRecipeController>(context).Recipe!.nutrition} Kcal",
+                                          style: const TextStyle(
+                                              color: Colors.white,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.center,
@@ -202,28 +219,27 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                         )
                       ],
                     ),
-                  ),const LineDivider(),
-                   Center(
-                      child: Container(
+                  ),
+                  const LineDivider(),
+                  Center(
+                    child: Container(
                         width: 300,
                         height: 170,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          // image: const DecorationImage(
-                          //   image: AssetImage("assets/girl-box.png"),
-                          //   fit: BoxFit.cover,
-                          // ),
                         ),
-                        child:  VideoPage(Videotool(Provider.of<UserRecipesController>(context).Recipe!.VideoLink))
-                      ),
-                    ),
+                        child: VideoPage(Videotool(
+                            Provider.of<DefaultRecipeController>(context)
+                                .Recipe!
+                                .VideoLink))),
+                  ),
                   const LineDivider(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0, left: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0, left: 8),
                     child: Text("Ingredients",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: kPrimaryColor,
+                            color: Colors.black,
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -231,7 +247,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                     height: 75,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: Provider.of<UserRecipesController>(context)
+                        itemCount: Provider.of<DefaultRecipeController>(context)
                             .Recipe!
                             .ingredients
                             .length,
@@ -241,7 +257,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: Image.network(
-                                  Provider.of<UserRecipesController>(context)
+                                  Provider.of<DefaultRecipeController>(context)
                                       .Recipe!
                                       .ingredients[index]
                                       .image,
@@ -253,15 +269,14 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                         }),
                   ),
                   const LineDivider(),
-                  
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0, left: 8),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 8.0, left: 8),
                         child: Text("Timer",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                color: kPrimaryColor,
+                                color: Colors.black,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold)),
                       ),
@@ -286,7 +301,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        child: Icon(Icons.refresh, color: kPrimaryColor),
+                        child: Icon(Icons.refresh, color: Colors.black),
                         onTap: () {
                           Provider.of<CountDownTimer>(context, listen: false)
                               .ResetTimer(Provider.of<CountDownTimer>(context,
@@ -297,12 +312,12 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                       Text(
                           "${Provider.of<CountDownTimer>(context).minutes.toString()}:${Provider.of<CountDownTimer>(context).seconds.toString()}",
                           style: TextStyle(
-                              color: kPrimaryColor,
+                              color: Colors.black,
                               fontSize: 22,
                               fontWeight: FontWeight.bold)),
                       widget.timerWorking
                           ? GestureDetector(
-                              child: Icon(Icons.timer, color: kPrimaryColor),
+                              child: Icon(Icons.timer, color: Colors.black),
                               onTap: () {
                                 Provider.of<CountDownTimer>(context,
                                         listen: false)
@@ -317,7 +332,7 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                             )
                           : GestureDetector(
                               child:
-                                  Icon(Icons.stop_circle, color: kPrimaryColor),
+                                  Icon(Icons.stop_circle, color: Colors.black),
                               onTap: () {
                                 Provider.of<CountDownTimer>(context,
                                         listen: false)
@@ -330,19 +345,19 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                     ],
                   ),
                   const LineDivider(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0, left: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0, left: 8),
                     child: Text("Instructions",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: kPrimaryColor,
+                            color: Colors.black,
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.3,
                     child: ListView.builder(
-                        itemCount: Provider.of<UserRecipesController>(context)
+                        itemCount: Provider.of<DefaultRecipeController>(context)
                             .insrtuctions
                             .length,
                         itemBuilder: (context, index) {
@@ -364,10 +379,14 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                         children: [
                                           Container(
                                             child: Text(
-                                                "${Provider.of<UserRecipesController>(context).insrtuctions[index].Step}. "),
+                                                "${Provider.of<DefaultRecipeController>(context).insrtuctions[index].Step}. ",
+                                                style: TextStyle(
+                                                    color: kTextColor)),
                                           ),
                                           Container(
-                                            child: const Text(""),
+                                            child: Text("",
+                                                style: TextStyle(
+                                                    color: kTextColor)),
                                           )
                                         ],
                                       ),
@@ -376,28 +395,33 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                             MediaQuery.of(context).size.width *
                                                 0.61,
                                         child: Text(
-                                          Provider.of<UserRecipesController>(context).insrtuctions[index].Description,
+                                          Provider.of<DefaultRecipeController>(
+                                                  context)
+                                              .insrtuctions[index]
+                                              .Description,
                                           maxLines: 10,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
+                                          style: TextStyle(color: kTextColor),
                                         ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: widget.islistening
                                             ? Padding(
-                                                padding:
-                                                    const EdgeInsets.only(right: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
                                                 child: GestureDetector(
-                                                  child: const Icon(Icons.volume_down,
-                                                      color: Colors.white),
+                                                  child: const Icon(
+                                                      Icons.volume_down,
+                                                      color: Colors.black),
                                                   onTap: () {
                                                     speak(Provider.of<
-                                                                UserRecipesController>(
+                                                                DefaultRecipeController>(
                                                             context,
                                                             listen: false)
                                                         .insrtuctions[Provider.of<
-                                                                    UserRecipesController>(
+                                                                    DefaultRecipeController>(
                                                                 context,
                                                                 listen: false)
                                                             .currentStep]
@@ -411,17 +435,17 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                                 ),
                                               )
                                             : Padding(
-                                                padding:
-                                                    const EdgeInsets.only(right: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
                                                 child: GestureDetector(
-                                                  child: const Icon(Icons.volume_mute,
-                                                      color: Colors.white),
+                                                  child: const Icon(
+                                                      Icons.volume_mute,
+                                                      color: Colors.black),
                                                   onTap: () {
                                                     stop();
                                                     setState(() {
                                                       print("object");
-                                                      widget.islistening =
-                                                          true;
+                                                      widget.islistening = true;
                                                     });
                                                   },
                                                 ),
@@ -437,11 +461,23 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                   ),
                 ],
               ),
-            ));
+            ),
+          );
   }
 }
-String? Videotool(String videoUrl){
-final videoID = YoutubePlayer.convertUrlToId(videoUrl);
 
-        return videoID;
+String? Videotool(String videoUrl) {
+  final videoID = YoutubePlayer.convertUrlToId(videoUrl);
+
+  return videoID;
+}
+
+FlutterTts fluttertts = FlutterTts();
+
+Future<void> speak(text) async {
+  fluttertts.speak(text);
+}
+
+Future<void> stop() async {
+  fluttertts.stop();
 }

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Controllers/DafualtRecipesController.dart';
 import '../Widgets/LoadingScreen.dart';
-import 'ViewRecipePage.dart';
+import 'ViewRecipeFromDefualtList.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

@@ -32,7 +32,7 @@ import 'Screens/WelcomePage.dart';
 import 'Screens/SearchPage.dart';
 import 'Screens/IngredientsPage.dart';
 import 'Screens/EditInstructionsPage.dart';
-import 'Screens/CreateIngredientPage.dart';
+import 'AdminScreens/CreateIngredientPage.dart';
 import 'Screens/CreateInstructionsPage.dart';
 import 'Screens/CreateRecipePage.dart';
 import 'Screens/SelectIngredientsPage.dart';
