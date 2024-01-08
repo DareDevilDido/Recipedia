@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:recipedia/Views/AdminScreens/adminRecipe.dart';
+import 'package:recipedia/Views/AdminScreens/adminRecipes.dart';
 import 'package:recipedia/Views/AdminScreens/adminUser.dart';
 import 'package:recipedia/Views/AdminScreens/AdminProfilePage.dart';
 import 'package:recipedia/Views/AdminScreens/top10recipes.dart';
