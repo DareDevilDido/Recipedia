@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../Repo/DefaultIngredientsRepo.dart';
+import '../Models/Repo/DefaultIngredientsRepo.dart';
 
 class AdminIngredientController extends ChangeNotifier {
   final _firestore = FirebaseFirestore.instance;

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:recipedia/Constants/Constants.dart';
-import '../Repo/DefaultIngredientsRepo.dart';
-import '../Repo/DefaultReciperepo.dart';
-import '../Repo/InstructionRepo.dart';
+import '../Models/Repo/DefaultIngredientsRepo.dart';
+import '../Models/Repo/DefaultReciperepo.dart';
+import '../Models/Repo/InstructionRepo.dart';
 import 'UserIngredientsController.dart';
 
 class UserRecipesController extends ChangeNotifier {
