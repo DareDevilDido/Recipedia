@@ -139,7 +139,7 @@ class _SortCategoryState extends State<SortCategory> {
               GestureDetector(
                 onTap: () async {
                   if (Provider.of<Loading>(context, listen: false).kCategory ==
-                      "Sweets") {
+                      "Desserts") {
                     await Provider.of<UserRecipesController>(context,
                             listen: false)
                         .getRecipes(kUserId);
@@ -149,10 +149,10 @@ class _SortCategoryState extends State<SortCategory> {
                     });
                   } else {
                     Provider.of<UserRecipesController>(context, listen: false)
-                        .FilterCategory("Sweets");
+                        .FilterCategory("Desserts");
                     setState(() {
                       Provider.of<Loading>(context, listen: false).kCategory =
-                          "Sweets";
+                          "Desserts";
                     });
                   }
                 },
@@ -165,7 +165,7 @@ class _SortCategoryState extends State<SortCategory> {
                       fit: BoxFit.cover,
                     ),
                     Text(
-                      "Sweets",
+                      "Desserts",
                       style: TextStyle(
                           color: kPrimaryColor,
                           fontWeight: FontWeight.bold,

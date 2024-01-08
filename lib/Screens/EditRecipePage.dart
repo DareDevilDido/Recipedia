@@ -31,7 +31,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
     Provider.of<Recipe>(context, listen: false).ingredientID = [];
     Provider.of<Recipe>(context, listen: false).ingredients = [];
     Provider.of<PickImage>(context, listen: false).image = null;
-    
+
     setState(() {
       Provider.of<Loading>(context, listen: false).changeBool();
     });
@@ -63,7 +63,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
     String Servings = Recip.Servings;
     String time = Recip.time;
     String nutrition = Recip.nutrition;
-    
+
     String VideoLink = Recip.VideoLink;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
@@ -160,7 +160,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                     color: Colors.black.withOpacity(0.5),
                                     alignment: Alignment.center,
                                     child: const Text(
-                                      "Add Photo",
+                                      "Edit Photo",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
@@ -248,7 +248,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                       'Dinner',
                                       'Lunch',
                                       'BreakFast',
-                                      'Sweet'
+                                      'Dessert'
                                     ]
                                         .map((item) => DropdownMenuItem<String>(
                                               value: item,
@@ -507,7 +507,7 @@ class _EditRecipePageState extends State<EditRecipePage> {
                                             context,
                                             listen: false)
                                         .EditRecipe(name, Category, nutrition,
-                                            time, Servings, Image,VideoLink);
+                                            time, Servings, Image, VideoLink);
                                     Provider.of<UserRecipeIngredientController>(
                                             context,
                                             listen: false)
@@ -598,9 +598,6 @@ class _EditRecipePageState extends State<EditRecipePage> {
                   ]),
                 ],
               ),
-            )
-
-            
-            );
+            ));
   }
 }

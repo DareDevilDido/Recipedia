@@ -7,10 +7,11 @@ import 'package:provider/provider.dart';
 import '../Constants/Constants.dart';
 import '../Models/PickImage.dart';
 import '../Widgets/roundedbutton.dart';
-  String ingName = "";
+
+String ingName = "";
+
 // Stateless widget for creating a new ingredient in the admin view
 class CreateAdminIngredientPage extends StatelessWidget {
-
   const CreateAdminIngredientPage({super.key});
 
   // Static constant for the route identifier
@@ -19,8 +20,9 @@ class CreateAdminIngredientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Local variable to store the ingredient name
-    
+
     return Scaffold(
+      backgroundColor: kBackGroundColor,
       appBar: AppBar(
         title: const Text("Create Ingredient"),
         centerTitle: true,

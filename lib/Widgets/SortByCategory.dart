@@ -35,8 +35,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipeController>(context,
-                            listen: false)
+                    Provider.of<DefaultRecipeController>(context, listen: false)
                         .FilterCategory("Dinner");
                     setState(() {
                       Provider.of<Loading>(context, listen: false).kCategory =
@@ -74,8 +73,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipeController>(context,
-                            listen: false)
+                    Provider.of<DefaultRecipeController>(context, listen: false)
                         .FilterCategory("Breakfast");
                     setState(() {
                       Provider.of<Loading>(context, listen: false).kCategory =
@@ -113,8 +111,7 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipeController>(context,
-                            listen: false)
+                    Provider.of<DefaultRecipeController>(context, listen: false)
                         .FilterCategory("Lunch");
                     setState(() {
                       Provider.of<Loading>(context, listen: false).kCategory =
@@ -143,7 +140,7 @@ class _SortCategoryState extends State<SortCategory> {
               GestureDetector(
                 onTap: () async {
                   if (Provider.of<Loading>(context, listen: false).kCategory ==
-                      "Sweets") {
+                      "Desserts") {
                     await Provider.of<DefaultRecipeController>(context,
                             listen: false)
                         .getRecipes(kUserId);
@@ -152,12 +149,11 @@ class _SortCategoryState extends State<SortCategory> {
                           "All";
                     });
                   } else {
-                    Provider.of<DefaultRecipeController>(context,
-                            listen: false)
-                        .FilterCategory("Sweets");
+                    Provider.of<DefaultRecipeController>(context, listen: false)
+                        .FilterCategory("Desserts");
                     setState(() {
                       Provider.of<Loading>(context, listen: false).kCategory =
-                          "Sweets";
+                          "Desserts";
                     });
                   }
                 },
@@ -170,7 +166,7 @@ class _SortCategoryState extends State<SortCategory> {
                       fit: BoxFit.cover,
                     ),
                     Text(
-                      "Sweets",
+                      "Desserts",
                       style: TextStyle(
                           color: kPrimaryColor,
                           fontWeight: FontWeight.bold,

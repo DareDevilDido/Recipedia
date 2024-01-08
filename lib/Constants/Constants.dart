@@ -12,6 +12,10 @@ Color kButtonColor = const Color.fromARGB(255, 217, 126, 150);
 Color kContainerColor = const Color.fromARGB(255, 217, 217, 217);
 Color kTextColor = const Color.fromARGB(255, 0, 0, 0);
 
+const OPENAI_API_KEY = "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";
+const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/completions";
+///////////////////////////////////////// This is the API Key from AbdelMajeed's OpenAI Account
+
 bool isDarkTheme = false;
 
 TextStyle kSendButtonTextStyle = const TextStyle(
@@ -54,8 +58,6 @@ void updateColorsForTheme() {
 }
 
 //Dark Mode Colors (By Dido)
-Color kDarkBackgroundColor = const Color.fromRGBO(44, 44, 44, 1);
-Color kDarkTextColor = const Color.fromRGBO(255, 255, 255, 1);
 Color kLightTextColor = const Color.fromARGB(255, 0, 0, 0);
 
 class Loading extends ChangeNotifier {

@@ -18,13 +18,12 @@ import '../Widgets/roundedbutton.dart';
 class CreateRecipePage extends StatefulWidget {
   static const String id = "CreateRecipePage";
 
-
   const CreateRecipePage({super.key});
 
   @override
   State<CreateRecipePage> createState() => _CreateRecipePageState();
 }
- 
+
 class _CreateRecipePageState extends State<CreateRecipePage> {
   String name = "";
   String Category = "";
@@ -40,7 +39,6 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
       await Provider.of<UserIngredientController>(context, listen: false)
           .getIngredients(kUserId);
     });
-    
 
     Provider.of<Recipe>(context, listen: false).insrtuctions = [];
     Provider.of<Recipe>(context, listen: false).ingredientID = [];
@@ -48,17 +46,17 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
     super.initState();
   }
 
- 
-
   @override
   Widget build(BuildContext context) {
-    
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
-              title: Text("Create Recipe" , style: TextStyle(color: kTextColor),),
+              title: Text(
+                "Create Recipe",
+                style: TextStyle(color: kTextColor),
+              ),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
             ),
@@ -167,6 +165,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                       height: 8.0,
                     ),
                     TextField(
+                      style: TextStyle(color: kTextColor),
                       onChanged: (value) {
                         name = value;
                       },
@@ -181,37 +180,40 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(3.0),
                               child: TextField(
+                                style: TextStyle(color: kTextColor),
                                 onChanged: (value) {
                                   nutrition = value;
                                 },
                                 decoration: kinputDecoration.copyWith(
-                                    hintText: "nutrition"),
+                                    hintText: "Calories"),
                               ),
                             ),
                           ),
                           Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: TextField(
-                            onChanged: (value) {
-                              VideoLink = value;
-                            },
-                            decoration: kinputDecoration.copyWith(
-                                hintText: "VideoLink"),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: TextField(
+                                style: TextStyle(color: kTextColor),
+                                onChanged: (value) {
+                                  VideoLink = value;
+                                },
+                                decoration: kinputDecoration.copyWith(
+                                    hintText: "Video Link"),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(3.0),
                               child: TextField(
+                                style: TextStyle(color: kTextColor),
                                 onChanged: (value) {
                                   time = value;
                                 },
                                 decoration: kinputDecoration.copyWith(
-                                    hintText: "Time to cook "),
+                                    hintText: "Cook Time"),
                               ),
                             ),
                           ),
@@ -238,7 +240,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                       'Dinner',
                                       'Lunch',
                                       'BreakFast',
-                                      'Sweet'
+                                      'Dessert'
                                     ]
                                         .map((item) => DropdownMenuItem<String>(
                                               value: item,
@@ -259,6 +261,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
+                                style: TextStyle(color: kTextColor),
                                 onChanged: (value) {
                                   Servings = value;
                                 },
@@ -274,108 +277,115 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                       height: 8.0,
                     ),
                     const LineDivider(),
-                   Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("ingredients" , style: TextStyle(color: kTextColor),),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Container(
-                          color: Colors.white,
-                          height: 30,
-                          child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5)),
-                            child: DropdownButton<int>(
-                              items: Provider.of<UserIngredientController>(
-                                      context)
-                               
-                                  .ingredients
-                                  .map((item) => DropdownMenuItem<int>(
-                                        value: Provider.of<
-                                                    UserIngredientController>(
-                                                context)
-                                            .ingredients
-                                            .indexOf(item),
-                                        child: Text(item.Name),
-                                      ))
-                                  .toList(),
-                              onChanged: (Select) {
-                                setState(() {
-                                  var index =
-                                      Provider.of<UserIngredientController>(
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "ingredients",
+                            style: TextStyle(color: kTextColor),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Container(
+                              color: Colors.white,
+                              height: 30,
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(5)),
+                                child: DropdownButton<int>(
+                                  items: Provider.of<UserIngredientController>(
+                                          context)
+                                      .ingredients
+                                      .map((item) => DropdownMenuItem<int>(
+                                            value: Provider.of<
+                                                        UserIngredientController>(
+                                                    context)
+                                                .ingredients
+                                                .indexOf(item),
+                                            child: Text(item.Name),
+                                          ))
+                                      .toList(),
+                                  onChanged: (Select) {
+                                    setState(() {
+                                      var index = Provider.of<
+                                                  UserIngredientController>(
                                               context,
                                               listen: false)
                                           .ingredients
                                           .where((item) => item.Name == Select);
-                                  Provider.of<Recipe>(context, listen: false)
-                                      .addIngredientToList(
-                                          Provider.of<UserIngredientController>(
-                                                  context,
-                                                  listen: false)
-                                              .ingredients[Select!],
-                                          Provider.of<UserIngredientController>(
-                                                  context,
-                                                  listen: false)
-                                              .ingredientID[Select]);
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                    (Provider.of<Recipe>(context).ingredients.isNotEmpty)
-                    ? SizedBox(
-                        height: 130,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount:
-                                Provider.of<Recipe>(context).ingredients.length,
-                            itemBuilder: (context, index) {
-                              return Column(children: [
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 20.0, top: 10),
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10)),
-                                      child: Image.network(
-                                        Provider.of<Recipe>(context)
-                                            .ingredients[index]
-                                            .image,
-                                        height: 75,
-                                      ),
-                                    )),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 20.0, top: 5),
-                                  child: GestureDetector(
-                                    child: const Icon(Icons.delete,
-                                        color: Colors.red),
-                                    onTap: () {
                                       Provider.of<Recipe>(context,
                                               listen: false)
-                                          .removeIngrecientFromList(index);
-                                      // Navigator.pushNamed(context, SearchPage.id);
-                                    },
-                                  ),
-                                )
-                              ]);
-                            }),
-                      )
-                    : Container(),
+                                          .addIngredientToList(
+                                              Provider.of<UserIngredientController>(
+                                                      context,
+                                                      listen: false)
+                                                  .ingredients[Select!],
+                                              Provider.of<UserIngredientController>(
+                                                      context,
+                                                      listen: false)
+                                                  .ingredientID[Select]);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    (Provider.of<Recipe>(context).ingredients.isNotEmpty)
+                        ? SizedBox(
+                            height: 130,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: Provider.of<Recipe>(context)
+                                    .ingredients
+                                    .length,
+                                itemBuilder: (context, index) {
+                                  return Column(children: [
+                                    Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20.0, top: 10),
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                          child: Image.network(
+                                            Provider.of<Recipe>(context)
+                                                .ingredients[index]
+                                                .image,
+                                            height: 75,
+                                          ),
+                                        )),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20.0, top: 5),
+                                      child: GestureDetector(
+                                        child: const Icon(Icons.delete,
+                                            color: Colors.red),
+                                        onTap: () {
+                                          Provider.of<Recipe>(context,
+                                                  listen: false)
+                                              .removeIngrecientFromList(index);
+                                          // Navigator.pushNamed(context, SearchPage.id);
+                                        },
+                                      ),
+                                    )
+                                  ]);
+                                }),
+                          )
+                        : Container(),
                     const LineDivider(),
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text("Instructions" , style: TextStyle(color: kTextColor),),
+                          Text(
+                            "Instructions",
+                            style: TextStyle(color: kTextColor),
+                          ),
                         ],
                       ),
                     ),
@@ -434,6 +444,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                       padding:
                           const EdgeInsets.only(left: 10.0, right: 10, top: 10),
                       child: TextField(
+                        style: TextStyle(color: kTextColor),
                         onChanged: (value) {
                           description = value;
                         },
@@ -460,7 +471,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                       time != "" &&
                                       Servings != "" &&
                                       name != "" &&
-                                      VideoLink!=""&&
+                                      VideoLink != "" &&
                                       Provider.of<PickImage>(context,
                                                   listen: false)
                                               .image !=
@@ -487,7 +498,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                                 UserRecipesController>(context,
                                             listen: false)
                                         .AddRecipe(name, Category, nutrition,
-                                            time, Servings, Image,VideoLink);
+                                            time, Servings, Image, VideoLink);
 
                                     Future.forEach(
                                         Provider.of<Recipe>(context,
@@ -521,8 +532,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                     Navigator.pop(context, true);
                                     Provider.of<Loading>(context, listen: false)
                                         .changeBool();
-                                   } 
-                                   else {
+                                  } else {
                                     ScaffoldMessenger.of(context)
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(
@@ -552,8 +562,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                                             .toString());
                                     Provider.of<Recipe>(context, listen: false)
                                         .addInstructionsToList(instruction);
-                                  } 
-                                  else {
+                                  } else {
                                     ScaffoldMessenger.of(context)
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(MessagePrompt().snack(

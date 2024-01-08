@@ -116,7 +116,7 @@ class _DefaultRecipePageState extends State<DefaultRecipePage> {
                             child: Stack(
                               children: [
                                 Image.network(
-                                  "https://firebasestorage.googleapis.com/v0/b/recipedia-401e0.appspot.com/o/DefaultImages%2FBreakfast.jpg?alt=media&token=ad76ff84-bde1-44d7-bf58-cfc195594d3b",
+                                  "https://firebasestorage.googleapis.com/v0/b/recipedia-401e0.appspot.com/o/DefaultImages%2FLunch.jpg?alt=media&token=53637bc0-ca01-4180-880a-15dc7633f275",
                                   fit: BoxFit.cover,
                                   height: 200,
                                   width: 400,
@@ -204,7 +204,7 @@ class _DefaultRecipePageState extends State<DefaultRecipePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => ViewDefaultRecipeListPage(
-                                          Category: "Sweet",
+                                          Category: "Dessert",
                                         )));
                           },
                           child: Padding(

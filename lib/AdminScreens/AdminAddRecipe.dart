@@ -67,58 +67,61 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Add Recipe"),
-        centerTitle: true,
-        backgroundColor: kPrimaryColor,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              child: const Icon(Icons.add, color: Colors.white),
-              onTap: () async {
-                // Navigate to a new page to create a new ingredient
-                bool refresh = await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const CreateAdminIngredientPage()));
+        appBar: AppBar(
+          title: const Text("Add Recipe"),
+          centerTitle: true,
+          backgroundColor: kPrimaryColor,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: GestureDetector(
+                child: const Icon(Icons.add, color: Colors.white),
+                onTap: () async {
+                  // Navigate to a new page to create a new ingredient
+                  bool refresh = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const CreateAdminIngredientPage()));
 
-                // Refresh the page if needed
-                if (refresh) {
-                  setState(() {
-                    Provider.of<Loading>(context, listen: false).changeBool();
-                  });
-
-                  // Use a Future to asynchronously load data and update the state
-                  Future.delayed(Duration.zero).then((_) async {
-                    await Provider.of<AdminIngredientController>(context,
-                            listen: false)
-                        .getRecipeIngredients();
-
-                    // Update the loading state again
+                  // Refresh the page if needed
+                  if (refresh) {
                     setState(() {
                       Provider.of<Loading>(context, listen: false).changeBool();
                     });
-                  });
 
-                  // Reset recipe-related fields
-                  Provider.of<Recipe>(context, listen: false).insrtuctions = [];
-                  Provider.of<Recipe>(context, listen: false).ingredientID = [];
-                  Provider.of<Recipe>(context, listen: false).ingredients = [];
+                    // Use a Future to asynchronously load data and update the state
+                    Future.delayed(Duration.zero).then((_) async {
+                      await Provider.of<AdminIngredientController>(context,
+                              listen: false)
+                          .getRecipeIngredients();
 
-                  super.initState();
-                }
-              },
-            ),
-          )
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
-        child: ListView(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
+                      // Update the loading state again
+                      setState(() {
+                        Provider.of<Loading>(context, listen: false)
+                            .changeBool();
+                      });
+                    });
+
+                    // Reset recipe-related fields
+                    Provider.of<Recipe>(context, listen: false).insrtuctions =
+                        [];
+                    Provider.of<Recipe>(context, listen: false).ingredientID =
+                        [];
+                    Provider.of<Recipe>(context, listen: false).ingredients =
+                        [];
+
+                    super.initState();
+                  }
+                },
+              ),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 10, bottom: 10),
+          child: ListView(
+            children: <Widget>[
+              Column(children: <Widget>[
                 // Display an image or a placeholder for the recipe
                 if (Provider.of<PickImage>(context).image != null)
                   // Display the selected image if available
@@ -223,7 +226,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                   onChanged: (value) {
                     name = value;
                   },
-                  decoration: kinputDecoration.copyWith(hintText: "Recipe Name"),
+                  decoration:
+                      kinputDecoration.copyWith(hintText: "Recipe Name"),
                 ),
                 const SizedBox(
                   height: 8.0,
@@ -239,8 +243,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             onChanged: (value) {
                               nutrition = value;
                             },
-                            decoration:
-                                kinputDecoration.copyWith(hintText: "Nutrition"),
+                            decoration: kinputDecoration.copyWith(
+                                hintText: "Nutrition"),
                           ),
                         ),
                       ),
@@ -251,8 +255,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                             onChanged: (value) {
                               VideoLink = value;
                             },
-                            decoration:
-                                kinputDecoration.copyWith(hintText: "Video Link"),
+                            decoration: kinputDecoration.copyWith(
+                                hintText: "Video Link"),
                           ),
                         ),
                       ),
@@ -292,7 +296,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   'Dinner',
                                   'Lunch',
                                   'Breakfast',
-                                  'Sweet'
+                                  'Dessert'
                                 ]
                                     .map((item) => DropdownMenuItem<String>(
                                           value: item,
@@ -492,7 +496,8 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
 
                 // Input field for adding instructions
                 Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10, top: 10),
+                  padding:
+                      const EdgeInsets.only(left: 10.0, right: 10, top: 10),
                   child: TextField(
                     onChanged: (value) {
                       setState(() {
@@ -523,7 +528,7 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   time != "" &&
                                   Servings != "" &&
                                   name != "" &&
-                                  VideoLink!= "" &&
+                                  VideoLink != "" &&
                                   Provider.of<Recipe>(context, listen: false)
                                           .insrtuctions !=
                                       [] &&
@@ -533,18 +538,18 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                                   Provider.of<Recipe>(context, listen: false)
                                           .ingredientID !=
                                       []) {
-                                        // Upload the recipe image
+                                // Upload the recipe image
                                 String Image = await Provider.of<PickImage>(
                                         context,
                                         listen: false)
                                     .uploadRecipeFile();
-                                    // Add the recipe to the database and retrieve its ID
+                                // Add the recipe to the database and retrieve its ID
                                 String ID =
                                     await Provider.of<AdminRecipesController>(
                                             context,
                                             listen: false)
                                         .AddRecipe(name, Category, nutrition,
-                                            time, Servings, Image,VideoLink);
+                                            time, Servings, Image, VideoLink);
 
                                 Future.forEach(
                                     Provider.of<Recipe>(context, listen: false)
@@ -580,9 +585,9 @@ class _AdminCreateRecipePageState extends State<AdminCreateRecipePage> {
                         child: RoundedButton(
                             color: kPrimaryColor,
                             text: 'Add Instruction',
-                            onPressed: () { print(description);
+                            onPressed: () {
+                              print(description);
                               if (description != "") {
-                               
                                 var instruction = InstructionsRepo(
                                     ID: "",
                                     Description: description,

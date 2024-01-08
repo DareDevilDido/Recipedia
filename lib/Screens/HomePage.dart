@@ -3,6 +3,8 @@ import 'package:recipedia/Controllers/DafualtRecipesController.dart';
 import 'package:recipedia/Screens/SearchPage.dart';
 import 'package:provider/provider.dart';
 import 'package:recipedia/Screens/ViewRecipePage.dart';
+import 'package:recipedia/Screens/AiAddIngredient.dart';
+import 'package:recipedia/Widgets/roundedbutton.dart';
 import '../Constants/Constants.dart';
 import '../Models/RandomRecipeOfTheDay.dart';
 import '../Widgets/LineDivider.dart';
@@ -55,156 +57,176 @@ class _HomePageState extends State<HomePage> {
           .kIsLoading
       ? const LoadingScreen()
       : DefaultTextStyle(
-        style: TextStyle(color: kTextColor),
-        child: Scaffold(
-          backgroundColor: kBackGroundColor,
-          appBar: AppBar(
-            leading: GestureDetector(),
-            title: Text("Recipedia", style: TextStyle(color: kTextColor),),
-            centerTitle: true,
-            backgroundColor: kPrimaryColor,
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: GestureDetector(
-                  child: const Icon(Icons.search, color: Colors.white),
-                  onTap: () {
-                    Navigator.pushNamed(context, SearchPage.id);
-                  },
-                ),
-              )
-            ],
-          ),
-          body: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: <Widget>[
-                Text("Recipe of the day", style: TextStyle(fontSize: 20, color: kTextColor)),
-                const LineDivider(),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => ViewRecipePage(
-                                  RecipeId: Provider.of<RandomRecipeOfTheDay>(
-                                          context,
-                                          listen: false)
-                                      .ROTD!
-                                      .ID,
-                                )));
-                  },
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.network(
-                        Provider.of<RandomRecipeOfTheDay>(context,
-                                listen: false)
-                            .ROTD!
-                            .Image,
-                        height: 180,
-                        width: 330,
-                        fit: BoxFit.cover,
-                      )),
-                ),
+          style: TextStyle(color: kTextColor),
+          child: Scaffold(
+            backgroundColor: kBackGroundColor,
+            appBar: AppBar(
+              leading: GestureDetector(),
+              title: Text(
+                "Home",
+                style: TextStyle(color: kTextColor),
+              ),
+              centerTitle: true,
+              backgroundColor: kPrimaryColor,
+              actions: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    Provider.of<RandomRecipeOfTheDay>(context, listen: false)
-                        .ROTD!
-                        .Name,
-<<<<<<< HEAD
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
-=======
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: kTextColor),
->>>>>>> de37f54e20170441b37ce7efe06e4e76330322d0
+                  padding: const EdgeInsets.only(right: 20),
+                  child: GestureDetector(
+                    child: const Icon(Icons.search, color: Colors.white),
+                    onTap: () {
+                      Navigator.pushNamed(context, SearchPage.id);
+                    },
                   ),
-                ),
-                const LineDivider(),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0, bottom: 10),
-                  child: Text(
-                      "Other ${Provider.of<RandomRecipeOfTheDay>(context, listen: false).ROTD!.Category} recipe's",
-                      style: TextStyle(fontSize: 20, color: kTextColor)),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount:
-                                Provider.of<DefaultRecipeController>(context)
-                                    .Recipes
-                                    .length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => ViewRecipePage(
-                                                    RecipeId: Provider.of<
-                                                                DefaultRecipeController>(
-                                                            context)
-                                                        .Recipes[index]
-                                                        .ID,
-                                                  )));
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Column(
-                                        children: [
-                                          Expanded(
-                                            flex: 5,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              child: Image.network(
-                                                  Provider.of<DefaultRecipeController>(
-                                                          context)
-                                                      .Recipes[index]
-                                                      .Image,
-                                                  height: 240,
-                                                  width: 200,
-                                                  fit: BoxFit.cover),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 15.0),
-                                              child: Text(
-                                                  Provider.of<DefaultRecipeController>(
-                                                          context)
-                                                      .Recipes[index]
-                                                      .Name,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18, color: kTextColor)),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              );
-                            }),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 15.0),
-                        child: Icon(Icons.arrow_forward_ios_outlined),
-                      ),
-                    ],
-                  ),
-                ),
+                )
               ],
             ),
+            body: Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: <Widget>[
+                  Text("Recipe of the day",
+                      style: TextStyle(fontSize: 20, color: kTextColor)),
+                  const LineDivider(),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ViewRecipePage(
+                                    RecipeId: Provider.of<RandomRecipeOfTheDay>(
+                                            context,
+                                            listen: false)
+                                        .ROTD!
+                                        .ID,
+                                  )));
+                    },
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Image.network(
+                          Provider.of<RandomRecipeOfTheDay>(context,
+                                  listen: false)
+                              .ROTD!
+                              .Image,
+                          height: 180,
+                          width: 330,
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      Provider.of<RandomRecipeOfTheDay>(context, listen: false)
+                          .ROTD!
+                          .Name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: kTextColor),
+                    ),
+                  ),
+                  const LineDivider(),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Want to try something new, or have limited ingredients and don't know what to make?",
+                    style: TextStyle(color: kTextColor, fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                  RoundedButton(
+                    color: Color.fromARGB(255, 193, 103, 148),
+                    text: "Ask AI",
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => IngredientInputWidget()));
+                    },
+                  ),
+                  const LineDivider(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0, bottom: 10),
+                    child: Text(
+                        "Other ${Provider.of<RandomRecipeOfTheDay>(context, listen: false).ROTD!.Category} recipes",
+                        style: TextStyle(fontSize: 20, color: kTextColor)),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  Provider.of<DefaultRecipeController>(context)
+                                      .Recipes
+                                      .length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => ViewRecipePage(
+                                                      RecipeId: Provider.of<
+                                                                  DefaultRecipeController>(
+                                                              context)
+                                                          .Recipes[index]
+                                                          .ID,
+                                                    )));
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                child: Image.network(
+                                                    Provider.of<DefaultRecipeController>(
+                                                            context)
+                                                        .Recipes[index]
+                                                        .Image,
+                                                    height: 240,
+                                                    width: 200,
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 15.0),
+                                                child: Text(
+                                                    Provider.of<DefaultRecipeController>(
+                                                            context)
+                                                        .Recipes[index]
+                                                        .Name,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                        color: kTextColor)),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                );
+                              }),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15.0),
+                          child: Icon(Icons.arrow_forward_ios_outlined),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-      );
+        );
 }

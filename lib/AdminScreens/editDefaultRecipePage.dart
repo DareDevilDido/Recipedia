@@ -24,7 +24,7 @@ class editDefaultRecipePage extends StatefulWidget {
 }
 
 class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
- String description = "";
+  String description = "";
   @override
   void initState() {
     Provider.of<Loading>(context, listen: false).changeBool();
@@ -57,14 +57,13 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     var Recip = Provider.of<AdminRecipesController>(context).Recipe!;
     String name = Recip.Name;
     String Category = Recip.Category;
     String Servings = Recip.Servings;
     String time = Recip.time;
     String nutrition = Recip.nutrition;
-    String VideoLink=Recip.VideoLink;
+    String VideoLink = Recip.VideoLink;
     return Provider.of<Loading>(context, listen: true).kIsLoading
         ? const LoadingScreen()
         : Scaffold(
@@ -104,7 +103,6 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
               ],
             ),
             body: Padding(
-              
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: ListView(
                 children: <Widget>[
@@ -232,7 +230,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                               ),
                             ),
                           ),
-                             Expanded(
+                          Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
@@ -279,7 +277,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                       'Dinner',
                                       'Lunch',
                                       'BreakFast',
-                                      'Sweet'
+                                      'Dessert'
                                     ]
                                         .map((item) => DropdownMenuItem<String>(
                                               value: item,
@@ -537,7 +535,7 @@ class _editDefaultRecipePageState extends State<editDefaultRecipePage> {
                                             context,
                                             listen: false)
                                         .EditRecipe(name, Category, nutrition,
-                                            time, Servings, Image,VideoLink);
+                                            time, Servings, Image, VideoLink);
                                     await Provider.of<
                                                 AdminIngredientController>(
                                             context,

@@ -58,7 +58,10 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
         : Scaffold(
             backgroundColor: kBackGroundColor,
             appBar: AppBar(
-              title: Text("Recipe", style: TextStyle(color: kTextColor),),
+              title: Text(
+                "Recipe",
+                style: TextStyle(color: kTextColor),
+              ),
               centerTitle: true,
               backgroundColor: kPrimaryColor,
               actions: [
@@ -83,8 +86,8 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
               ],
             ),
             body: Container(
-              padding:
-                  const EdgeInsets.only(bottom: 20, right: 20, left: 20, top: 10),
+              padding: const EdgeInsets.only(
+                  bottom: 20, right: 20, left: 20, top: 10),
               color: kBackGroundColor,
               child: ListView(
                 children: <Widget>[
@@ -160,7 +163,10 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              Provider.of<UserRecipesController>(context).Recipe!.Name,
+                                              Provider.of<UserRecipesController>(
+                                                      context)
+                                                  .Recipe!
+                                                  .Name,
                                               style: TextStyle(
                                                   color: kButtonColor,
                                                   fontSize: 15,
@@ -168,7 +174,10 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                               textAlign: TextAlign.start,
                                             ),
                                             Text(
-                                              Provider.of<UserRecipesController>(context).Recipe!.Category,
+                                              Provider.of<UserRecipesController>(
+                                                      context)
+                                                  .Recipe!
+                                                  .Category,
                                               style: TextStyle(
                                                   color: kButtonColor,
                                                   fontSize: 15,
@@ -199,9 +208,10 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                         )
                       ],
                     ),
-                  ),const LineDivider(),
-                   Center(
-                      child: Container(
+                  ),
+                  const LineDivider(),
+                  Center(
+                    child: Container(
                         width: 300,
                         height: 170,
                         decoration: BoxDecoration(
@@ -211,9 +221,11 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                           //   fit: BoxFit.cover,
                           // ),
                         ),
-                        child:  VideoPage(Videotool(Provider.of<UserRecipesController>(context).Recipe!.VideoLink))
-                      ),
-                    ),
+                        child: VideoPage(Videotool(
+                            Provider.of<UserRecipesController>(context)
+                                .Recipe!
+                                .VideoLink))),
+                  ),
                   const LineDivider(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0, left: 8),
@@ -250,7 +262,6 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                         }),
                   ),
                   const LineDivider(),
-                  
                   Row(
                     children: [
                       Padding(
@@ -373,7 +384,10 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                             MediaQuery.of(context).size.width *
                                                 0.61,
                                         child: Text(
-                                          Provider.of<UserRecipesController>(context).insrtuctions[index].Description,
+                                          Provider.of<UserRecipesController>(
+                                                  context)
+                                              .insrtuctions[index]
+                                              .Description,
                                           maxLines: 10,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
@@ -383,10 +397,11 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: widget.islistening
                                             ? Padding(
-                                                padding:
-                                                    const EdgeInsets.only(right: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
                                                 child: GestureDetector(
-                                                  child: const Icon(Icons.volume_down,
+                                                  child: const Icon(
+                                                      Icons.volume_down,
                                                       color: Colors.white),
                                                   onTap: () {
                                                     speak(Provider.of<
@@ -408,17 +423,17 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
                                                 ),
                                               )
                                             : Padding(
-                                                padding:
-                                                    const EdgeInsets.only(right: 10),
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
                                                 child: GestureDetector(
-                                                  child: const Icon(Icons.volume_mute,
+                                                  child: const Icon(
+                                                      Icons.volume_mute,
                                                       color: Colors.white),
                                                   onTap: () {
                                                     stop();
                                                     setState(() {
                                                       print("object");
-                                                      widget.islistening =
-                                                          true;
+                                                      widget.islistening = true;
                                                     });
                                                   },
                                                 ),
@@ -437,8 +452,9 @@ class _USerViewRecipePageState extends State<UserViewRecipePage> {
             ));
   }
 }
-String? Videotool(String videoUrl){
-final videoID = YoutubePlayer.convertUrlToId(videoUrl);
 
-        return videoID;
+String? Videotool(String videoUrl) {
+  final videoID = YoutubePlayer.convertUrlToId(videoUrl);
+
+  return videoID;
 }
