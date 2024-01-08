@@ -145,7 +145,7 @@ String Role=Provider.of<UserController>(context, listen: false).userInfo!.Role!.
                       children: [
                         RoundedButton(
                             color: kPrimaryColor,
-                            text: 'Delete User',
+                            text: 'Suspend User',
                             onPressed: () async {
                               if(email==kUserEmail)
                               {Provider.of<UserController>(context,
