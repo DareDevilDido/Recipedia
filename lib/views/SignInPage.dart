@@ -4,6 +4,8 @@ import 'SignUpPage.dart';
 
 
 class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,7 +158,7 @@ class SignInPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                      MaterialPageRoute(builder: (context) => const SignUpPage()),
                     );
                 },
                 child: const Text(

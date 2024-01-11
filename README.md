@@ -1,4 +1,4 @@
-# Recipedia Mobile App Offical Repository
+# recipedia
 
 A new Flutter project.
 

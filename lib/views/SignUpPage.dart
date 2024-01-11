@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'SignInPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SignUpPage(),
     );
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
 }
 
 class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -169,7 +173,7 @@ class SignUpPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignInPage()),
+                      MaterialPageRoute(builder: (context) => const SignInPage()),
                     );
                 },
                 style: ElevatedButton.styleFrom(
@@ -226,7 +230,7 @@ class SignUpPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignInPage()),
+                      MaterialPageRoute(builder: (context) => const SignInPage()),
                     );
                 },
                 child: const Text(

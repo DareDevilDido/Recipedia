@@ -10,6 +10,8 @@ import 'package:recipe_widget/views/search_for_recipe.dart';
 
 
 class NavigationsBar extends StatefulWidget {
+  const NavigationsBar({super.key});
+
   @override
   State<NavigationsBar> createState() => _NavigationsBarState();
 }
@@ -28,7 +30,7 @@ class _NavigationsBarState extends State<NavigationsBar> {
       body: _pages[index],
       bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
-          animationDuration: Duration(milliseconds: 350),
+          animationDuration: const Duration(milliseconds: 350),
           color: Colors.blue,
           height: 55,
           onTap: (pageIndex) {

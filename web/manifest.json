@@ -1,6 +1,6 @@
 {
-    "name": "recipe_widget",
-    "short_name": "recipe_widget",
+    "name": "recipedia",
+    "short_name": "recipedia",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

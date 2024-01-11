@@ -172,6 +172,8 @@ import 'package:flutter/material.dart';
 import 'package:recipe_widget/views/widgets/recipe_card_for_agrid.dart';
 
 class search_for_recipe extends StatefulWidget {
+  const search_for_recipe({super.key});
+
   @override
   _search_for_recipeState createState() => _search_for_recipeState();
 }
@@ -185,12 +187,12 @@ void showFilterDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Filter'),
+        title: const Text('Filter'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Rating'),
-            SizedBox(height: 8.0),
+            const Text('Rating'),
+            const SizedBox(height: 8.0),
             Wrap(
               spacing: 8.0,
               children: List.generate(
@@ -219,14 +221,14 @@ void showFilterDialog(BuildContext context) {
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
-            Text('Categories'),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 16.0),
+            const Text('Categories'),
+            const SizedBox(height: 8.0),
             Wrap(
               spacing: 8.0,
               children: [
                 FilterChip(
-                  label: Text('All'),
+                  label: const Text('All'),
                   selected: selectedCategories.contains('All'),
                   onSelected: (bool selected) {
                     setState(() {
@@ -239,7 +241,7 @@ void showFilterDialog(BuildContext context) {
                   },
                 ),
                 FilterChip(
-                  label: Text('Cereal'),
+                  label: const Text('Cereal'),
                   selected: selectedCategories.contains('Cereal'),
                   onSelected: (bool selected) {
                     setState(() {
@@ -258,7 +260,7 @@ void showFilterDialog(BuildContext context) {
         ),
         actions: [
           TextButton(
-            child: Text('Apply'),
+            child: const Text('Apply'),
             onPressed: () {
               setState(() {
                 filterApplied = true; // Apply the filter
@@ -279,21 +281,21 @@ void showFilterDialog(BuildContext context) {
         title: Row(
           children: [
             IconButton(
-              icon: Icon(Icons.arrow_back,color: Colors.black,),
+              icon: const Icon(Icons.arrow_back,color: Colors.black,),
               
               onPressed: () {
                 Navigator.pop(context); // Handle back arrow press
               },
             ),
-           Icon(Icons.restaurant_menu,color: Colors.black,),
-              SizedBox(width: 10),
-              Text('Food Recipes', style: TextStyle(
+           const Icon(Icons.restaurant_menu,color: Colors.black,),
+              const SizedBox(width: 10),
+              const Text('Food Recipes', style: TextStyle(
               color: Colors.black),)
           ],
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.filter_list,color: Colors.black,),
+            icon: const Icon(Icons.filter_list,color: Colors.black,),
             onPressed: () {
               showFilterDialog(context); // Open the filter dialog
             },
@@ -301,7 +303,7 @@ void showFilterDialog(BuildContext context) {
         ],
       ),
       body:Scrollbar( child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Row(children: [Expanded(child:Container(decoration: BoxDecoration(
@@ -314,7 +316,7 @@ void showFilterDialog(BuildContext context) {
               ] ),
               child: TextFormField(
                 
-                decoration: InputDecoration(border:InputBorder.none,hintText: "Search",
+                decoration: const InputDecoration(border:InputBorder.none,hintText: "Search",
               prefixIcon: Icon(Icons.search))
               ),
               ),
@@ -328,7 +330,7 @@ void showFilterDialog(BuildContext context) {
                   color: Colors.grey.shade400,
                   blurRadius:10,
                   spreadRadius: 3,
-                  offset: Offset(5, 5))
+                  offset: const Offset(5, 5))
             ]),
              child:const Padding(padding: EdgeInsets.all(12.0),
              child: Icon(Icons.sort,
@@ -345,10 +347,10 @@ void showFilterDialog(BuildContext context) {
             //     hintText: 'Search',
             //   ),
             // ),
-            SizedBox(height: 16.0),
-            Text("Search Result",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20 ,color:Colors.black ))
+            const SizedBox(height: 16.0),
+            const Text("Search Result",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20 ,color:Colors.black ))
                            
-            ,SizedBox(height: 16.0),
+            ,const SizedBox(height: 16.0),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,

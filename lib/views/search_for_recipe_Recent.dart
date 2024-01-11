@@ -173,6 +173,8 @@ import 'package:recipe_widget/views/widgets/recipe_card_for_agrid.dart';
 
 
 class search_for_recipe_Recent extends StatefulWidget {
+  const search_for_recipe_Recent({super.key});
+
   @override
   _search_for_recipe_RecentState createState() => _search_for_recipe_RecentState();
 }
@@ -186,12 +188,12 @@ void showFilterDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Filter'),
+        title: const Text('Filter'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Rating'),
-            SizedBox(height: 8.0),
+            const Text('Rating'),
+            const SizedBox(height: 8.0),
             Wrap(
               spacing: 8.0,
               children: List.generate(
@@ -240,7 +242,7 @@ void showFilterDialog(BuildContext context) {
                   },
                 ),
                 FilterChip(
-                  label: Text('Cereal'),
+                  label: const Text('Cereal'),
                   selected: selectedCategories.contains('Cereal'),
                   onSelected: (bool selected) {
                     setState(() {
@@ -259,7 +261,7 @@ void showFilterDialog(BuildContext context) {
         ),
         actions: [
           TextButton(
-            child: Text('Apply'),
+            child: const Text('Apply'),
             onPressed: () {
               setState(() {
                 filterApplied = true; // Apply the filter
@@ -280,7 +282,7 @@ void showFilterDialog(BuildContext context) {
         title: Row(
           children: [
             IconButton(
-              icon: Icon(Icons.arrow_back,color: Colors.black,),
+              icon: const Icon(Icons.arrow_back,color: Colors.black,),
               
               onPressed: () {
                 Navigator.pop(context); // Handle back arrow press
@@ -302,7 +304,7 @@ void showFilterDialog(BuildContext context) {
         ],
       ),
       body:Scrollbar(child:Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const TextField(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:recipe_widget/colors.dart'; // Set Default colors in colors.dart file and use here
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +144,7 @@ class RecipeCard extends StatelessWidget {
   final String chefName;
   final String time;
 
-  const RecipeCard({
+  const RecipeCard({super.key, 
     required this.rating,
     required this.recipeName,
     required this.chefName,
