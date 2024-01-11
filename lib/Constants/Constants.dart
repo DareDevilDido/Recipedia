@@ -14,9 +14,8 @@ Color kButtonColor = const Color.fromARGB(255, 217, 126, 150);
 Color kContainerColor = const Color.fromARGB(255, 217, 217, 217);
 Color kTextColor = const Color.fromARGB(255, 36, 14, 14);
 
-const OPENAI_API_KEY = "INSERT_API_KEY";
+const OPENAI_API_KEY = "INSERT_API_KEY"; ///////// INSERT API KEY BEFORE TESTING
 const OPENAI_API_ENDPOINT = "https://api.openai.com/v1/completions";
-///////////////////////////////////////// INSERT API KEY BEFORE TESTING
 
 bool isDarkTheme = false;
 
